@@ -34,16 +34,15 @@ Concevoir un système capable de stabiliser l'axe sur un seul degré de liberté
 Étapes de Développement
 
 1.	Choix des composants nécessaires
-a.	Sélection des moteurs, hélices, capteurs et autres composants électroniques.
-b.	Conception d'un PCB si nécessaire pour intégrer l'alimentation, l'écran et les contrôleurs.
+	Sélection des moteurs, hélices, capteurs et autres composants électroniques.
 
 2.	Soudure du PCB
 a.	Montage et soudure des composants essentiels (alimentation, écran, microcontrôleur).
 b.	Préparation des connexions pour le potentiomètre et les moteurs.
 
 3.	Conception Mécanique
-a.	Choisir une structure stable et adaptée au projet.
-b.	Intégrer les hélices et assurer un montage permettant un mouvement fluide.
+a.	Choisir une structure stable et adaptée au projet, base assez lourde et axe léger.
+b.	Intégrer les hélices et assurer un montage permettant un mouvement fluide et sans secousse.
 
 4.	Code sur STM32
 a.	Programmer la STM32 pour réguler la vitesse des hélices en fonction de l'angle de l'axe.
