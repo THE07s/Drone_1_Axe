@@ -6,19 +6,34 @@
  * @brief	Fichier principal de votre projet sur carte Nucléo STM32G431KB
  *******************************************************************************
  */
-
+void int_to_str(char, int);
 #include "config.h"
 #include "stm32g4_sys.h"
-
+#include "tft_ili9341/stm32g4_ili9341.h"
 #include "stm32g4_systick.h"
 #include "stm32g4_gpio.h"
 #include "stm32g4_uart.h"
 #include "stm32g4_utils.h"
-
 #include <stdio.h>
 
-#define BLINK_DELAY		100	//ms
+char a = 42;
+int b = 42;
 
+
+#define BLINK_DELAY		100	//ms
+#define BLINK_DELAY2	2000 //ms
+int constante=0;
+char str[32];
+sprintf(str, %d, constante);
+
+
+
+void int_to_str(str,constante){
+	for (i=0, i<strlen(str),i++){
+
+
+}
+}
 void write_LED(bool b)
 {
 	HAL_GPIO_WritePin(LED_GREEN_GPIO, LED_GREEN_PIN, b);
@@ -72,9 +87,19 @@ int main(void)
 	/* Hello student */
 	printf("Hi <Student>, can you read me?\n");
 
-	heartbeat();
+	//heartbeat();
 
 	/* Tâche de fond, boucle infinie, Infinite loop,... quelque soit son nom vous n'en sortirez jamais */
+	ILI9341_Init();
+//	ILI9341_Fill(ILI9341_COLOR_WHITE);
+//	ILI9341_DrawCircle(20,20,5,ILI9341_COLOR_BLUE);
+//	ILI9341_DrawLine(20,20,100,20,ILI9341_COLOR_RED);
+//	ILI9341_DrawLine(20,20,20,100,ILI9341_COLOR_RED);
+//	ILI9341_Putc(110,11,'x',&Font_11x18,ILI9341_COLOR_BLUE,ILI9341_COLOR_WHITE);
+//	ILI9341_Putc(15,110,'y',&Font_11x18,ILI9341_COLOR_BLUE,ILI9341_COLOR_WHITE);
+//	ILI9341_Puts(30,50, "Never gonna give you up, never gonna let you down \n Never gonna run around and desert you \n Never gonna make you cry, never gonna say goodbye \n Never gonna tell a lie and hurt you", &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+
+
 	while (1)
 	{
 
@@ -84,6 +109,10 @@ int main(void)
 			HAL_Delay(BLINK_DELAY);	/* ... ça fonctionne aussi avec les macros, les variables. C'est votre nouveau meilleur ami */
 			write_LED(false);
 		}
+
+		ILI9341_Puts(30,50,  , &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+		HAL_Delay(BLINK_DELAY2);
+		constante+=1;
 
 	}
 }

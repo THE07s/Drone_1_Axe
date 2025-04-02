@@ -31,7 +31,7 @@
 #define USE_ADC				0
 	/* Configuration pour activer les entrÃ©es analogiques souhaitÃ©es */
 	#define USE_IN1		1 //Broche correspondante: PA0
-	#define USE_IN2		1 //Broche correspondante: PA1
+	#define USE_IN2		0 //Broche correspondante: PA1
 	#define USE_IN3		0 //Broche correspondante: PA6
 	#define USE_IN4		0 //Broche correspondante: PA7
 	#define USE_IN10	0 //Broche correspondante: PF1 /!\ Broche indisponible sur g431 sauf si SB11 et pas SB10 (petits pads Ã  souder sur la carte)
@@ -45,7 +45,7 @@
 #if USE_ILI9341
 	#define USE_XPT2046			1
 	#define USE_FONT7x10		1
-	#define USE_FONT11x18		0
+	#define USE_FONT11x18		1
 	#define USE_FONT16x26		0
 #endif
 
@@ -53,7 +53,7 @@
 #define USE_WS2812			0 // Matrice de led
 
 /*------------------Capteurs------------------*/
-#define USE_MPU6050			1 // Accéléromètre, Gyroscope
+#define USE_MPU6050			0 // Accéléromètre, Gyroscope
 #define USE_APDS9960		0 // Capteur de mouvements, présence, couleurs
 #define USE_BMP180			0 // Capteur de pression atmosphérique
 #define USE_BH1750FVI		0 // Capteur de luminosité ambiante
@@ -81,7 +81,7 @@
 #define USE_SD_CARD			0 // Carte SD pour lire/écrire des fichiers
 
 /*------------------Actionneurs------------------*/
-#define USE_MOTOR_DC		1
+#define USE_MOTOR_DC		0
 
 /*------------------Périphériques------------------*/
 
