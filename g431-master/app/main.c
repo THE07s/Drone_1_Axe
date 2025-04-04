@@ -15,25 +15,23 @@ void int_to_str(char, int);
 #include "stm32g4_uart.h"
 #include "stm32g4_utils.h"
 #include <stdio.h>
+#include <math.h>
 
 char a = 42;
 int b = 42;
 
 
-#define BLINK_DELAY		100	//ms
-#define BLINK_DELAY2	2000 //ms
+#define BLINK_DELAY		50	//ms
+#define BLINK_DELAY2	10 //ms
 int constante=0;
 char str[32];
-sprintf(str, %d, constante);
 
 
 
-void int_to_str(str,constante){
-	for (i=0, i<strlen(str),i++){
+//void int_to_str(str,constante){
+//	for (i=0, i<strlen(str),i++){
 
 
-}
-}
 void write_LED(bool b)
 {
 	HAL_GPIO_WritePin(LED_GREEN_GPIO, LED_GREEN_PIN, b);
@@ -109,10 +107,20 @@ int main(void)
 			HAL_Delay(BLINK_DELAY);	/* ... Ã§a fonctionne aussi avec les macros, les variables. C'est votre nouveau meilleur ami */
 			write_LED(false);
 		}
+		if( constante<240) //évite de dépasser les limites de l'écran (240x320)
+				{
+		int y1=240-constante;
+		float resultat = atan((120.0 - constante) / 160.0);  //calcul angle d'inclinaison à partir de la constante
+		float resultat_deg = resultat * (180.0 / M_PI);  // conversion en degrés
+		sprintf(str, "angle = %.2f", resultat_deg); // %.2f affiche avec 2 décimales (ChatGPT)
+		ILI9341_Puts(88,110, str , &Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		ILI9341_DrawLine(0,y1,320,constante,ILI9341_COLOR_RED);
 
-		ILI9341_Puts(30,50,  , &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-		HAL_Delay(BLINK_DELAY2);
+		HAL_Delay(BLINK_DELAY);
+		ILI9341_DrawLine(0,y1,320,constante,ILI9341_COLOR_WHITE);
 		constante+=1;
+				}
+
 
 	}
 }
