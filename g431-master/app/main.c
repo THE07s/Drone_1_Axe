@@ -16,6 +16,7 @@ void int_to_str(char, int);
 #include "stm32g4_utils.h"
 #include <stdio.h>
 #include <math.h>
+#include "MPU6050/stm32g4_mpu6050.h"
 
 char a = 42;
 int b = 42;
@@ -96,30 +97,74 @@ int main(void)
 //	ILI9341_Putc(110,11,'x',&Font_11x18,ILI9341_COLOR_BLUE,ILI9341_COLOR_WHITE);
 //	ILI9341_Putc(15,110,'y',&Font_11x18,ILI9341_COLOR_BLUE,ILI9341_COLOR_WHITE);
 //	ILI9341_Puts(30,50, "Never gonna give you up, never gonna let you down \n Never gonna run around and desert you \n Never gonna make you cry, never gonna say goodbye \n Never gonna tell a lie and hurt you", &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+	MPU6050_t MPU6050_Data;
+	if(MPU6050_Init(&MPU6050_Data, NULL, 0, MPU6050_Device_0, MPU6050_Accelerometer_2G, MPU6050_Gyroscope_250s) != MPU6050_Result_Ok) {
+				    // Gestion d'erreur
+				    printf("Erreur init MPU6050\r\n");
+				}
 
 
 	while (1)
 	{
+
+
+		{
+		    MPU6050_ReadAll(&MPU6050_Data);
+
+		    printf("Accel X: %f | Y: %f | Z: %f \r\n", MPU6050_Data.Accelerometer_X/410, MPU6050_Data.Accelerometer_Y/410, MPU6050_Data.Accelerometer_Z/410);
+		    printf("Gyro  X: %f | Y: %f | Z: %f \r\n", gyro_x, gyro_y, gyro_z);
+
+		    HAL_Delay(500);  // pour éviter de spammer
+		}
 
 		if( char_received(UART2_ID) )
 		{
 			write_LED(true);		/* write_LED? Faites un ctrl+clic dessus pour voir... */
 			HAL_Delay(BLINK_DELAY);	/* ... Ã§a fonctionne aussi avec les macros, les variables. C'est votre nouveau meilleur ami */
 			write_LED(false);
+			//constante+=1;
 		}
 		if( constante<240) //évite de dépasser les limites de l'écran (240x320)
 				{
 		int y1=240-constante;
 		float resultat = atan((120.0 - constante) / 160.0);  //calcul angle d'inclinaison à partir de la constante
 		float resultat_deg = resultat * (180.0 / M_PI);  // conversion en degrés
-		sprintf(str, "angle = %.2f", resultat_deg); // %.2f affiche avec 2 décimales (ChatGPT)
+		sprintf(str, "angle = %.2f", resultat_deg); // %.2f affiche avec 2 décimales
 		ILI9341_Puts(88,110, str , &Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 		ILI9341_DrawLine(0,y1,320,constante,ILI9341_COLOR_RED);
 
 		HAL_Delay(BLINK_DELAY);
 		ILI9341_DrawLine(0,y1,320,constante,ILI9341_COLOR_WHITE);
-		constante+=1;
 				}
+
+		uint8_t touche;
+
+		if(BSP_UART_data_ready(UART2_ID))
+		    {
+		        touche = BSP_UART_getc(UART2_ID);   // Récupéation caractère clavier
+
+		        if(touche == 'z')
+		        {
+		            constante-=1;
+		        }
+		        else if(touche == 's')
+		        {
+		        	constante+=1;
+		        }
+		        else if(touche == 'd')
+		        {
+		        	constante-=10;
+		        }
+		        else if(touche == 'q')
+		        {
+		        	constante+=10;
+		        }
+		        else
+		        {
+
+		        }
+
+		}
 
 
 	}

@@ -289,7 +289,7 @@ void MPU6050_demo(void){
 
 
 		// Un petit délai pour éviter d'avoir un raz-de-marée d'information
-		HAL_Delay(500);
+		HAL_Delay(200);
 	}
 }
 
