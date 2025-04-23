@@ -97,41 +97,51 @@
  //	ILI9341_Putc(110,11,'x',&Font_11x18,ILI9341_COLOR_BLUE,ILI9341_COLOR_WHITE);
  //	ILI9341_Putc(15,110,'y',&Font_11x18,ILI9341_COLOR_BLUE,ILI9341_COLOR_WHITE);
  //	ILI9341_Puts(30,50, "Never gonna give you up, never gonna let you down \n Never gonna run around and desert you \n Never gonna make you cry, never gonna say goodbye \n Never gonna tell a lie and hurt you", &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-	 MPU6050_t MPU6050_Data;
-	 if(MPU6050_Init(&MPU6050_Data, NULL, 0, MPU6050_Device_0, MPU6050_Accelerometer_2G, MPU6050_Gyroscope_250s) != MPU6050_Result_Ok) {
-					 // Gestion d'erreur
-					 printf("Erreur init MPU6050\r\n");
-				 }
-	 else {
-		printf("Init MPU6050 OK\r\n");
-	 }
- 
- 
+//	 MPU6050_t MPU6050_Data;
+//	 if(MPU6050_Init(&MPU6050_Data, GPIOA, GPIO_PIN_0, MPU6050_Device_0, MPU6050_Accelerometer_2G, MPU6050_Gyroscope_250s) != MPU6050_Result_Ok) {
+//					 // Gestion d'erreur
+//					 printf("Erreur init MPU6050\r\n");
+//				 }
+//	 else {
+//		printf("Init MPU6050 OK\r\n");
+//	 }
+//	 MPU6050_t MPU6050_Data;
+//	 	int32_t gyro_x = 0;
+//	 	int32_t gyro_y = 0;
+//	 	int32_t gyro_z = 0;
 	 while (1)
-	 {
+	 	 {
  
- 
-		 {
-			 MPU6050_ReadAll(&MPU6050_Data);
- 
- //		    printf("Accel X: %d | Y: %d | Z: %d \r\n", MPU6050_Data.Accelerometer_X, MPU6050_Data.Accelerometer_Y, MPU6050_Data.Accelerometer_Z);
- //		    printf("Gyro  X: %d | Y: %d | Z: %d \r\n", MPU6050_Data.Gyroscope_X, MPU6050_Data.Gyroscope_Y, MPU6050_Data.Gyroscope_Z);
-			 printf("A:%d,%d,%d G:%d,%d,%d\r\n",
-					(int)(MPU6050_Data.Accelerometer_X * 1000),
-					(int)(MPU6050_Data.Accelerometer_Y * 1000),
-					(int)(MPU6050_Data.Accelerometer_Z * 1000),
-					(int)(MPU6050_Data.Gyroscope_X * 1000),
-					(int)(MPU6050_Data.Gyroscope_Y * 1000),
-					(int)(MPU6050_Data.Gyroscope_Z * 1000));
-			 HAL_Delay(200);  //
-		 }
+
+		 		// On
+//		 	MPU6050_ReadAll(&MPU6050_Data);
+
+//		 	gyro_x += MPU6050_Data.Gyroscope_X;
+//		 	gyro_y += MPU6050_Data.Gyroscope_Y;
+//		 	gyro_z += MPU6050_Data.Gyroscope_Z;
+
+//	        printf("Accel X: %d | Y: %d | Z: %d \r\n", MPU6050_Data.Accelerometer_X, MPU6050_Data.Accelerometer_Y, MPU6050_Data.Accelerometer_Z);
+//	        printf("Gyro  X: %d | Y: %d | Z: %d \r\n", MPU6050_Data.Gyroscope_X, MPU6050_Data.Gyroscope_Y, MPU6050_Data.Gyroscope_Z);
+//			printf("G:%d,%d,%d\r\n", //A:%d,%d,%d
+//			printf("x%4ld\y%4ld\z%4ld\n",
+//					(uint32_t)gyro_x/16400,						//environ en °
+//					(uint32_t)gyro_y/16400,						//environ en °
+//					(uint32_t)gyro_z/16400);
+//					(int)(MPU6050_Data.Accelerometer_X * 1000),
+//					(int)(MPU6050_Data.Accelerometer_Y * 1000),
+//					(int)(MPU6050_Data.Accelerometer_Z * 1000),
+//					(int)(MPU6050_Data.Gyroscope_X ),
+//					(int)(MPU6050_Data.Gyroscope_Y ),
+//					(int)(MPU6050_Data.Gyroscope_Z ));
+//			 HAL_Delay(200);  //
+
  
 		 if( char_received(UART2_ID) )
 		 {
 			 write_LED(true);		/* write_LED? Faites un ctrl+clic dessus pour voir... */
 			 HAL_Delay(BLINK_DELAY);	/* ... ça fonctionne aussi avec les macros, les variables. C'est votre nouveau meilleur ami */
 			 write_LED(false);
-			 //constante+=1;
+			 constante+=1;
 		 }
 		 if( constante<240) //�vite de d�passer les limites de l'�cran (240x320)
 				 {
@@ -174,8 +184,10 @@
 				 }
  
 		 }
+	 	 }
  
  
-	 }
- }
+
  
+
+
