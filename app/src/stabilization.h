@@ -3,7 +3,7 @@
  * @file    stabilization.h
  * @author  Drone_1_Axe Team
  * @date    Avril 23, 2025
- * @brief   Interface pour l'algorithme de stabilisation du drone sur un axe
+ * @brief   Interface pour l'algorithme de stabilisation
  *******************************************************************************
  */
 

@@ -3,7 +3,7 @@
  * @file    motor_control.c
  * @author  Drone_1_Axe Team
  * @date    Avril 23, 2025
- * @brief   Implémentation de l'interface pour le contrôle des moteurs/hélices
+ * @brief   Implémentation de l'interface pour le contrôle des moteurs
  *******************************************************************************
  */
 
