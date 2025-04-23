@@ -61,13 +61,11 @@ int main(void)
 	{		
 		if (constante < 240) // Évite de dépasser les limites de l'écran (240x320)
 		{
-			int y1 = 240 - constante;
-			float resultat = atan((120.0 - constante) / 160.0);  // Calcul angle d'inclinaison à partir de la constante
-			float resultat_deg = resultat * (180.0 / M_PI);  // Conversion en degrés
 			
+
 			// Affichage des données
 			display_angle(resultat_deg);
-			display_inclination_line(0, y1, 320, constante);
+			display_inclination_line(0, y1, 320, constante, ILI9341_COLOR_RED);
 						
 			HAL_Delay(BLINK_DELAY);
 		}
