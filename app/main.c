@@ -58,10 +58,7 @@ int main(void)
 
 	/* Tâche de fond, boucle infinie */
 	while (1)
-	{
-		// Traitement des entrées utilisateur
-		process_keyboard_input();
-		
+	{		
 		if (constante < 240) // Évite de dépasser les limites de l'écran (240x320)
 		{
 			int y1 = 240 - constante;
@@ -71,10 +68,7 @@ int main(void)
 			// Affichage des données
 			display_angle(resultat_deg);
 			display_inclination_line(0, y1, 320, constante);
-			
-			// Traitement de la stabilisation
-			process_stabilization(resultat_deg);
-			
+						
 			HAL_Delay(BLINK_DELAY);
 		}
 		
@@ -88,9 +82,3 @@ int main(void)
 		}
 	}
 }
-
-
-
-
-
-
