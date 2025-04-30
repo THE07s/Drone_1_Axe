@@ -27,11 +27,7 @@
 void init_display(void);
 
 // Affichage de l'angle d'inclinaison
-<<<<<<< HEAD
-void display_angle(int x,int y);
-=======
 void display_angle(float angle, int x, int y);
->>>>>>> 288e2ff70acd13d9846af6e068aa0bbf51b3429c
 
 // Affichage de la ligne d'inclinaison
 void display_inclination_line(int x1, int y1, int x2, int y2, uint16_t color);

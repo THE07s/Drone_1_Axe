@@ -26,18 +26,6 @@ void init_display(void) {
     ILI9341_Fill(ILI9341_COLOR_BLACK);  // Fond noir
 }
 
-<<<<<<< HEAD
-void display_angle(int x,int y) {
-	int y1 = 240 - constante;
-	float resultat = atan((120.0 - constante) / 160.0);  // Calcul angle d'inclinaison à partir de la constante
-	float resultat_deg = resultat * (180.0 / M_PI);  // Conversion en degrés
-	sprintf(str, "angle = %.2f", resultat_deg); // %.2f affiche avec 2 d�cimales
-
-}
-
-void display_inclination_line(int x1, int y1, int x2, int y2) {
-	ILI9341_DrawLine(0,y1,320,constante,ILI9341_COLOR_RED);
-=======
 void display_angle(float angle, int x, int y) {
     // Affichage de l'angle avec formatage
     sprintf(display_buffer, "Angle: %.2f deg", angle);
@@ -47,7 +35,6 @@ void display_angle(float angle, int x, int y) {
 void display_inclination_line(int x1, int y1, int x2, int y2, uint16_t color) {
     // Affichage d'une ligne d'inclinaison
     ILI9341_DrawLine(x1, y1, x2, y2, color);
->>>>>>> 288e2ff70acd13d9846af6e068aa0bbf51b3429c
 }
 
 void clear_display(void) {
