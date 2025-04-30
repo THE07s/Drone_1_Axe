@@ -21,7 +21,7 @@ void init_display(void) {
     // Code d'initialisation de l'écran à compléter
 }
 
-void display_angle(float angle,int x,int y) {
+void display_angle(int x,int y) {
 	int y1 = 240 - constante;
 	float resultat = atan((120.0 - constante) / 160.0);  // Calcul angle d'inclinaison à partir de la constante
 	float resultat_deg = resultat * (180.0 / M_PI);  // Conversion en degrés
@@ -29,8 +29,8 @@ void display_angle(float angle,int x,int y) {
 
 }
 
-void display_inclination_line(int x1, int y1, int x2, int y2, char color) {
-	ILI9341_DrawLine(0,y1,320,constante,color);
+void display_inclination_line(int x1, int y1, int x2, int y2) {
+	ILI9341_DrawLine(0,y1,320,constante,ILI9341_COLOR_RED);
 }
 
 void clear_display(void) {

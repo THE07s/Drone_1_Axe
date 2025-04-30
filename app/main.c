@@ -23,6 +23,7 @@
 #include "src/motor_control.h"
 #include "src/stabilization.h"
 
+
 #define BLINK_DELAY		50	//ms
 #define BLINK_DELAY2	10  //ms
 int constante = 0;
@@ -64,8 +65,8 @@ int main(void)
 			
 
 			// Affichage des données
-			display_angle(resultat_deg);
-			display_inclination_line(0, y1, 320, constante, ILI9341_COLOR_RED);
+			display_angle(120, 240);
+			display_inclination_line(0, y1, 320, constante);
 						
 			HAL_Delay(BLINK_DELAY);
 		}
