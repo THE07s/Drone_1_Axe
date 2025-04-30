@@ -16,7 +16,7 @@
 
 // Variables globales
 char display_buffer[32];
-extern int constante;  // Déclaration de variable externe définie dans main.c
+extern int g_constante;  // au lieu de extern int constante;
 
 // Implémentation des fonctions
 void init_display(void) {

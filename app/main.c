@@ -62,15 +62,20 @@ int main(void)
     /* Boucle principale */
     while (1)
     {
-        /* Traitement de l'affichage si nécessaire */
-        if (g_constante < 240)
-        {
-            process_display();
-            HAL_Delay(BLINK_DELAY);
-        }
+        /* Lecture des capteurs */
+        read_sensor_data();
+        
+        /* Traitement de la stabilisation */
+        // process_stabilization();
+        
+        /* Traitement de l'affichage */
+        process_display();
         
         /* Traitement des entrées utilisateur */
         process_user_input();
+        
+        /* Petit délai */
+        HAL_Delay(BLINK_DELAY);
     }
     
     /* Cette ligne ne sera jamais atteinte */
