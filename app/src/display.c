@@ -22,14 +22,14 @@ extern int g_constante;  // au lieu de extern int constante;
 void init_display(void) {
     // Code d'initialisation de l'écran ILI9341
     ILI9341_Init();
-    ILI9341_SetRotation(ILI9341_Orientation_Landscape_1);  // Rotation pour orientation paysage
+    ILI9341_Rotate(ILI9341_Orientation_Landscape_1);  // Rotation pour orientation paysage
     ILI9341_Fill(ILI9341_COLOR_BLACK);  // Fond noir
 }
 
 void display_angle(float angle, int x, int y) {
     // Affichage de l'angle avec formatage
     sprintf(display_buffer, "Angle: %.2f deg", angle);
-    ILI9341_WriteString(x, y, display_buffer, Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    ILI9341_Puts(x, y, display_buffer, &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
 }
 
 void display_inclination_line(int x1, int y1, int x2, int y2, uint16_t color) {

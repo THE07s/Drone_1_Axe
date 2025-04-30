@@ -29,7 +29,6 @@
 
 /* Variables globales -------------------------------------------------------*/
 static int g_constante;
-static char g_str[32];
 
 /* Prototypes de fonctions privées ------------------------------------------*/
 static void process_display(void);
