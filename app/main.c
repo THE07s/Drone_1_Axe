@@ -24,13 +24,6 @@
 #include "src/motor_control.h"
 #include "src/stabilization.h"
 
-<<<<<<< HEAD
-
-#define BLINK_DELAY		50	//ms
-#define BLINK_DELAY2	10  //ms
-int constante = 0;
-char str[32];
-=======
 /* Définitions privées ------------------------------------------------------*/
 #define BLINK_DELAY 50  /* Délai de clignotement en ms */
 
@@ -41,7 +34,6 @@ static char g_str[32];
 /* Prototypes de fonctions privées ------------------------------------------*/
 static void process_display(void);
 static void process_user_input(void);
->>>>>>> 288e2ff70acd13d9846af6e068aa0bbf51b3429c
 
 /**
   * @brief  Point d'entrée de votre application
@@ -67,34 +59,6 @@ int main(void)
     /* Message de démarrage */
     printf("Drone 1 Axe - Système démarré\r\n");
 
-<<<<<<< HEAD
-	/* Hello student */
-	printf("Drone 1 Axe - Système démarré\r\n");
-
-	/* Tâche de fond, boucle infinie */
-	while (1)
-	{		
-		if (constante < 240) // Évite de dépasser les limites de l'écran (240x320)
-		{
-			
-
-			// Affichage des données
-			display_angle(120, 240);
-			display_inclination_line(0, y1, 320, constante);
-						
-			HAL_Delay(BLINK_DELAY);
-		}
-		
-		// Gestion du clignotement LED si input reçu
-		if (char_received(UART2_ID))
-		{
-			write_LED(true);
-			HAL_Delay(BLINK_DELAY);
-			write_LED(false);
-			constante += 1;
-		}
-	}
-=======
     /* Boucle principale */
     while (1)
     {
@@ -147,5 +111,4 @@ static void process_user_input(void)
         write_LED(false);
         g_constante++;
     }
->>>>>>> 288e2ff70acd13d9846af6e068aa0bbf51b3429c
 }
