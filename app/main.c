@@ -25,7 +25,7 @@
 #include "src/stabilization.h"
 
 /* Définitions privées ------------------------------------------------------*/
-#define BLINK_DELAY 50  /* Délai de clignotement en ms */
+#define BLINK_DELAY 2000  /* Délai de clignotement en ms */
 
 /* Variables globales -------------------------------------------------------*/
 static int g_constante;
@@ -87,19 +87,22 @@ int main(void)
   */
 static void process_display(void)
 {
-    int y1;
-    float angle_rad;
-    float angle_deg;
-    uint16_t red_color = 0xF800;  /* Couleur rouge en RGB565 */
+    // int y1;
+    // float angle_rad;
+    // float angle_deg;
+    // uint16_t red_color = 0xF800;  /* Couleur rouge en RGB565 */
     
-    /* Calculs */
-    y1 = 240 - g_constante;
-    angle_rad = atan((120.0 - g_constante) / 160.0);
-    angle_deg = angle_rad * (180.0 / M_PI);
+    // /* Calculs */
+    // y1 = 240 - g_constante;
+    // angle_rad = atan((120.0 - g_constante) / 160.0);
+    // angle_deg = angle_rad * (180.0 / M_PI);
     
-    /* Affichage des informations */
-    display_angle(angle_deg, 10, 10);
-    display_inclination_line(0, y1, 320, g_constante, red_color);
+    // /* Affichage des informations */
+    // display_angle(angle_deg, 10, 10);
+    // display_inclination_line(0, y1, 320, g_constante, red_color);
+
+    /* Affichage des données des capteurs MPU6050 */
+    display_sensor_data();
 }
 
 /**

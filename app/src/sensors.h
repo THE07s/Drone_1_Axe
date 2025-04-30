@@ -15,15 +15,25 @@
 
 // Structure pour stocker les données des capteurs
 typedef struct {
-    // À compléter selon les besoins
+    float accel_x;
+    float accel_y;
+    float accel_z;
+    float gyro_x;
+    float gyro_y;
+    float gyro_z;
+    float temperature;
 } SensorData;
 
-// Initialisation du capteur MPU6050
+// Initialisation des deux capteurs MPU6050
 bool init_sensors(void);
 
-// Lecture des données du capteur
+// Lecture des données des deux capteurs
 bool read_sensor_data(void);
 
-// Autres fonctions selon les besoins
+// Obtenir les données du premier capteur MPU6050
+const MPU6050_t* get_mpu1_data(void);
+
+// Obtenir les données du second capteur MPU6050
+const MPU6050_t* get_mpu2_data(void);
 
 #endif /* SENSORS_H_ */

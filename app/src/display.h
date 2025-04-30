@@ -35,6 +35,9 @@ void display_inclination_line(int x1, int y1, int x2, int y2, uint16_t color);
 // Effacement de l'écran ou d'une zone
 void clear_display(void);
 
+// Affichage des données des capteurs MPU6050
+void display_sensor_data(void);
+
 // Autres fonctions selon les besoins
 
 #endif /* DISPLAY_H_ */
