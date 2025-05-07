@@ -19,7 +19,7 @@ uint16_t max_pulse = 2000;  // Largeur d'impulsion maximale (2 ms)
 
 bool init_pwm(void) {
     // Configuration du GPIO pour la sortie PWM
-	BSP_GPIO_pin_config(GPIOA, GPIO_PIN_12, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_AF1_TIM2);
+    BSP_GPIO_pin_config(GPIOA, GPIO_PIN_12, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF1_TIM2);
 
     // timer TIM2 pour PWM
     htim2.Instance = TIM2;
