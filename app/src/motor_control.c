@@ -17,7 +17,7 @@
 
 bool init_pwm(void) {
     // Configuration du GPIO pour la sortie PWM
-    BSP_GPIO_PinCfg(GPIOA, GPIO_PIN_12, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_AF1_TIM2);
+	BSP_GPIO_pin_config(GPIOA, GPIO_PIN_12, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_AF1_TIM2);
 
     // timer TIM2 pour PWM
     TIM_HandleTypeDef htim2;
