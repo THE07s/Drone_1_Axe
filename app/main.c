@@ -52,7 +52,7 @@ int main(void)
     init_user_input();
     init_display();
     init_sensors();
-    init_motors();
+//    init_motors();
     init_stabilization();
 
     /* Message de dÃ©marrage */
@@ -64,11 +64,20 @@ int main(void)
             while (1);  // Boucle infinie en cas d'erreur
         }
 
-        printf("Moteurs initialisés avec succès\r\n");
+        printf("Moteurs initialisï¿½s avec succï¿½s\r\n");
 
         // Boucle principale
         while (1) {
-            // Le signal PWM est généré automatiquement par le timer
+            if (char_received(UART2_ID)) {
+                char c = read_char(UART2_ID);  // Lit le caractÃ¨re reÃ§u
+    
+                if (c == 'g') {
+                    // Si la touche "g" est pressÃ©e, passe la PWM Ã  1.5 ms
+                    set_pwm_pulse(1500);  // 1.5 ms = 1500 ticks Ã  1 MHz
+                    printf("PWM rÃ©glÃ©e Ã  1.5 ms\r\n");
+                }
+            }
+            // Le signal PWM est gï¿½nï¿½rï¿½ automatiquement par le timer
             HAL_Delay(1000);  // Attente de 1 seconde
         }
 

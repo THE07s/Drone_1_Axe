@@ -24,7 +24,7 @@ bool init_pwm(void) {
     htim2.Instance = TIM2;
     htim2.Init.Prescaler = 79;  // Divise l'horloge de 80Mhz pour avoir 1Mhz
     htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim2.Init.Period = 20000 - 1;  // Période de 20 ms (1 MHz / 20000 = 50 Hz)
+    htim2.Init.Period = 20000 - 1;  // Pï¿½riode de 20 ms (1 MHz / 20000 = 50 Hz)
     htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
 
@@ -43,12 +43,18 @@ bool init_pwm(void) {
         return false;  // Erreur de configuration du canal
     }
 
-    // Démarrage du PWM sur le canal 1
+    // Dï¿½marrage du PWM sur le canal 1
     if (HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1) != HAL_OK) {
-        return false;  // Erreur de démarrage du PWM
+        return false;  // Erreur de dï¿½marrage du PWM
     }
 
-    return true;  // PWM initialisé avec succès
+    return true;  // PWM initialisï¿½ avec succï¿½s
+}
+
+// Fonction pour modifier la largeur d'impulsion du PWM
+void set_pwm_pulse(uint16_t pulse) {
+    // Met Ã  jour la largeur d'impulsion (en ticks)
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pulse);
 }
 
 
