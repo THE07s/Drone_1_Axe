@@ -52,36 +52,13 @@ int main(void)
     init_user_input();
     init_display();
     init_sensors();
-//    init_motors();
+    init_motors();
     init_stabilization();
 
     /* Message de démarrage */
     printf("Drone 1 Axe - Système démarré\r\n");
 
-
-    if (!init_motors()) {
-            printf("Erreur : Impossible d'initialiser les moteurs\r\n");
-            while (1);  // Boucle infinie en cas d'erreur
-        }
-
-        printf("Moteurs initialis�s avec succ�s\r\n");
-
-        // Boucle principale
-        while (1) {
-            if (char_received(UART2_ID)) {
-                char c = read_char(UART2_ID);  // Lit le caractère reçu
     
-                if (c == 'g') {
-                    // Si la touche "g" est pressée, passe la PWM à 1.5 ms
-                    set_pwm_pulse(1500);  // 1.5 ms = 1500 ticks à 1 MHz
-                    printf("PWM réglée à 1.5 ms\r\n");
-                }
-            }
-            // Le signal PWM est g�n�r� automatiquement par le timer
-            HAL_Delay(1000);  // Attente de 1 seconde
-        }
-
-
     /* Boucle principale */
     while (1)
     {
