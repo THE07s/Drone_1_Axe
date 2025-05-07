@@ -23,8 +23,38 @@ extern int g_constante;  // au lieu de extern int constante;
 void init_display(void) {
     // Code d'initialisation de l'écran ILI9341
     ILI9341_Init();
-    ILI9341_Rotate(ILI9341_Orientation_Landscape_1);  // Rotation pour orientation paysage
+    ILI9341_Rotate(ILI9341_Orientation_Landscape_1);
     ILI9341_Fill(ILI9341_COLOR_BLACK);  // Fond noir
+    
+    // Tests de l'écran pour vérifier son bon fonctionnement
+    
+    // Affichage du titre du projet
+    ILI9341_Puts(40, 20, "DRONE 1 AXE", &Font_11x18, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
+    ILI9341_Puts(40, 40, "Test Ecran", &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    
+    // Test des formes géométriques
+    // Dessiner un rectangle
+    ILI9341_DrawRectangle(40, 70, 120, 120, ILI9341_COLOR_RED);
+    
+    // Dessiner un cercle
+    ILI9341_DrawFilledCircle(180, 95, 25, ILI9341_COLOR_BLUE);
+    
+    // Dessiner des lignes d'inclinaison de test
+    ILI9341_DrawLine(40, 150, 280, 150, ILI9341_COLOR_GREEN);
+    ILI9341_DrawLine(160, 130, 160, 170, ILI9341_COLOR_GREEN);
+    
+    // Test d'affichage de texte avec différentes couleurs et polices
+    ILI9341_Puts(40, 180, "Test des couleurs:", &Font_7x10, ILI9341_COLOR_CYAN, ILI9341_COLOR_BLACK);
+    ILI9341_Puts(40, 195, "ROUGE", &Font_7x10, ILI9341_COLOR_RED, ILI9341_COLOR_BLACK);
+    ILI9341_Puts(100, 195, "VERT", &Font_7x10, ILI9341_COLOR_GREEN, ILI9341_COLOR_BLACK);
+    ILI9341_Puts(160, 195, "BLEU", &Font_7x10, ILI9341_COLOR_BLUE, ILI9341_COLOR_BLACK);
+    ILI9341_Puts(220, 195, "JAUNE", &Font_7x10, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
+    
+    // Pause pour permettre de voir les tests
+    HAL_Delay(3000);
+    
+    // Effacer l'écran pour préparer à l'affichage normal
+    ILI9341_Fill(ILI9341_COLOR_BLACK);
 }
 
 void display_angle(float angle, int x, int y) {
