@@ -16,6 +16,8 @@
 // Initialisation des moteurs
 bool init_motors(void);
 
+void set_pwm_pulse(uint16_t pulse);
+
 // Contrôle de la vitesse du moteur gauche
 void set_left_motor_speed(uint8_t speed);
 
