@@ -58,6 +58,21 @@ int main(void)
     /* Message de dÃ©marrage */
     printf("Drone 1 Axe - SystÃ¨me dÃ©marrÃ©\r\n");
 
+
+    if (!init_motors()) {
+            printf("Erreur : Impossible d'initialiser les moteurs\r\n");
+            while (1);  // Boucle infinie en cas d'erreur
+        }
+
+        printf("Moteurs initialisés avec succès\r\n");
+
+        // Boucle principale
+        while (1) {
+            // Le signal PWM est généré automatiquement par le timer
+            HAL_Delay(1000);  // Attente de 1 seconde
+        }
+
+
     /* Boucle principale */
     while (1)
     {
