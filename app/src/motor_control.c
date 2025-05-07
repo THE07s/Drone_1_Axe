@@ -3,7 +3,7 @@
  * @file    motor_control.c
  * @author  Drone_1_Axe Team
  * @date    Avril 23, 2025
- * @brief   Implémentation de l'interface pour le contrôle des moteurs
+ * @brief   Implémentation simplifiée pour générer un PWM sur PA12
  *******************************************************************************
  */
 
@@ -12,122 +12,140 @@
 #include "stm32g4_timer.h"
 #include <stdio.h>
 
-// Variables globales
-TIM_HandleTypeDef htim4;  // Handler pour le timer 4 (au lieu de timer 2)
-uint16_t min_pulse = 1000;  // Largeur d'impulsion minimale (1 ms)
-uint16_t max_pulse = 2000;  // Largeur d'impulsion maximale (2 ms)
+// Constantes pour l'ESC Skywalker V2
+// Selon les spécifications de Skywalker V2, le signal est standard entre 1100us et 1940us
+#define ESC_PWM_FREQUENCY_HZ 250     // Résultat de période de 4ms comme demandé par le prof
+#define ESC_PWM_PERIOD_US    4000    // 4ms = 250Hz
 
-bool init_pwm(void) {
-    // Configuration du GPIO pour la sortie PWM - PA12 mappé sur TIM4_CH2
-    BSP_GPIO_pin_config(GPIOA, GPIO_PIN_12, GPIO_MODE_AF_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_HIGH, GPIO_AF10_TIM4);
+// Valeurs PWM pour l'ESC Skywalker (en pourcentage de 0-1000)
+#define ESC_MIN_PULSE        275     // 1100us/4000us = 27.5% (position arrêt)
+#define ESC_MAX_PULSE        485     // 1940us/4000us = 48.5% (plein gaz)
+#define ESC_NEUTRAL_PULSE    300     // Position neutre ~1200us/4000us
 
-    // timer TIM4 pour PWM (au lieu de TIM2)
-    htim4.Instance = TIM4;
-    htim4.Init.Prescaler = 79;  // Divise l'horloge de 80Mhz pour avoir 1Mhz
-    htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim4.Init.Period = 20000 - 1;  // Période de 20 ms (1 MHz / 20000 = 50 Hz)
-    htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-    htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+// Variable pour indiquer si la calibration a été effectuée
+static bool throttle_calibrated = false;
 
-    if (HAL_TIM_PWM_Init(&htim4) != HAL_OK) {
-        printf("Erreur d'initialisation du timer PWM\r\n");
-        return false;  // Erreur d'initialisation
-    }
-
-    // Configuration du canal PWM (canal 2 au lieu de canal 1)
-    TIM_OC_InitTypeDef sConfigOC;
-    sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = min_pulse;  // Largeur d'impulsion de 1 ms (1 MHz * 1 ms = 1000)
-    sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-    sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-
-    if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK) {
-        printf("Erreur de configuration du canal PWM\r\n");
-        return false;  // Erreur de configuration du canal
-    }
-
-    // Démarrage du PWM sur le canal 2
-    if (HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2) != HAL_OK) {
-        printf("Erreur de démarrage du PWM\r\n");
-        return false;  // Erreur de démarrage du PWM
-    }
-
-    printf("Initialisation du PWM réussie\r\n");
-    return true;  // PWM initialisé avec succès
+/**
+ * @brief Procédure de calibration de la plage de throttle
+ * @note Cette fonction doit être appelée lors de la première utilisation ou lors du changement d'émetteur
+ * @note Implémentée selon la section "ESC/Radio Calibration" de la datasheet
+ */
+void esc_throttle_range_calibration(void) {
+    printf("Démarrage de la procédure de calibration du throttle...\r\n");
+    
+    // Étape 1: Mettre le throttle à la position maximale
+    printf("1. Position throttle maximum\r\n");
+    BSP_TIMER_set_duty(TIMER4_ID, TIM_CHANNEL_2, ESC_MAX_PULSE);
+    
+    // Étape 2: Connecter la batterie
+    printf("2. Connectez la batterie à l'ESC maintenant\r\n");
+    printf("   Attendez le signal sonore \"♪123\" puis deux beeps courts\r\n");
+    HAL_Delay(5000); // Attendre que l'utilisateur connecte la batterie
+    
+    // Étape 3: Dans les 5 secondes après les 2 beeps, mettre le throttle à la position minimale
+    printf("3. Position throttle minimum\r\n");
+    BSP_TIMER_set_duty(TIMER4_ID, TIM_CHANNEL_2, ESC_MIN_PULSE);
+    
+    // Étape 4: Attendre le signal sonore confirmant la calibration complète
+    printf("4. Attente du beep long de confirmation...\r\n");
+    HAL_Delay(2000);
+    
+    printf("Calibration de la plage de throttle terminée!\r\n");
+    throttle_calibrated = true;
 }
 
-// Fonction pour modifier la largeur d'impulsion du PWM
-void set_pwm_pulse(uint16_t pulse) {
-    // Met à jour la largeur d'impulsion (en ticks)
-    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_2, pulse);
-}
-
-// Initialisation des moteurs
-bool init_motors(void) {
-    bool status = true;
-    printf("Test d'initialisation des moteurs...\r\n");
+/**
+ * @brief Procédure de démarrage normal
+ * @note Implémentée selon la section "Normal Start-up Process" de la datasheet
+ */
+void esc_normal_startup(void) {
+    printf("Démarrage de la procédure normale de l'ESC...\r\n");
     
-    // Initialisation du PWM pour le contrôle des moteurs
-    if (!init_pwm()) {
-        printf("Échec de l'initialisation du PWM\r\n");
-        return false;
-    }
+    // Étape 1: S'assurer que le throttle est à la position minimale
+    printf("1. Position throttle minimum\r\n");
+    BSP_TIMER_set_duty(TIMER4_ID, TIM_CHANNEL_2, ESC_MIN_PULSE);
     
-    // Séquence d'armement standard pour ESC brushless
-    printf("Séquence d'armement de l'ESC...\r\n");
+    // Étape 2: Connecter la batterie à l'ESC
+    printf("2. Connectez la batterie à l'ESC\r\n");
+    printf("   Attendez le signal sonore \"♪123\"\r\n");
+    HAL_Delay(3000); // Attendre que l'utilisateur connecte la batterie
     
-    // 1. Signal d'arrêt initial pendant 2 secondes
-    printf("Étape 1: Signal d'arrêt initial (1000µs)...\r\n");
-    set_pwm_pulse(min_pulse);
-    HAL_Delay(2000);
-    
-    // 2. Signal plein gaz pendant 2 secondes (certains ESC ont besoin de cette étape)
-    printf("Étape 2: Signal plein gaz (2000µs)...\r\n");
-    set_pwm_pulse(max_pulse);
-    HAL_Delay(2000);
-    
-    // 3. Signal d'arrêt pendant 2 secondes pour confirmer l'armement
-    printf("Étape 3: Signal d'arrêt final (1000µs)...\r\n");
-    set_pwm_pulse(min_pulse);
-    HAL_Delay(2000);
-    
-    printf("ESC armé!\r\n");
-    
-    // 4. Test de rampe lente - démarre lentement et monte plus haut
-    printf("Test de rampe de vitesse...\r\n");
-    // Augmentation progressive de la largeur d'impulsion - monte jusqu'à 1400μs
-    for (uint16_t pulse = min_pulse; pulse < min_pulse + 400; pulse += 20) {
-        set_pwm_pulse(pulse);
-        printf("Pulse: %d µs\r\n", pulse);
-        HAL_Delay(200);  // Attente plus longue entre chaque augmentation
-    }
-    
-    // 5. Retour à la position d'arrêt
-    printf("Retour à la position d'arrêt...\r\n");
-    set_pwm_pulse(min_pulse);
+    // Étape 3: Attendre les beeps indiquant le nombre de cellules LiPo
+    printf("3. L'ESC émet plusieurs beeps indiquant le nombre de cellules LiPo\r\n");
     HAL_Delay(1000);
     
-    printf("Test des moteurs terminé\r\n");
-    return status;
+    // Étape 4: Attendre le beep long indiquant que l'ESC est prêt
+    printf("4. Attente du beep long de démarrage...\r\n");
+    HAL_Delay(1000);
+    
+    printf("ESC prêt à fonctionner!\r\n");
+    printf("Les 4 beeps que vous entendez sont le cutoff threshold (par défaut: Medium)\r\n");
+    printf("Le beep final indique le mode de frein (par défaut: Disabled)\r\n");
+}
+
+/**
+ * @brief Initialisation des moteurs
+ */
+bool init_motors(void) {
+    printf("Initialisation ESC Skywalker V2 pour moteur A2212/6T...\r\n");
+    printf("Timing recommandé: Low (5°) pour le moteur A2212/6T\r\n");
+    
+    // 1. Configuration du timer 4 (période de 4ms = 250Hz)
+    BSP_TIMER_run_us(TIMER4_ID, ESC_PWM_PERIOD_US, false);
+    
+    // 2. Configuration de la broche PA12 en mode PWM avec le timer 4 canal 2
+    BSP_TIMER_enable_PWM(TIMER4_ID, TIM_CHANNEL_2, ESC_MIN_PULSE, false, false);
+    
+    // 3. Demander à l'utilisateur s'il souhaite calibrer ou démarrer normalement
+    printf("\r\n*****************************************\r\n");
+    printf("Vous pouvez maintenant:\r\n");
+    printf("1. Effectuer la calibration du throttle range\r\n");
+    printf("   Dans ce cas, NE CONNECTEZ PAS encore la batterie à l'ESC\r\n");
+    printf("2. Procéder au démarrage normal\r\n");
+    printf("   Dans ce cas, assurez-vous que le throttle est au minimum\r\n");
+    printf("*****************************************\r\n\n");
+    
+    // Par défaut, nous utilisons la procédure de démarrage normal
+    esc_normal_startup();
+    
+    return true;
+}
+
+// Contrôle direct de la valeur PWM (0-1000)
+void set_pwm_pulse(uint16_t pulse) {
+    // Limiter les valeurs entre MIN et MAX
+    if (pulse < ESC_MIN_PULSE) 
+        pulse = ESC_MIN_PULSE;
+    else if (pulse > ESC_MAX_PULSE)
+        pulse = ESC_MAX_PULSE;
+    
+    BSP_TIMER_set_duty(TIMER4_ID, TIM_CHANNEL_2, pulse);
 }
 
 // Contrôle de la vitesse du moteur gauche
 void set_left_motor_speed(uint8_t speed) {
-    // Conversion de la plage 0-255 à la plage min_pulse-max_pulse
-    uint16_t pulse = min_pulse + ((uint32_t)speed * (max_pulse - min_pulse)) / 255;
+    // Conversion de la vitesse (0-255) en valeur PWM (ESC_MIN_PULSE à ESC_MAX_PULSE)
+    uint16_t pulse;
+    
+    if (speed == 0) {
+        // Signal d'arrêt
+        pulse = ESC_MIN_PULSE;
+    } else {
+        // Conversion linéaire de 0-255 vers ESC_MIN_PULSE-ESC_MAX_PULSE
+        pulse = ESC_MIN_PULSE + ((uint32_t)speed * (ESC_MAX_PULSE - ESC_MIN_PULSE)) / 255;
+    }
+    
     set_pwm_pulse(pulse);
-    printf("Vitesse moteur gauche: %d (%d µs)\r\n", speed, pulse);
 }
 
-// Contrôle de la vitesse du moteur droit
+// Contrôle de la vitesse du moteur droit - non utilisé dans le drone 1 axe
 void set_right_motor_speed(uint8_t speed) {
-    // Note: Cette fonction pourra être implémentée dans le futur avec TIM4_CH1
-    // Code de contrôle du moteur droit à compléter
-    printf("Vitesse moteur droit: %d\r\n", speed);
+    (void)speed; // Éviter l'avertissement de variable non utilisée
 }
 
-// Arrêt des deux moteurs
+// Arrêt des moteurs
 void stop_motors(void) {
-    printf("Arrêt des moteurs\r\n");
-    set_pwm_pulse(min_pulse);
+    // Arrêt = position minimale du throttle
+    set_pwm_pulse(ESC_MIN_PULSE);
+    printf("Moteurs arrêtés\r\n");
 }
