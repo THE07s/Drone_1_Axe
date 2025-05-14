@@ -47,6 +47,9 @@ int main(void)
     BSP_GPIO_enable();
     BSP_UART_init(UART2_ID, 115200);
     BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
+
+    /* Effacer le terminal série */
+    printf("\033[2J\033[H");  /* Séquence ANSI pour effacer l'écran et positionner le curseur en haut à gauche */
     
     /* Initialisation des modules applicatifs */
     init_user_input();
