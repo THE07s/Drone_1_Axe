@@ -33,6 +33,29 @@ static int g_constante;
 /* Prototypes de fonctions privées ------------------------------------------*/
 static void process_display(void);
 static void process_user_input(void);
+static void clear_terminal(void);
+
+/**
+  * @brief  Fonction qui essaie plusieurs méthodes pour effacer le terminal série
+  * @retval None
+  */
+static void clear_terminal(void)
+{
+    // Méthode 1: Séquence ANSI standard
+    printf("\033[2J\033[H");
+    
+    // Méthode 2: Séquence VT100 alternative
+    printf("\033c");
+    
+    // Méthode 3: Caractères de contrôle simples (retour chariot + form feed)
+    printf("\r\f");
+    
+    // Méthode 4: Imprimer plusieurs nouvelles lignes pour "pousser" le contenu précédent
+    for (int i = 0; i < 50; i++) {
+        printf("\n");
+    }
+    printf("\r");
+}
 
 /**
   * @brief  Point d'entrée de votre application
@@ -49,7 +72,7 @@ int main(void)
     BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
 
     /* Effacer le terminal série */
-    printf("\033[2J\033[H");  /* Séquence ANSI pour effacer l'écran et positionner le curseur en haut à gauche */
+    clear_terminal();
     
     /* Initialisation des modules applicatifs */
     init_user_input();
