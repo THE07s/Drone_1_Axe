@@ -74,58 +74,45 @@ void clear_display(void) {
 }
 
 void display_sensor_data(void) {
-    char buffer[32];
     const MPU6050_t* MPU6050_Data1 = get_mpu1_data();
     const MPU6050_t* MPU6050_Data2 = get_mpu2_data();
     
-    // Effacer l'affichage
-    clear_display();
+    // Affichage des données dans le terminal
+    printf("\r\n==== DONNÉES DES CAPTEURS MPU6050 ====\r\n\n");
     
     // Affichage des données du premier capteur (MPU1)
-    ILI9341_Puts(10, 10, "MPU1:", &Font_11x18, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
+    printf("--- MPU1 ---\r\n");
     
     // Accélération X, Y, Z
-    sprintf(buffer, "Acc X: %.2f g", MPU6050_Data1->Accelerometer_X / MPU6050_ACCE_SENS_8);
-    ILI9341_Puts(10, 30, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    
-    sprintf(buffer, "Acc Y: %.2f g", MPU6050_Data1->Accelerometer_Y / MPU6050_ACCE_SENS_8);
-    ILI9341_Puts(10, 45, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    
-    sprintf(buffer, "Acc Z: %.2f g", MPU6050_Data1->Accelerometer_Z / MPU6050_ACCE_SENS_8);
-    ILI9341_Puts(10, 60, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    printf("Acc X: %.2f g  |  ", MPU6050_Data1->Accelerometer_X / MPU6050_ACCE_SENS_8);
+    printf("Acc Y: %.2f g  |  ", MPU6050_Data1->Accelerometer_Y / MPU6050_ACCE_SENS_8);
+    printf("Acc Z: %.2f g\r\n", MPU6050_Data1->Accelerometer_Z / MPU6050_ACCE_SENS_8);
     
     // Gyroscope X, Y, Z
-    sprintf(buffer, "Gyro X: %.2f °/s", MPU6050_Data1->Gyroscope_X / MPU6050_GYRO_SENS_500);
-    ILI9341_Puts(10, 75, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    printf("Gyro X: %.2f °/s  |  ", MPU6050_Data1->Gyroscope_X / MPU6050_GYRO_SENS_500);
+    printf("Gyro Y: %.2f °/s  |  ", MPU6050_Data1->Gyroscope_Y / MPU6050_GYRO_SENS_500);
+    printf("Gyro Z: %.2f °/s\r\n", MPU6050_Data1->Gyroscope_Z / MPU6050_GYRO_SENS_500);
     
-    sprintf(buffer, "Gyro Y: %.2f °/s", MPU6050_Data1->Gyroscope_Y / MPU6050_GYRO_SENS_500);
-    ILI9341_Puts(10, 90, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    
-    sprintf(buffer, "Gyro Z: %.2f °/s", MPU6050_Data1->Gyroscope_Z / MPU6050_GYRO_SENS_500);
-    ILI9341_Puts(10, 105, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    // Température
+    printf("Température: %.1f°C\r\n\n", MPU6050_Data1->Temperature);
     
     // Affichage des données du second capteur (MPU2)
-    ILI9341_Puts(160, 10, "MPU2:", &Font_11x18, ILI9341_COLOR_CYAN, ILI9341_COLOR_BLACK);
+    printf("--- MPU2 ---\r\n");
     
     // Accélération X, Y, Z
-    sprintf(buffer, "Acc X: %.2f g", MPU6050_Data2->Accelerometer_X / MPU6050_ACCE_SENS_8);
-    ILI9341_Puts(160, 30, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    
-    sprintf(buffer, "Acc Y: %.2f g", MPU6050_Data2->Accelerometer_Y / MPU6050_ACCE_SENS_8);
-    ILI9341_Puts(160, 45, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    
-    sprintf(buffer, "Acc Z: %.2f g", MPU6050_Data2->Accelerometer_Z / MPU6050_ACCE_SENS_8);
-    ILI9341_Puts(160, 60, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    printf("Acc X: %.2f g  |  ", MPU6050_Data2->Accelerometer_X / MPU6050_ACCE_SENS_8);
+    printf("Acc Y: %.2f g  |  ", MPU6050_Data2->Accelerometer_Y / MPU6050_ACCE_SENS_8);
+    printf("Acc Z: %.2f g\r\n", MPU6050_Data2->Accelerometer_Z / MPU6050_ACCE_SENS_8);
     
     // Gyroscope X, Y, Z
-    sprintf(buffer, "Gyro X: %.2f °/s", MPU6050_Data2->Gyroscope_X / MPU6050_GYRO_SENS_500);
-    ILI9341_Puts(160, 75, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    printf("Gyro X: %.2f °/s  |  ", MPU6050_Data2->Gyroscope_X / MPU6050_GYRO_SENS_500);
+    printf("Gyro Y: %.2f °/s  |  ", MPU6050_Data2->Gyroscope_Y / MPU6050_GYRO_SENS_500);
+    printf("Gyro Z: %.2f °/s\r\n", MPU6050_Data2->Gyroscope_Z / MPU6050_GYRO_SENS_500);
     
-    sprintf(buffer, "Gyro Y: %.2f °/s", MPU6050_Data2->Gyroscope_Y / MPU6050_GYRO_SENS_500);
-    ILI9341_Puts(160, 90, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    // Température
+    printf("Température: %.1f°C\r\n", MPU6050_Data2->Temperature);
     
-    sprintf(buffer, "Gyro Z: %.2f °/s", MPU6050_Data2->Gyroscope_Z / MPU6050_GYRO_SENS_500);
-    ILI9341_Puts(160, 105, buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    printf("\r\n===================================\r\n");
 }
 
 // Autres fonctions selon les besoins
