@@ -6,8 +6,8 @@
  * @brief	Fichier principal de votre projet sur carte Nucléo STM32G431KB
  *******************************************************************************
  */
- 
-/* Includes ------------------------------------------------------------------*/
+
+ /* Includes ------------------------------------------------------------------*/
 #include "config.h"
 #include "stm32g4_sys.h"
 #include "stm32g4_systick.h"
@@ -28,41 +28,18 @@
 #define BLINK_DELAY 2000  /* Délai de clignotement en ms */
 
 /* Variables globales -------------------------------------------------------*/
-static int g_constante;
+
 
 /* Prototypes de fonctions privées ------------------------------------------*/
 static void process_display(void);
 static void process_user_input(void);
-static void clear_terminal(void);
 
-/**
-  * @brief  Fonction qui essaie plusieurs méthodes pour effacer le terminal série
-  * @retval None
-  */
-static void clear_terminal(void)
-{
-    // Méthode 1: Séquence ANSI standard
-    printf("\033[2J\033[H");
-    
-    // Méthode 2: Séquence VT100 alternative
-    printf("\033c");
-    
-    // Méthode 3: Caractères de contrôle simples (retour chariot + form feed)
-    printf("\r\f");
-    
-    // Méthode 4: Imprimer plusieurs nouvelles lignes pour "pousser" le contenu précédent
-    for (int i = 0; i < 50; i++) {
-        printf("\n");
-    }
-    printf("\r");
-}
 
 /**
   * @brief  Point d'entrée de votre application
   * @retval int - Code de retour (jamais atteint dans une boucle infinie)
   */
-int main(void)
-{
+int main(void) {
     /* Initialisation du HAL (doit rester en premier) */
     HAL_Init();
 
@@ -71,10 +48,11 @@ int main(void)
     BSP_UART_init(UART2_ID, 115200);
     BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
 
-    /* Effacer le terminal série */
-    clear_terminal();
-    
-    /* Initialisation des modules applicatifs */
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+    /* Initialisation des modules */
     init_user_input();
     init_display();
     init_sensors();
@@ -84,26 +62,25 @@ int main(void)
     /* Message de démarrage */
     printf("Drone 1 Axe - Système démarré\r\n");
 
-    
+
     /* Boucle principale */
-    while (1)
-    {
+    while (1) {
         /* Lecture des capteurs */
         read_sensor_data();
-        
+
         /* Traitement de la stabilisation */
         // process_stabilization();
-        
+
         /* Traitement de l'affichage */
         process_display();
-        
+
         /* Traitement des entrées utilisateur */
         process_user_input();
-        
-        /* Petit délai */
-        HAL_Delay(BLINK_DELAY);
     }
-    
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
     /* Cette ligne ne sera jamais atteinte */
     return 0;
 }
@@ -112,37 +89,18 @@ int main(void)
   * @brief  Traitement de l'affichage
   * @retval None
   */
-static void process_display(void)
-{
-    // int y1;
-    // float angle_rad;
-    // float angle_deg;
-    // uint16_t red_color = 0xF800;  /* Couleur rouge en RGB565 */
-    
-    // /* Calculs */
-    // y1 = 240 - g_constante;
-    // angle_rad = atan((120.0 - g_constante) / 160.0);
-    // angle_deg = angle_rad * (180.0 / M_PI);
-    
-    // /* Affichage des informations */
-    // display_angle(angle_deg, 10, 10);
-    // display_inclination_line(0, y1, 320, g_constante, red_color);
-
-    /* Affichage des données des capteurs MPU6050 */
-    display_sensor_data();
+static void process_display(void) {
+//    display_sensor_data();
 }
 
 /**
   * @brief  Traitement des entrées utilisateur
   * @retval None
   */
-static void process_user_input(void)
-{
-    if (char_received(UART2_ID))
-    {
+static void process_user_input(void) {
+    if (char_received(UART2_ID)) {
         write_LED(true);
         HAL_Delay(BLINK_DELAY);
         write_LED(false);
-        g_constante++;
     }
 }
