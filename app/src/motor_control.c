@@ -280,6 +280,6 @@ void set_right_motor_speed(uint8_t speed) {
 // Arrêt des moteurs
 void stop_motors(void) {
     // Arrêt = position minimale du throttle
-    set_pwm_pulse(0);
+    set_pwm_pulse(ESC_MIN_PULSE);
     printf("Moteurs arrêtés\r\n");
 }
