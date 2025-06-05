@@ -8,11 +8,13 @@
  */
 
 #include "sensors.h"
+#include "state.h"
 #include <stdio.h>
 #include <stdint.h>
 #include "stm32g4_gpio.h"
 #include "stm32g4xx_hal.h"
 #include "MPU6050/stm32g4_mpu6050.h"
+#include <math.h>
 
 // Variables globales
 static MPU6050_t MPU6050_Data1;  // Premier capteur (AD0 = 0)
@@ -135,4 +137,18 @@ const MPU6050_t* get_mpu1_data(void) {
 
 const MPU6050_t* get_mpu2_data(void) {
     return &MPU6050_Data2;
+}
+
+bool update_sensor_angles(void) {
+    if (!read_sensor_data()) {
+        system_ok = false;
+        return false;
+    }
+
+    system_ok = true;
+
+    angle_MPU1 = atanf((float)MPU6050_Data1.Accelerometer_X / MPU6050_Data1.Accelerometer_Z) * 180.0f / M_PI;
+    angle_MPU2 = atanf((float)MPU6050_Data2.Accelerometer_X / MPU6050_Data2.Accelerometer_Z) * 180.0f / M_PI;
+
+    return true;
 }

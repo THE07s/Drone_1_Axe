@@ -47,86 +47,83 @@ void test_display(void) {
 }
 
 // Implémentation des fonctions
+
+#define NOIR   ILI9341_COLOR_BLACK
+#define BLANC  ILI9341_COLOR_WHITE
+
+static void draw_static_text(void) {
+    ILI9341_Puts(145, 245, "Etat : OK", &Font_7x10, BLANC, NOIR);
+    ILI9341_Puts(145, 255, "Moteur1 : Arret", &Font_7x10, BLANC, NOIR);
+    ILI9341_Puts(145, 265, "Moteur2 : Arret", &Font_7x10, BLANC, NOIR);
+    ILI9341_Puts(145, 275, "MPU1 : 0.0 deg", &Font_7x10, BLANC, NOIR);
+    ILI9341_Puts(145, 285, "MPU2 : 0.0 deg", &Font_7x10, BLANC, NOIR);
+    ILI9341_Puts(145, 295, "Asserviss : 0", &Font_7x10, BLANC, NOIR);
+}
+
+void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+    ILI9341_DrawFilledRectangle(x0, y0, x1, y1, color);
+}
+
+void Dessiner_Ligne(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+    ILI9341_DrawLine(x0, y0, x1, y1, color);
+}
+
 void init_display(void) {
     ILI9341_Init();
     ILI9341_Rotate(ILI9341_Orientation_Landscape_1);
-    ILI9341_Fill(ILI9341_COLOR_BLACK);
-    test_display();
+    Effacer_Zone(0, 0, 239, 319, NOIR);
+
+    /* Barre verticale fixe */
+    Dessiner_Ligne(120, 50, 120, 150, BLANC);
+
+    draw_static_text();
+
+    sprintf(display_buffer, "Position de commande : %.1f deg", command_position);
+    ILI9341_Puts(5, 305, display_buffer, &Font_7x10, BLANC, NOIR);
 }
 
-void display_angle(float angle, int x, int y) {
-    sprintf(display_buffer, "Angle: %.2f deg", angle);
-    ILI9341_Puts(x, y, display_buffer, &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+static void update_status_line(uint16_t y, const char *text) {
+    Effacer_Zone(145, y, 239, y + 10, NOIR);
+    ILI9341_Puts(145, y, (char *)text, &Font_7x10, BLANC, NOIR);
 }
 
-void display_inclination_line(int x1, int y1, int x2, int y2, uint16_t color) {
-    ILI9341_DrawLine(x1, y1, x2, y2, color);
-}
+void Mettre_A_Jour_Affichage(void) {
+    /* Effacer la zone dynamique sans toucher à la barre verticale */
+    Effacer_Zone(20, 50, 119, 150, NOIR);
+    Effacer_Zone(121, 50, 220, 150, NOIR);
 
-void clear_display(void) {
-    ILI9341_Fill(ILI9341_COLOR_BLACK);
-}
+    /* Calcul de la ligne horizontale pivotante */
+    float rad = angle_MPU1 * M_PI / 180.0f;
+    float x_r = 120.0f, y_r = 100.0f;
+    float demiLongueur = 100.0f;
 
-void display_monitoring_info(float angle, float command_position, float mpu1_angle, float mpu2_angle, int motor1_status, int motor2_status, int control_status) {
-    // Effacer l'écran
-    ILI9341_Fill(ILI9341_COLOR_BLACK);
+    float x1_0 = x_r - demiLongueur, y1_0 = y_r;
+    float x2_0 = x_r + demiLongueur, y2_0 = y_r;
 
-    // --- Représentation visuelle du système (perspective, 17 arêtes) ---
-    // Socle (rectangle en perspective)
-    ILI9341_DrawLine(60, 210, 180, 210, ILI9341_COLOR_GRAY);    // face avant
-    ILI9341_DrawLine(60, 210, 70, 230, ILI9341_COLOR_GRAY);     // côté gauche
-    ILI9341_DrawLine(180, 210, 190, 230, ILI9341_COLOR_GRAY);   // côté droit
-    ILI9341_DrawLine(70, 230, 190, 230, ILI9341_COLOR_GRAY);    // face arrière
-    ILI9341_DrawLine(60, 210, 60, 200, ILI9341_COLOR_GRAY);     // coin avant gauche
-    ILI9341_DrawLine(180, 210, 180, 200, ILI9341_COLOR_GRAY);   // coin avant droit
-    ILI9341_DrawLine(70, 230, 70, 220, ILI9341_COLOR_GRAY);     // coin arrière gauche
-    ILI9341_DrawLine(190, 230, 190, 220, ILI9341_COLOR_GRAY);   // coin arrière droit
-    ILI9341_DrawLine(60, 200, 180, 200, ILI9341_COLOR_GRAY);    // face avant haut
-    ILI9341_DrawLine(70, 220, 190, 220, ILI9341_COLOR_GRAY);    // face arrière haut
-    ILI9341_DrawLine(60, 200, 70, 220, ILI9341_COLOR_GRAY);     // côté gauche haut
-    ILI9341_DrawLine(180, 200, 190, 220, ILI9341_COLOR_GRAY);   // côté droit haut
+    float x1 = x_r + (x1_0 - x_r) * cosf(rad) - (y1_0 - y_r) * sinf(rad);
+    float y1 = y_r + (x1_0 - x_r) * sinf(rad) + (y1_0 - y_r) * cosf(rad);
+    float x2 = x_r + (x2_0 - x_r) * cosf(rad) - (y2_0 - y_r) * sinf(rad);
+    float y2 = y_r + (x2_0 - x_r) * sinf(rad) + (y2_0 - y_r) * cosf(rad);
 
-    // Tige verticale (rectangle)
-    ILI9341_DrawLine(120, 200, 120, 120, ILI9341_COLOR_WHITE);  // côté gauche
-    ILI9341_DrawLine(130, 200, 130, 120, ILI9341_COLOR_WHITE);  // côté droit
-    ILI9341_DrawLine(120, 120, 130, 120, ILI9341_COLOR_WHITE);  // haut
-    ILI9341_DrawLine(120, 200, 130, 200, ILI9341_COLOR_WHITE);  // bas
+    Dessiner_Ligne((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, BLANC);
 
-    // Tige horizontale (qui bouge, rotation selon angle)
-    int x_center = 125;
-    int y_center = 120;
-    int demi_longueur = 60;
-    float rad = angle * M_PI / 180.0f;
-    int x1 = x_center - (int)(demi_longueur * cos(rad));
-    int y1 = y_center - (int)(demi_longueur * sin(rad));
-    int x2 = x_center + (int)(demi_longueur * cos(rad));
-    int y2 = y_center + (int)(demi_longueur * sin(rad));
-    ILI9341_DrawLine(x1, y1, x2, y2, ILI9341_COLOR_YELLOW); // tige horizontale
-    // extrémités de la tige horizontale
-    ILI9341_DrawFilledCircle(x1, y1, 4, ILI9341_COLOR_BLUE); // MPU1
-    ILI9341_DrawFilledCircle(x2, y2, 4, ILI9341_COLOR_BLUE); // MPU2
+    /* Mise à jour des textes statiques */
+    char buf[32];
+    sprintf(buf, "Etat : %s", system_ok ? "OK" : "Erreur");
+    update_status_line(245, buf);
+    sprintf(buf, "Moteur1 : %s", statut_moteur1 ? "Marche" : "Arret");
+    update_status_line(255, buf);
+    sprintf(buf, "Moteur2 : %s", statut_moteur2 ? "Marche" : "Arret");
+    update_status_line(265, buf);
+    sprintf(buf, "MPU1 : %.1f deg", angle_MPU1);
+    update_status_line(275, buf);
+    sprintf(buf, "MPU2 : %.1f deg", angle_MPU2);
+    update_status_line(285, buf);
+    sprintf(buf, "Asserviss : %.2f", asservissement_value);
+    update_status_line(295, buf);
 
-    // Affichage de l'angle au centre
-    sprintf(display_buffer, "%.2f°", angle);
-    ILI9341_Puts(x_center - 20, y_center - 25, display_buffer, &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-
-    // Affichage de la position de commande en bas
-    sprintf(display_buffer, "Position de commande: %.2f°", command_position);
-    ILI9341_Puts(10, 300, display_buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-
-    // Affichage du statut système à droite
-    int x_stat = 180;
-    int y_stat = 10;
-    ILI9341_Puts(x_stat, y_stat, "Statut systeme:", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    sprintf(display_buffer, "Moteur 1: %s", motor1_status ? "ON" : "OFF");
-    ILI9341_Puts(x_stat, y_stat + 20, display_buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    sprintf(display_buffer, "Moteur 2: %s", motor2_status ? "ON" : "OFF");
-    ILI9341_Puts(x_stat, y_stat + 35, display_buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    sprintf(display_buffer, "MPU1: %.2f°", mpu1_angle);
-    ILI9341_Puts(x_stat, y_stat + 50, display_buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    sprintf(display_buffer, "MPU2: %.2f°", mpu2_angle);
-    ILI9341_Puts(x_stat, y_stat + 65, display_buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-    sprintf(display_buffer, "Asservissement: %s", control_status ? "ON" : "OFF");
-    ILI9341_Puts(x_stat, y_stat + 80, display_buffer, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+    sprintf(buf, "Position de commande : %.1f deg", command_position);
+    Effacer_Zone(0, 300, 120, 319, NOIR);
+    ILI9341_Puts(5, 305, buf, &Font_7x10, BLANC, NOIR);
 }
 

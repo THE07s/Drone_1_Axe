@@ -12,6 +12,7 @@
 
 #include <stdbool.h>
 #include "MPU6050/stm32g4_mpu6050.h"
+#include "state.h"
 
 // Structure pour stocker les données des capteurs
 typedef struct {
@@ -35,5 +36,8 @@ const MPU6050_t* get_mpu1_data(void);
 
 // Obtenir les données du second capteur MPU6050
 const MPU6050_t* get_mpu2_data(void);
+
+// Mettre à jour les angles globaux depuis les capteurs
+bool update_sensor_angles(void);
 
 #endif /* SENSORS_H_ */
