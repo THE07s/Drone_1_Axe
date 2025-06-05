@@ -21,7 +21,14 @@ void changer_impulsion(uint16_t pulse) {
 
 bool init_motors(void) {
     configure_timer_pwm();
-    HAL_Delay(3000);                 // Attendre les bips de démarrage usine
-    changer_impulsion(ESC_PULSE_MAX); // Ralenti
+    changer_impulsion(ESC_PULSE_MIN);      // Gaz minimum au démarrage
+    HAL_Delay(3000);                       // Attendre les bips d'initialisation
+
+    // Augmente progressivement la largeur d'impulsion jusqu'au ralenti
+    for (uint16_t pulse = ESC_PULSE_MIN; pulse <= ESC_PULSE_MAX; pulse += 5) {
+        changer_impulsion(pulse);
+        HAL_Delay(20);
+    }
+    changer_impulsion(ESC_PULSE_MAX); // Ralenti final
     return true;
 }
