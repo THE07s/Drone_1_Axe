@@ -65,7 +65,7 @@ int main(void) {
     /* Boucle principale */
     while (1) {
         /* Lecture des capteurs et mise à jour des angles */
-        update_sensor_angles();
+        calculate_angles();
 
         /* Traitement de la stabilisation */
         // process_stabilization();
