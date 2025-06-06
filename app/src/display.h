@@ -26,21 +26,7 @@
 // Initialisation de l'écran
 void init_display(void);
 
-// Fonction de test de l'affichage
-void test_display(void);
-
-// Affichage de l'angle d'inclinaison
-void display_angle(float angle, int x, int y);
-
-// Affichage de la ligne d'inclinaison
-void display_inclination_line(int x1, int y1, int x2, int y2, uint16_t color);
-
-// Effacement de l'écran ou d'une zone
-void clear_display(void);
-
-// Affichage des données des capteurs MPU6050
-void display_monitoring_info(float angle, float command_position, float mpu1_angle, float mpu2_angle, int motor1_status, int motor2_status, int control_status);
-
-// Autres fonctions selon les besoins
+void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+void Mettre_A_Jour_Affichage(void);
 
 #endif /* DISPLAY_H_ */

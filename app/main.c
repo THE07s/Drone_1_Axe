@@ -31,7 +31,6 @@
 
 
 /* Prototypes de fonctions privées ------------------------------------------*/
-static void process_display(void);
 static void process_user_input(void);
 
 
@@ -65,14 +64,16 @@ int main(void) {
 
     /* Boucle principale */
     while (1) {
-        /* Lecture des capteurs */
-        read_sensor_data();
+        /* Lecture des capteurs et mise à jour des angles */
+        update_sensor_angles();
 
         /* Traitement de la stabilisation */
         // process_stabilization();
 
         /* Traitement de l'affichage */
-        process_display();
+        Mettre_A_Jour_Affichage();
+
+        HAL_Delay(20);
 
         /* Traitement des entrées utilisateur */
         process_user_input();
@@ -89,9 +90,6 @@ int main(void) {
   * @brief  Traitement de l'affichage
   * @retval None
   */
-static void process_display(void) {
-//    display_sensor_data();
-}
 
 /**
   * @brief  Traitement des entrées utilisateur
