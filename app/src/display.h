@@ -28,5 +28,8 @@ void init_display(void);
 
 void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 void Mettre_A_Jour_Affichage(void);
+void draw_perspective_base(void);
+void draw_perspective_vertical_bar(void);
+void draw_perspective_horizontal_bar(float angle_deg);
 
 #endif /* DISPLAY_H_ */
