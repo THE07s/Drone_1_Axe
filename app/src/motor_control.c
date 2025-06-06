@@ -11,7 +11,7 @@ void configure_timer_pwm(void) {
     BSP_TIMER_enable_PWM(TIMER4_ID, TIM_CHANNEL_2, ESC_PULSE_MIN, false, false);
 }
 
-void changer_impulsion(uint16_t pulse) {
+void set_impulsion(uint16_t pulse) {
     if (pulse < ESC_PULSE_MIN)  pulse = ESC_PULSE_MIN;
     if (pulse > ESC_PULSE_MAX)  pulse = ESC_PULSE_MAX;
     BSP_TIMER_set_duty(TIMER4_ID, TIM_CHANNEL_2, pulse);
@@ -19,18 +19,18 @@ void changer_impulsion(uint16_t pulse) {
 
 bool init_motors(void) {
     configure_timer_pwm();
-    changer_impulsion(ESC_PULSE_MIN);      // Gaz minimum au démarrage
+    set_impulsion(ESC_PULSE_MIN);      // Gaz minimum au démarrage
     HAL_Delay(3000);                       // Attendre les bips d'initialisation
 
     // Augmente progressivement la largeur d'impulsion jusqu'au ralenti
     for (uint16_t pulse = ESC_PULSE_MIN; pulse <= ESC_PULSE_MAX; pulse += 1) {
-        changer_impulsion(pulse);
+        set_impulsion(pulse);
         HAL_Delay(20);
     }
     for (uint16_t pulse = ESC_PULSE_MAX; pulse >= ESC_PULSE_MIN; pulse -= 1) {
-        changer_impulsion(pulse);
+        set_impulsion(pulse);
         HAL_Delay(20);
     }
-    changer_impulsion(ESC_PULSE_MIN); // Ralenti final
+    set_impulsion(ESC_PULSE_MIN); // Ralenti final
     return true;
 }

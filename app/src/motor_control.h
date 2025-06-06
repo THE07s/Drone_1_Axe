@@ -10,6 +10,6 @@
 
 bool init_motors(void);
 void configure_timer_pwm(void);
-void changer_impulsion(uint16_t pulse);
+void set_impulsion(uint16_t pulse);
 
 #endif // MOTOR_CONTROL_H
