@@ -23,7 +23,11 @@ bool init_motors(void) {
     HAL_Delay(3000);                       // Attendre les bips d'initialisation
 
     // Augmente progressivement la largeur d'impulsion jusqu'au ralenti
-    for (uint16_t pulse = ESC_PULSE_MIN; pulse <= ESC_PULSE_MAX; pulse += 5) {
+    for (uint16_t pulse = ESC_PULSE_MIN; pulse <= ESC_PULSE_MAX; pulse += 1) {
+        changer_impulsion(pulse);
+        HAL_Delay(20);
+    }
+    for (uint16_t pulse = ESC_PULSE_MAX; pulse >= ESC_PULSE_MIN; pulse -= 1) {
         changer_impulsion(pulse);
         HAL_Delay(20);
     }
