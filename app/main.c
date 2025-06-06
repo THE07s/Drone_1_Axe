@@ -21,7 +21,6 @@
 #include "src/user_input.h"
 #include "src/display.h"
 #include "src/sensors.h"
-#include "src/state.h"
 #include "src/motor_control.h"
 #include "src/stabilization.h"
 

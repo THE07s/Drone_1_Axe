@@ -27,7 +27,6 @@
 void init_display(void);
 
 void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
-void Dessiner_Ligne(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 void Mettre_A_Jour_Affichage(void);
 
 #endif /* DISPLAY_H_ */

@@ -20,6 +20,16 @@
 static MPU6050_t MPU6050_Data1;  // Premier capteur (AD0 = 0)
 static MPU6050_t MPU6050_Data2;  // Second capteur (AD0 = 1)
 
+SystemState g_state = {
+    .angle_MPU1 = 0.0f,
+    .angle_MPU2 = 0.0f,
+    .command_position = 0.0f,
+    .asservissement_value = 0.0f,
+    .statut_moteur1 = 0,
+    .statut_moteur2 = 0,
+    .system_ok = true
+};
+
 // Implémentation des fonctions
 bool init_sensors(void) {
     MPU6050_Result_t result1, result2;
@@ -141,14 +151,14 @@ const MPU6050_t* get_mpu2_data(void) {
 
 bool update_sensor_angles(void) {
     if (!read_sensor_data()) {
-        system_ok = false;
+        g_state.system_ok = false;
         return false;
     }
 
-    system_ok = true;
+    g_state.system_ok = true;
 
-    angle_MPU1 = atanf((float)MPU6050_Data1.Accelerometer_X / MPU6050_Data1.Accelerometer_Z) * 180.0f / M_PI;
-    angle_MPU2 = atanf((float)MPU6050_Data2.Accelerometer_X / MPU6050_Data2.Accelerometer_Z) * 180.0f / M_PI;
+    g_state.angle_MPU1 = atanf((float)MPU6050_Data1.Accelerometer_X / MPU6050_Data1.Accelerometer_Z) * 180.0f / M_PI;
+    g_state.angle_MPU2 = atanf((float)MPU6050_Data2.Accelerometer_X / MPU6050_Data2.Accelerometer_Z) * 180.0f / M_PI;
 
     return true;
 }

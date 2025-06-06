@@ -3,12 +3,16 @@
 
 #include <stdbool.h>
 
-extern float angle_MPU1;
-extern float angle_MPU2;
-extern float command_position;
-extern float asservissement_value;
-extern int statut_moteur1;
-extern int statut_moteur2;
-extern bool system_ok;
+typedef struct {
+    float angle_MPU1;
+    float angle_MPU2;
+    float command_position;
+    float asservissement_value;
+    int statut_moteur1;
+    int statut_moteur2;
+    bool system_ok;
+} SystemState;
+
+extern SystemState g_state;
 
 #endif /* STATE_H_ */

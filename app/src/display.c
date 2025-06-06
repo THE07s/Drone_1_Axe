@@ -11,6 +11,7 @@
 #include "../config.h"
 #include "../drivers/bsp/tft_ili9341/stm32g4_ili9341.h"
 #include "sensors.h"
+#include "state.h"
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -64,9 +65,6 @@ void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t c
     ILI9341_DrawFilledRectangle(x0, y0, x1, y1, color);
 }
 
-void Dessiner_Ligne(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
-    ILI9341_DrawLine(x0, y0, x1, y1, color);
-}
 
 void init_display(void) {
     ILI9341_Init();
@@ -74,11 +72,11 @@ void init_display(void) {
     Effacer_Zone(0, 0, 239, 319, NOIR);
 
     /* Barre verticale fixe */
-    Dessiner_Ligne(120, 50, 120, 150, BLANC);
+    ILI9341_DrawLine(120, 50, 120, 150, BLANC);
 
     draw_static_text();
 
-    sprintf(display_buffer, "Position de commande : %.1f deg", command_position);
+    sprintf(display_buffer, "Position de commande : %.1f deg", g_state.command_position);
     ILI9341_Puts(5, 305, display_buffer, &Font_7x10, BLANC, NOIR);
 }
 
@@ -93,7 +91,7 @@ void Mettre_A_Jour_Affichage(void) {
     Effacer_Zone(121, 50, 220, 150, NOIR);
 
     /* Calcul de la ligne horizontale pivotante */
-    float rad = angle_MPU1 * M_PI / 180.0f;
+    float rad = g_state.angle_MPU1 * M_PI / 180.0f;
     float x_r = 120.0f, y_r = 100.0f;
     float demiLongueur = 100.0f;
 
@@ -105,24 +103,24 @@ void Mettre_A_Jour_Affichage(void) {
     float x2 = x_r + (x2_0 - x_r) * cosf(rad) - (y2_0 - y_r) * sinf(rad);
     float y2 = y_r + (x2_0 - x_r) * sinf(rad) + (y2_0 - y_r) * cosf(rad);
 
-    Dessiner_Ligne((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, BLANC);
+    ILI9341_DrawLine((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, BLANC);
 
     /* Mise à jour des textes statiques */
     char buf[32];
-    sprintf(buf, "Etat : %s", system_ok ? "OK" : "Erreur");
+    sprintf(buf, "Etat : %s", g_state.system_ok ? "OK" : "Erreur");
     update_status_line(245, buf);
-    sprintf(buf, "Moteur1 : %s", statut_moteur1 ? "Marche" : "Arret");
+    sprintf(buf, "Moteur1 : %s", g_state.statut_moteur1 ? "Marche" : "Arret");
     update_status_line(255, buf);
-    sprintf(buf, "Moteur2 : %s", statut_moteur2 ? "Marche" : "Arret");
+    sprintf(buf, "Moteur2 : %s", g_state.statut_moteur2 ? "Marche" : "Arret");
     update_status_line(265, buf);
-    sprintf(buf, "MPU1 : %.1f deg", angle_MPU1);
+    sprintf(buf, "MPU1 : %.1f deg", g_state.angle_MPU1);
     update_status_line(275, buf);
-    sprintf(buf, "MPU2 : %.1f deg", angle_MPU2);
+    sprintf(buf, "MPU2 : %.1f deg", g_state.angle_MPU2);
     update_status_line(285, buf);
-    sprintf(buf, "Asserviss : %.2f", asservissement_value);
+    sprintf(buf, "Asserviss : %.2f", g_state.asservissement_value);
     update_status_line(295, buf);
 
-    sprintf(buf, "Position de commande : %.1f deg", command_position);
+    sprintf(buf, "Position de commande : %.1f deg", g_state.command_position);
     Effacer_Zone(0, 300, 120, 319, NOIR);
     ILI9341_Puts(5, 305, buf, &Font_7x10, BLANC, NOIR);
 }
