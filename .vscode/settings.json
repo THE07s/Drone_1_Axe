@@ -3,6 +3,7 @@
         "stm32g4_timer.h": "c",
         "stdio.h": "c",
         "stm32g4_gpio.h": "c",
-        "stm32g4_uart.h": "c"
+        "stm32g4_uart.h": "c",
+        "stm32g4_ili9341.h": "c"
     }
 }

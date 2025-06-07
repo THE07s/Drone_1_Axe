@@ -22,6 +22,6 @@ void enable_stabilization(void);
 void disable_stabilization(void);
 
 // Calculer les corrections de vitesse des moteurs selon l'angle
-void process_stabilization(float angle);
+void process_stabilization(float angle_system, float angle_commande);
 
 #endif /* STABILIZATION_H_ */

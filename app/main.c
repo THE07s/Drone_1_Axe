@@ -56,7 +56,6 @@ int main(void) {
     init_display();
     init_sensors();
     init_motors();
-    init_stabilization();
 
     /* Message de démarrage */
     printf("Drone 1 Axe - Système démarré\r\n");
@@ -68,12 +67,10 @@ int main(void) {
         calculate_angles();
 
         /* Traitement de la stabilisation */
-        // process_stabilization();
+        process_stabilization(g_state.angle_MPU1, g_state.command_position);
 
         /* Traitement de l'affichage */
         Mettre_A_Jour_Affichage();
-
-        HAL_Delay(20);
 
         /* Traitement des entrées utilisateur */
         process_user_input();

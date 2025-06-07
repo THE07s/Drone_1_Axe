@@ -1,2 +1,59 @@
-Debug
-.settings
+# Répertoires de build
+/Debug/
+/Release/
+/build/
+/Binaries/
+
+# Fichiers générés par IDEs
+*.uvopt*
+*.uvproj*
+*.dep
+*.bak
+*.log
+*.tmp
+*.user
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+*.db
+*.db*
+*.dmp
+*.plg
+*.aps
+*.suo
+*.sln
+*.vcxproj*
+*.vcproj*
+*.swp
+*.DS_Store
+
+# Fichiers de configuration de l'éditeur
+.vscode/
+.idea/
+*.code-workspace
+
+# Fichiers de configuration de CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Fichiers de configuration de make
+*.mk
+
+# Fichiers de sauvegarde
+*~
+*.orig
+*.save
+
+# Fichiers de firmware
+*.hex
+*.bin
+
+# Fichiers de simulation
+*.sim
+*.svd
+
+# Fichiers de test
+/test/
+/tests/

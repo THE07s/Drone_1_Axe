@@ -7,6 +7,9 @@
  *******************************************************************************
  */
 
+#define ILI9341_HEIGHT  240
+#define ILI9341_WIDTH   320
+ 
 #include "display.h"
 #include "../config.h"
 #include "../drivers/bsp/tft_ili9341/stm32g4_ili9341.h"
@@ -16,49 +19,20 @@
 #include <string.h>
 #include <math.h>
 
+static float old_x1 = 0, old_y1 = 0, old_x2 = 0, old_y2 = 0;
+
  // Variables globales
 char display_buffer[32];
-extern int g_constante;
-
-void test_display(void) {
-    // Titre du projet
-    ILI9341_Puts(40, 20, "DRONE 1 AXE", &Font_11x18, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
-    ILI9341_Puts(40, 40, "Test Ecran", &Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
-
-    // Rectangle
-    ILI9341_DrawRectangle(40, 70, 120, 120, ILI9341_COLOR_RED);
-
-    // Cercle
-    ILI9341_DrawFilledCircle(180, 95, 25, ILI9341_COLOR_BLUE);
-
-    // Lignes
-    ILI9341_DrawLine(40, 150, 280, 150, ILI9341_COLOR_GREEN);
-    ILI9341_DrawLine(160, 130, 160, 170, ILI9341_COLOR_GREEN);
-
-    // Texte
-    ILI9341_Puts(40, 180, "Test des couleurs:", &Font_7x10, ILI9341_COLOR_CYAN, ILI9341_COLOR_BLACK);
-    ILI9341_Puts(40, 195, "ROUGE", &Font_7x10, ILI9341_COLOR_RED, ILI9341_COLOR_BLACK);
-    ILI9341_Puts(100, 195, "VERT", &Font_7x10, ILI9341_COLOR_GREEN, ILI9341_COLOR_BLACK);
-    ILI9341_Puts(160, 195, "BLEU", &Font_7x10, ILI9341_COLOR_BLUE, ILI9341_COLOR_BLACK);
-    ILI9341_Puts(220, 195, "JAUNE", &Font_7x10, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
-
-    HAL_Delay(3000);
-
-    ILI9341_Fill(ILI9341_COLOR_BLACK);
-}
 
 // Implémentation des fonctions
-
-#define NOIR   ILI9341_COLOR_BLACK
-#define BLANC  ILI9341_COLOR_WHITE
-
 void draw_perspective_base(void) {
     // Socle en perspective (trapeze)
     uint16_t base_y = 170;
     uint16_t base_h = 30;
-    uint16_t base_w_top = 120;
-    uint16_t base_w_bot = 200;
-    uint16_t base_x = 120;
+    uint16_t base_w_top = 100;
+    uint16_t base_w_bot = 150;
+    uint16_t base_x = ILI9341_WIDTH / 2;
+
     // Points du trapèze
     uint16_t x1 = base_x - base_w_top/2;
     uint16_t x2 = base_x + base_w_top/2;
@@ -68,79 +42,192 @@ void draw_perspective_base(void) {
     uint16_t y2 = base_y;
     uint16_t y3 = base_y + base_h;
     uint16_t y4 = base_y + base_h;
-    ILI9341_DrawLine(x1, y1, x2, y2, BLANC);
-    ILI9341_DrawLine(x2, y2, x3, y3, BLANC);
-    ILI9341_DrawLine(x3, y3, x4, y4, BLANC);
-    ILI9341_DrawLine(x4, y4, x1, y1, BLANC);
-    // Remplissage léger (gris)
-    ILI9341_DrawFilledRectangle(x1+1, y1+1, x3-1, y3-1, 0x8410);
+    ILI9341_DrawLine(x1, y1, x2, y2, ILI9341_COLOR_WHITE);
+    ILI9341_DrawLine(x2, y2, x3, y3, ILI9341_COLOR_WHITE);
+    ILI9341_DrawLine(x3, y3, x4, y4, ILI9341_COLOR_WHITE);
+    ILI9341_DrawLine(x4, y4, x1, y1, ILI9341_COLOR_WHITE);
+
+    // Remplissage léger (gris) du trapèze
+    for (uint16_t y = y1 + 1; y < y3; y++) {
+        // Interpolation linéaire pour trouver les bords gauche et droit à chaque ligne
+        float t = (float)(y - y1) / (float)(y3 - y1);
+        int16_t left = (int16_t)(x1 + 1 + t * (x4 - x1));
+        int16_t right = (int16_t)(x2 + t * (x3 - x2));
+        if (right > left) {
+            ILI9341_DrawLine(left, y, right, y, 0x8410);
+        }
+    }
 }
 
-void draw_perspective_vertical_bar(void) {
-    // Barre verticale en perspective (du socle vers le haut)
-    uint16_t base_x = 120;
-    uint16_t base_y = 170;
-    uint16_t top_x = 120;
-    uint16_t top_y = 60;
-    ILI9341_DrawLine(base_x, base_y, top_x, top_y, BLANC);
+void draw_vertical_bar(void) {
+    // Barre verticale simple (du socle vers le haut, sans perspective)
+    uint16_t base_x = ILI9341_WIDTH / 2;
+    uint16_t base_y = 185;
+    uint16_t top_x = ILI9341_WIDTH / 2;
+    uint16_t top_y = 80;
+    ILI9341_DrawLine(base_x, base_y, top_x, top_y, ILI9341_COLOR_WHITE);
     // Socle de la barre (petit cercle)
-    ILI9341_DrawFilledCircle(base_x, base_y, 6, BLANC);
+    ILI9341_DrawFilledCircle(base_x, base_y, 7, ILI9341_COLOR_WHITE);
 }
 
-void draw_perspective_horizontal_bar(float angle_deg) {
-    // Barre horizontale pivotante en perspective (autour du sommet de la barre verticale)
-    float rad = angle_deg * M_PI / 180.0f;
-    float cx = 120.0f, cy = 60.0f; // sommet de la barre verticale
+void draw_horizontal_bar(float angle_deg) {
+    // Barre horizontale pivotante simple (autour du sommet de la barre verticale, sans perspective)
     float demiLongueur = 90.0f;
-    // Perspective : on écrase l'axe Y
-    float perspective = 0.5f;
-    float x1 = cx - demiLongueur * cosf(rad);
-    float y1 = cy - demiLongueur * sinf(rad) * perspective;
-    float x2 = cx + demiLongueur * cosf(rad);
-    float y2 = cy + demiLongueur * sinf(rad) * perspective;
-    ILI9341_DrawLine((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, ILI9341_COLOR_YELLOW);
+
+    float cx = ILI9341_WIDTH / 2.0f;
+    float cy = 80.0f;
+
+    float rad = angle_deg * M_PI / 180.0f;
+    float cos_a = cosf(rad);
+    float sin_a = sinf(rad);
+
+    float x1 = cx - demiLongueur * cos_a;
+    float y1 = cy - demiLongueur * sin_a;
+    float x2 = cx + demiLongueur * cos_a;
+    float y2 = cy + demiLongueur * sin_a;
+    
+    ILI9341_DrawLine((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, ILI9341_COLOR_YELLOW | 0x4000); // Jaune plus vif
     // Ajout d'un cercle au centre
     ILI9341_DrawFilledCircle((uint16_t)cx, (uint16_t)cy, 7, ILI9341_COLOR_RED);
+    old_x1 = x1; old_y1 = y1; old_x2 = x2; old_y2 = y2;
 }
 
 void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
     ILI9341_DrawFilledRectangle(x0, y0, x1, y1, color);
 }
 
+void draw_stats_texte(void) {
+    // Affiche uniquement les labels statiques des stats
+    const uint16_t stats_larg = 119;
+    const uint16_t stats_ligne = 10;
+    const uint16_t stats_nblignes = 6;
+    const uint16_t stats_espacement = 2;
+    const uint16_t stats_hauteur = stats_nblignes * (stats_ligne + stats_espacement) + 4;
+    const uint16_t stats_x = ILI9341_WIDTH - stats_larg - 2;
+    const uint16_t stats_y = ILI9341_HEIGHT - stats_hauteur - 2;
+    uint16_t y = stats_y + 2;
+    ILI9341_Puts(stats_x + 6, y, "Etat :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    ILI9341_Puts(stats_x + 6, y, "Moteur1 :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    ILI9341_Puts(stats_x + 6, y, "Moteur2 :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    ILI9341_Puts(stats_x + 6, y, "MPU1 :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    ILI9341_Puts(stats_x + 6, y, "MPU2 :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    ILI9341_Puts(stats_x + 6, y, "Asserv :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+}
+
+void update_stats_valeurs(void) {
+    // Met à jour uniquement les valeurs dynamiques des stats
+    char buf[16];
+    const uint16_t stats_larg = 119;
+    const uint16_t stats_ligne = 10;
+    const uint16_t stats_nblignes = 6;
+    const uint16_t stats_espacement = 2;
+    const uint16_t stats_hauteur = stats_nblignes * (stats_ligne + stats_espacement) + 4;
+    const uint16_t stats_x = ILI9341_WIDTH - stats_larg - 2;
+    const uint16_t stats_y = ILI9341_HEIGHT - stats_hauteur - 2;
+    uint16_t value_x = stats_x; // position après les :
+    uint16_t y = stats_y + 2;
+    // Etat
+    value_x = stats_x + 49;
+    ILI9341_DrawFilledRectangle(value_x, y, stats_x + stats_larg - 4, y + stats_ligne, ILI9341_COLOR_BLACK);
+    sprintf(buf, "%s", g_state.system_ok ? "OK" : "ERR");
+    ILI9341_Puts(value_x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    // Moteur1
+    value_x = stats_x + 70;
+    ILI9341_DrawFilledRectangle(value_x, y, stats_x + stats_larg - 4, y + stats_ligne, ILI9341_COLOR_BLACK);
+    sprintf(buf, "%s", g_state.statut_moteur1 ? "ON" : "OFF");
+    ILI9341_Puts(value_x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    // Moteur2
+    value_x = stats_x + 70;
+    ILI9341_DrawFilledRectangle(value_x, y, stats_x + stats_larg - 4, y + stats_ligne, ILI9341_COLOR_BLACK);
+    sprintf(buf, "%s", g_state.statut_moteur2 ? "ON" : "OFF");
+    ILI9341_Puts(value_x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    // MPU1
+    value_x = stats_x + 49;
+    ILI9341_DrawFilledRectangle(value_x, y, stats_x + stats_larg - 4, y + stats_ligne, ILI9341_COLOR_BLACK);
+    sprintf(buf, "%.1f deg", g_state.angle_MPU1);
+    ILI9341_Puts(value_x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    // MPU2
+    value_x = stats_x + 49;
+    ILI9341_DrawFilledRectangle(value_x, y, stats_x + stats_larg - 4, y + stats_ligne, ILI9341_COLOR_BLACK);
+    sprintf(buf, "%.1f deg", g_state.command_position);
+    ILI9341_Puts(value_x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK); y += stats_ligne + stats_espacement;
+    // Asserv
+    value_x = stats_x + 63;
+    ILI9341_DrawFilledRectangle(value_x, y, stats_x + stats_larg - 4, y + stats_ligne, ILI9341_COLOR_BLACK);
+    sprintf(buf, "%.2f", g_state.asservissement_value);
+    ILI9341_Puts(value_x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_BLACK);
+}
+
+void draw_angle_command_texte(void) {
+    // Affiche uniquement le label "Cmd :" en bas à gauche
+    uint16_t x = 2;
+    uint16_t y = ILI9341_HEIGHT - 10 - 2;
+    ILI9341_Puts(x, y, "Cmd :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_RED);
+}
+
+void update_angle_command_valeurs(void) {
+    // Met à jour uniquement la valeur de la commande en bas à gauche
+    char buf[16];
+    uint16_t x = 2 + 38; // position après "Cmd :" (largeur estimée)
+    uint16_t y = ILI9341_HEIGHT - 10 - 2;
+    // Efface la zone de la valeur
+    ILI9341_DrawFilledRectangle(x, y, x + 60, y + 10, ILI9341_COLOR_RED);
+    sprintf(buf, "%.1f deg", g_state.command_position);
+    ILI9341_Puts(x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_RED);
+}
+
+void draw_stats(void) {
+    // Affiche le fond, le cadre, les labels et les valeurs initiales
+    const uint16_t stats_larg = 119;
+    const uint16_t stats_nblignes = 6;
+    const uint16_t stats_ligne = 10;
+    const uint16_t stats_espacement = 2;
+    const uint16_t stats_hauteur = stats_nblignes * (stats_ligne + stats_espacement) + 4;
+    const uint16_t stats_x = ILI9341_WIDTH - stats_larg - 2;
+    const uint16_t stats_y = ILI9341_HEIGHT - stats_hauteur - 2;
+    // Fond noir
+    ILI9341_DrawFilledRectangle(stats_x, stats_y, stats_x + stats_larg, stats_y + stats_hauteur, ILI9341_COLOR_BLACK);
+    // Cadre blanc
+    ILI9341_DrawRectangle(stats_x, stats_y, stats_x + stats_larg, stats_y + stats_hauteur, ILI9341_COLOR_WHITE);
+    draw_stats_texte();
+    update_stats_valeurs();
+}
+
+void draw_angle_command(void) {
+    draw_angle_command_texte();
+    update_angle_command_valeurs();
+}
+
+void draw_title(void) {
+    // Affichage du titre en haut de l'écran
+    char* titre = "DRONE 1 AXE";
+    uint16_t titre_largeur = 0, titre_hauteur = 0;
+    ILI9341_GetStringSize(titre, &Font_11x18, &titre_largeur, &titre_hauteur);
+    uint16_t titre_x = (ILI9341_WIDTH - titre_largeur) / 2;
+    ILI9341_Puts(titre_x, 2, titre, &Font_11x18, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
+}
+
 void init_display(void) {
     ILI9341_Init();
     ILI9341_Rotate(ILI9341_Orientation_Landscape_1);
-    Effacer_Zone(0, 0, 239, 319, NOIR);
-    // Titre du projet en haut
-    ILI9341_Puts(40, 10, "DRONE 1 AXE", &Font_11x18, ILI9341_COLOR_YELLOW, ILI9341_COLOR_BLACK);
-    // Socle et barre verticale (statique)
+    ILI9341_Fill(ILI9341_COLOR_BLACK);  // Fond noir
+    draw_title();
     draw_perspective_base();
-    draw_perspective_vertical_bar();
-    // Stats système en bas à droite (statique)
-    char buf[32];
-    uint16_t y = 245;
-    sprintf(buf, "Etat : %s", g_state.system_ok ? "OK" : "Erreur");
-    ILI9341_Puts(145, y, buf, &Font_7x10, BLANC, NOIR); y += 10;
-    sprintf(buf, "Moteur1 : %s", g_state.statut_moteur1 ? "Marche" : "Arret");
-    ILI9341_Puts(145, y, buf, &Font_7x10, BLANC, NOIR); y += 10;
-    sprintf(buf, "Moteur2 : %s", g_state.statut_moteur2 ? "Marche" : "Arret");
-    ILI9341_Puts(145, y, buf, &Font_7x10, BLANC, NOIR); y += 10;
-    sprintf(buf, "MPU1 : %.1f deg", g_state.angle_MPU1);
-    ILI9341_Puts(145, y, buf, &Font_7x10, BLANC, NOIR); y += 10;
-    sprintf(buf, "MPU2 : %.1f deg", g_state.angle_MPU2);
-    ILI9341_Puts(145, y, buf, &Font_7x10, BLANC, NOIR); y += 10;
-    sprintf(buf, "Asserviss : %.2f", g_state.asservissement_value);
-    ILI9341_Puts(145, y, buf, &Font_7x10, BLANC, NOIR);
-    // Angle de commande (MPU2) en bas à gauche (statique)
-    sprintf(buf, "Cmd : %.1f deg", g_state.command_position);
-    ILI9341_Puts(5, 305, buf, &Font_7x10, BLANC, NOIR);
-    // Barre horizontale dynamique (affichée une première fois)
-    draw_perspective_horizontal_bar(g_state.angle_MPU1);
+    draw_vertical_bar();
+    draw_stats();
+    draw_angle_command();
+    draw_horizontal_bar(g_state.angle_MPU1);
 }
 
 void Mettre_A_Jour_Affichage(void) {
-    // Efface uniquement la zone dynamique (autour de la barre horizontale)
-    Effacer_Zone(20, 40, 220, 90, NOIR); // zone autour de la barre horizontale
-    draw_perspective_horizontal_bar(g_state.angle_MPU1);
+    ILI9341_DrawLine((uint16_t)old_x1, (uint16_t)old_y1, (uint16_t)old_x2, (uint16_t)old_y2, ILI9341_COLOR_BLACK);
+    if (g_state.angle_MPU1 > 80.0f || g_state.angle_MPU1 < -80.0f) {
+        draw_vertical_bar();
+        draw_title();
+    } else if (g_state.angle_MPU1 > 44.5f || g_state.angle_MPU1 < -44.5f) {
+        draw_title();
+    }
+    draw_horizontal_bar(g_state.angle_MPU1);
+    update_stats_valeurs();
+    update_angle_command_valeurs();
 }
-
