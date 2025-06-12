@@ -1,12 +1,3 @@
-/**
- *******************************************************************************
- * @file    sensors.h
- * @author  Drone_1_Axe Team
- * @date    Avril 23, 2025
- * @brief   Interface pour la gestion des capteurs (MPU6050)
- *******************************************************************************
- */
-
 #ifndef SENSORS_H_
 #define SENSORS_H_
 
@@ -14,6 +5,14 @@
 #include "MPU6050/stm32g4_mpu6050.h"
 #include "state.h"
 #include "config.h"
+#include "state.h"
+#include <stdint.h>
+#include <stdio.h>
+#include "stm32g4_gpio.h"
+#include "stm32g4xx_hal.h"
+#include "MPU6050/stm32g4_mpu6050.h"
+#include <math.h>
+#include "stm32g431xx.h"
 
 // Structure pour stocker les données des capteurs
 typedef struct {

@@ -1,22 +1,4 @@
-/**
- *******************************************************************************
- * @file    sensors.c
- * @author  Drone_1_Axe Team
- * @date    Avril 23, 2025
- * @brief   Implémentation de l'interface pour la gestion des capteurs (MPU6050)
- *******************************************************************************
- */
-
 #include "sensors.h"
-#include "state.h"
-#include <stdint.h>
-#include <stdio.h>
-#include "stm32g4_gpio.h"
-#include "stm32g4xx_hal.h"
-#include "MPU6050/stm32g4_mpu6050.h"
-#include <math.h>
-#include "stm32g431xx.h"
-
 
 // Variables globales
 static MPU6050_t MPU6050_Data1;  // Premier capteur (AD0 = 0)

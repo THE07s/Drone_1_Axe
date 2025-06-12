@@ -1,13 +1,4 @@
-/**
- *******************************************************************************
- * @file 	main.c
- * @author 	Drone_1_Axe Team
- * @date 	Avril 23, 2025
- * @brief	Fichier principal de votre projet sur carte Nucléo STM32G431KB
- *******************************************************************************
- */
-
- /* Includes ------------------------------------------------------------------*/
+/* Includes ------------------------------------------------------------------*/
 #include "config.h"
 #include "stm32g4_sys.h"
 #include "stm32g4_systick.h"
@@ -23,16 +14,6 @@
 #include "src/sensors.h"
 #include "src/motor_control.h"
 #include "src/stabilization.h"
-
-/* Définitions privées ------------------------------------------------------*/
-#define BLINK_DELAY 2000  /* Délai de clignotement en ms */
-
-/* Variables globales -------------------------------------------------------*/
-
-
-/* Prototypes de fonctions privées ------------------------------------------*/
-static void process_user_input(void);
-
 
 /**
   * @brief  Point d'entrée de votre application
@@ -52,7 +33,7 @@ int main(void) {
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
     /* Initialisation des modules */
-    init_user_input();
+    // init_user_input();
     init_display();
     init_sensors();
     init_motors();
@@ -60,20 +41,19 @@ int main(void) {
     /* Message de démarrage */
     printf("Drone 1 Axe - Système démarré\r\n");
 
-
     /* Boucle principale */
     while (1) {
         /* Lecture des capteurs et mise à jour des angles */
         calculate_angles();
 
-        /* Traitement de la stabilisation */
+        /* Traitement de la stabilisation et application aux moteurs */
         process_stabilization(g_state.angle_MPU1, g_state.command_position);
 
         /* Traitement de l'affichage */
         Mettre_A_Jour_Affichage();
 
         /* Traitement des entrées utilisateur */
-        process_user_input();
+        // process_user_input();
     }
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -81,21 +61,4 @@ int main(void) {
 
     /* Cette ligne ne sera jamais atteinte */
     return 0;
-}
-
-/**
-  * @brief  Traitement de l'affichage
-  * @retval None
-  */
-
-/**
-  * @brief  Traitement des entrées utilisateur
-  * @retval None
-  */
-static void process_user_input(void) {
-    if (char_received(UART2_ID)) {
-        write_LED(true);
-        HAL_Delay(BLINK_DELAY);
-        write_LED(false);
-    }
 }

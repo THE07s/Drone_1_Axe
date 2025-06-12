@@ -1,30 +1,11 @@
-/**
- *******************************************************************************
- * @file    display.c
- * @author  Drone_1_Axe Team
- * @date    Avril 23, 2025
- * @brief   Implémentation de l'interface pour la gestion de l'affichage
- *******************************************************************************
- */
 
-#define ILI9341_HEIGHT  240
-#define ILI9341_WIDTH   320
- 
 #include "display.h"
-#include "../config.h"
-#include "../drivers/bsp/tft_ili9341/stm32g4_ili9341.h"
-#include "sensors.h"
-#include "state.h"
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
 
+// Variables globales
+char display_buffer[32];
 static float old_x1 = 0, old_y1 = 0, old_x2 = 0, old_y2 = 0;
 
- // Variables globales
-char display_buffer[32];
 
-// Implémentation des fonctions
 void draw_perspective_base(void) {
     // Socle en perspective (trapeze)
     uint16_t base_y = 170;
@@ -47,7 +28,7 @@ void draw_perspective_base(void) {
     ILI9341_DrawLine(x3, y3, x4, y4, ILI9341_COLOR_WHITE);
     ILI9341_DrawLine(x4, y4, x1, y1, ILI9341_COLOR_WHITE);
 
-    // Remplissage léger (gris) du trapèze
+    // Remplissage léger (gris) du trapèze (ChatGPT)
     for (uint16_t y = y1 + 1; y < y3; y++) {
         // Interpolation linéaire pour trouver les bords gauche et droit à chaque ligne
         float t = (float)(y - y1) / (float)(y3 - y1);
@@ -60,18 +41,16 @@ void draw_perspective_base(void) {
 }
 
 void draw_vertical_bar(void) {
-    // Barre verticale simple (du socle vers le haut, sans perspective)
     uint16_t base_x = ILI9341_WIDTH / 2;
     uint16_t base_y = 185;
     uint16_t top_x = ILI9341_WIDTH / 2;
     uint16_t top_y = 80;
     ILI9341_DrawLine(base_x, base_y, top_x, top_y, ILI9341_COLOR_WHITE);
-    // Socle de la barre (petit cercle)
+
     ILI9341_DrawFilledCircle(base_x, base_y, 7, ILI9341_COLOR_WHITE);
 }
 
 void draw_horizontal_bar(float angle_deg) {
-    // Barre horizontale pivotante simple (autour du sommet de la barre verticale, sans perspective)
     float demiLongueur = 90.0f;
 
     float cx = ILI9341_WIDTH / 2.0f;
@@ -86,8 +65,8 @@ void draw_horizontal_bar(float angle_deg) {
     float x2 = cx + demiLongueur * cos_a;
     float y2 = cy + demiLongueur * sin_a;
     
-    ILI9341_DrawLine((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, ILI9341_COLOR_YELLOW | 0x4000); // Jaune plus vif
-    // Ajout d'un cercle au centre
+    ILI9341_DrawLine((uint16_t)x1, (uint16_t)y1, (uint16_t)x2, (uint16_t)y2, ILI9341_COLOR_YELLOW | 0x4000);
+
     ILI9341_DrawFilledCircle((uint16_t)cx, (uint16_t)cy, 7, ILI9341_COLOR_RED);
     old_x1 = x1; old_y1 = y1; old_x2 = x2; old_y2 = y2;
 }
@@ -97,7 +76,6 @@ void Effacer_Zone(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t c
 }
 
 void draw_stats_texte(void) {
-    // Affiche uniquement les labels statiques des stats
     const uint16_t stats_larg = 119;
     const uint16_t stats_ligne = 10;
     const uint16_t stats_nblignes = 6;
@@ -115,7 +93,6 @@ void draw_stats_texte(void) {
 }
 
 void update_stats_valeurs(void) {
-    // Met à jour uniquement les valeurs dynamiques des stats
     char buf[16];
     const uint16_t stats_larg = 119;
     const uint16_t stats_ligne = 10;
@@ -124,7 +101,7 @@ void update_stats_valeurs(void) {
     const uint16_t stats_hauteur = stats_nblignes * (stats_ligne + stats_espacement) + 4;
     const uint16_t stats_x = ILI9341_WIDTH - stats_larg - 2;
     const uint16_t stats_y = ILI9341_HEIGHT - stats_hauteur - 2;
-    uint16_t value_x = stats_x; // position après les :
+    uint16_t value_x = stats_x;
     uint16_t y = stats_y + 2;
     // Etat
     value_x = stats_x + 49;
@@ -159,18 +136,16 @@ void update_stats_valeurs(void) {
 }
 
 void draw_angle_command_texte(void) {
-    // Affiche uniquement le label "Cmd :" en bas à gauche
     uint16_t x = 2;
     uint16_t y = ILI9341_HEIGHT - 10 - 2;
     ILI9341_Puts(x, y, "Cmd :", &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_RED);
 }
 
 void update_angle_command_valeurs(void) {
-    // Met à jour uniquement la valeur de la commande en bas à gauche
     char buf[16];
-    uint16_t x = 2 + 38; // position après "Cmd :" (largeur estimée)
+    uint16_t x = 2 + 38;
     uint16_t y = ILI9341_HEIGHT - 10 - 2;
-    // Efface la zone de la valeur
+
     ILI9341_DrawFilledRectangle(x, y, x + 60, y + 10, ILI9341_COLOR_RED);
     sprintf(buf, "%.1f deg", g_state.command_position);
     ILI9341_Puts(x, y, buf, &Font_7x10, ILI9341_COLOR_WHITE, ILI9341_COLOR_RED);
@@ -199,7 +174,6 @@ void draw_angle_command(void) {
 }
 
 void draw_title(void) {
-    // Affichage du titre en haut de l'écran
     char* titre = "DRONE 1 AXE";
     uint16_t titre_largeur = 0, titre_hauteur = 0;
     ILI9341_GetStringSize(titre, &Font_11x18, &titre_largeur, &titre_hauteur);
@@ -210,7 +184,7 @@ void draw_title(void) {
 void init_display(void) {
     ILI9341_Init();
     ILI9341_Rotate(ILI9341_Orientation_Landscape_1);
-    ILI9341_Fill(ILI9341_COLOR_BLACK);  // Fond noir
+    ILI9341_Fill(ILI9341_COLOR_BLACK);
     draw_title();
     draw_perspective_base();
     draw_vertical_bar();

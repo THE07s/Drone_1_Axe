@@ -54,7 +54,6 @@
 
 /*------------------Capteurs------------------*/
 #define USE_MPU6050			1 // Accéléromètre, Gyroscope
-#define USE_MOTION_FX		1 // Librairie de fusion de capteurs ST
 #define USE_APDS9960		0 // Capteur de mouvements, présence, couleurs
 #define USE_BMP180			0 // Capteur de pression atmosph�rique
 #define USE_BH1750FVI		0 // Capteur de luminosit� ambiante

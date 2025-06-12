@@ -1,45 +1,33 @@
-/**
- *******************************************************************************
- * @file    stabilization.c
- * @author  Drone_1_Axe Team
- * @date    Avril 23, 2025
- * @brief   Implémentation de l'algorithme de stabilisation
- *******************************************************************************
- */
-
 #include "stabilization.h"
-#include "motor_control.h" // Pour ESC_PULSE_MIN/MAX
-#define ESC_PULSE_MIN   275U    // 1100 µs / 4000 µs = 27,5 % → valeur 275/1000
-#define ESC_PULSE_MAX   485U    // 1940 µs / 4000 µs = 48,5 % → valeur 485/1000
-#include "state.h"
-#include <stdio.h>
-#include <math.h>
-#include <stdint.h>
-#include "stm32g4xx_hal.h"
 
 void process_stabilization(float angle_system, float angle_commande) {
-    // Correction proportionnelle
-    const float Kp = 3.0f;
+    const float Kp = 0.8;  // Gain
     float erreur = angle_commande - angle_system;
+    
+    // Calcul commande correction
     float correction = Kp * erreur;
 
-    // Impulsions de base (moteurs à l'arrêt ou au minimum)
-    const uint16_t pulse_base = (ESC_PULSE_MAX - ESC_PULSE_MIN) / 2 + ESC_PULSE_MIN; // Centre autour de la valeur médiane
-    const uint16_t pulse_max = ESC_PULSE_MAX;
+    // Conversion correction en PWM
+    float correction_pwm = correction * (ESC_PULSE_MAX - ESC_PULSE_MIN) / 180.0;
 
-    // Correction proportionnelle (on centre autour de pulse_base)
-    int16_t pulse_moteur1 = (int16_t)(pulse_base + correction);
-    int16_t pulse_moteur2 = (int16_t)(pulse_base - correction);
+    // MàJ de la correction
+    g_state.asservissement_value = correction_pwm;
 
-    // Saturation pour rester dans les bornes
-    if (pulse_moteur1 > pulse_max) pulse_moteur1 = pulse_max;
-    if (pulse_moteur1 < pulse_base) pulse_moteur1 = pulse_base;
-    if (pulse_moteur2 > pulse_max) pulse_moteur2 = pulse_max;
-    if (pulse_moteur2 < pulse_base) pulse_moteur2 = pulse_base;
+
+    // Pulse pour maintient position
+    const uint16_t pulse_base = (ESC_PULSE_MAX - ESC_PULSE_MIN) / 2 + ESC_PULSE_MIN; 
+
+    // Calcul impulsions
+    int16_t pulse_moteur1 = (int16_t)(pulse_base + correction_pwm);
+    int16_t pulse_moteur2 = (int16_t)(pulse_base - correction_pwm);
+
+    // Saturation impulsions limites ESC
+    if (pulse_moteur1 > ESC_PULSE_MAX) pulse_moteur1 = ESC_PULSE_MAX;
+    if (pulse_moteur2 > ESC_PULSE_MAX) pulse_moteur2 = ESC_PULSE_MAX;
+    if (pulse_moteur1 < ESC_PULSE_MIN) pulse_moteur1 = ESC_PULSE_MIN;
+    if (pulse_moteur2 < ESC_PULSE_MIN) pulse_moteur2 = ESC_PULSE_MIN;
 
     // Application aux moteurs
     set_moteur(1, (uint16_t)pulse_moteur1);
     // set_moteur(2, (uint16_t)pulse_moteur2);
-
-    g_state.asservissement_value = (float)correction;
 }
