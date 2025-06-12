@@ -6,12 +6,9 @@
  
 #include "../config.h"
 #include "../drivers/bsp/tft_ili9341/stm32g4_ili9341.h"
-#include "sensors.h"
 #include "state.h"
 #include <stdio.h>
-#include <string.h>
 #include <math.h>
-#include <stdbool.h>
 #include <stdint.h>
 
 void init_display(void);

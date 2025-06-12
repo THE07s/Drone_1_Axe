@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include "stm32g4_uart.h"
 #include "stm32g4_gpio.h"
-#include <stdio.h>
 
 void init_user_input(void);
 bool char_received(uart_id_t uart_id);

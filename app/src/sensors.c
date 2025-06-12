@@ -1,4 +1,7 @@
 #include "sensors.h"
+#include <stdio.h>
+#include <math.h>
+#include "stm32g4xx_hal.h"
 
 // Variables globales
 static MPU6050_t MPU6050_Data1;  // Premier capteur (AD0 = 0)

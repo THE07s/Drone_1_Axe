@@ -2,17 +2,9 @@
 #define SENSORS_H_
 
 #include <stdbool.h>
-#include "MPU6050/stm32g4_mpu6050.h"
-#include "state.h"
-#include "config.h"
-#include "state.h"
 #include <stdint.h>
-#include <stdio.h>
-#include "stm32g4_gpio.h"
-#include "stm32g4xx_hal.h"
 #include "MPU6050/stm32g4_mpu6050.h"
-#include <math.h>
-#include "stm32g431xx.h"
+#include "state.h"
 
 // Structure pour stocker les données des capteurs
 typedef struct {

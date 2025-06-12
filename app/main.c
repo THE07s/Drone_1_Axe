@@ -1,15 +1,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "config.h"
 #include "stm32g4_sys.h"
-#include "stm32g4_systick.h"
 #include "stm32g4_gpio.h"
 #include "stm32g4_uart.h"
-#include "stm32g4_utils.h"
 #include <stdio.h>
-#include <math.h>
 
 /* Includes spécifiques à l'application --------------------------------------*/
-#include "src/user_input.h"
 #include "src/display.h"
 #include "src/sensors.h"
 #include "src/motor_control.h"
