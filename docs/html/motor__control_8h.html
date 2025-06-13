@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe: Référence du fichier app/src/motor_control.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('motor__control_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier motor_control.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Module de contrôle des moteurs via ESC.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+</div>
+<p><a href="motor__control_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a11016029c115babc487e3e98328245cb" id="r_a11016029c115babc487e3e98328245cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11016029c115babc487e3e98328245cb">PERIODE_PWM_US</a>&#160;&#160;&#160;4000</td></tr>
+<tr class="separator:a11016029c115babc487e3e98328245cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbfc2dd1a9ee07c79a553388045829a" id="r_adfbfc2dd1a9ee07c79a553388045829a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfbfc2dd1a9ee07c79a553388045829a">ESC_PULSE_MIN</a>&#160;&#160;&#160;275</td></tr>
+<tr class="separator:adfbfc2dd1a9ee07c79a553388045829a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cf6452c339b55d4c5cdee3a6de13d4d" id="r_a2cf6452c339b55d4c5cdee3a6de13d4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cf6452c339b55d4c5cdee3a6de13d4d">ESC_PULSE_MAX</a>&#160;&#160;&#160;485</td></tr>
+<tr class="separator:a2cf6452c339b55d4c5cdee3a6de13d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a618853dc131f94dbed355e378bfee376" id="r_a618853dc131f94dbed355e378bfee376"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a618853dc131f94dbed355e378bfee376">ESC_1</a>&#160;&#160;&#160;TIM_CHANNEL_2</td></tr>
+<tr class="separator:a618853dc131f94dbed355e378bfee376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11171ad26a7a93be69bc2f77d0c1cad2" id="r_a11171ad26a7a93be69bc2f77d0c1cad2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11171ad26a7a93be69bc2f77d0c1cad2">ESC_2</a>&#160;&#160;&#160;TIM_CHANNEL_1</td></tr>
+<tr class="separator:a11171ad26a7a93be69bc2f77d0c1cad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0ab9212f633348b60b75eac3ff33f44d" id="r_a0ab9212f633348b60b75eac3ff33f44d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ab9212f633348b60b75eac3ff33f44d">init_motors</a> (void)</td></tr>
+<tr class="memdesc:a0ab9212f633348b60b75eac3ff33f44d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise les contrôleurs ESC et leurs moteurs.  <br /></td></tr>
+<tr class="separator:a0ab9212f633348b60b75eac3ff33f44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09693a5009fad5b1a6bf58791cfbe161" id="r_a09693a5009fad5b1a6bf58791cfbe161"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09693a5009fad5b1a6bf58791cfbe161">configure_timer_pwm</a> (void)</td></tr>
+<tr class="memdesc:a09693a5009fad5b1a6bf58791cfbe161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure le timer pour la génération PWM.  <br /></td></tr>
+<tr class="separator:a09693a5009fad5b1a6bf58791cfbe161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adba8bb196ba3e4b88d8b4188d2f6bfa3" id="r_adba8bb196ba3e4b88d8b4188d2f6bfa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adba8bb196ba3e4b88d8b4188d2f6bfa3">set_impulsion</a> (uint8_t moteur, uint16_t pulse)</td></tr>
+<tr class="memdesc:adba8bb196ba3e4b88d8b4188d2f6bfa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Définit l'impulsion PWM pour un moteur.  <br /></td></tr>
+<tr class="separator:adba8bb196ba3e4b88d8b4188d2f6bfa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a566b68547f22bab78397738eaecad8c9" id="r_a566b68547f22bab78397738eaecad8c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a566b68547f22bab78397738eaecad8c9">set_moteur</a> (uint8_t moteur, uint16_t pulse)</td></tr>
+<tr class="memdesc:a566b68547f22bab78397738eaecad8c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active un moteur avec une impulsion donnée.  <br /></td></tr>
+<tr class="separator:a566b68547f22bab78397738eaecad8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae134b9ad2ef9262a81929c68f08af938" id="r_ae134b9ad2ef9262a81929c68f08af938"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae134b9ad2ef9262a81929c68f08af938">arreter_moteur</a> (uint8_t moteur)</td></tr>
+<tr class="memdesc:ae134b9ad2ef9262a81929c68f08af938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrête un moteur.  <br /></td></tr>
+<tr class="separator:ae134b9ad2ef9262a81929c68f08af938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Module de contrôle des moteurs via ESC. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Loïc LEENAERTS (<a href="https://github.com/THE07s">https://github.com/THE07s</a>) </dd>
+<dd>
+Romain PICAULT (<a href="https://github.com/RomainPICAULT">https://github.com/RomainPICAULT</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>13 juin 2025 </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a618853dc131f94dbed355e378bfee376" name="a618853dc131f94dbed355e378bfee376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a618853dc131f94dbed355e378bfee376">&#9670;&#160;</a></span>ESC_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ESC_1&#160;&#160;&#160;TIM_CHANNEL_2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Canal Timer pour ESC 1 : PA12/CH2 </p>
+
+</div>
+</div>
+<a id="a11171ad26a7a93be69bc2f77d0c1cad2" name="a11171ad26a7a93be69bc2f77d0c1cad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11171ad26a7a93be69bc2f77d0c1cad2">&#9670;&#160;</a></span>ESC_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ESC_2&#160;&#160;&#160;TIM_CHANNEL_1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Canal Timer pour ESC 2 : PB6/CH1 </p>
+
+</div>
+</div>
+<a id="a2cf6452c339b55d4c5cdee3a6de13d4d" name="a2cf6452c339b55d4c5cdee3a6de13d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf6452c339b55d4c5cdee3a6de13d4d">&#9670;&#160;</a></span>ESC_PULSE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ESC_PULSE_MAX&#160;&#160;&#160;485</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Impulsion maximale ESC : 1940 µs / 4000 µs = 48,5 % </p>
+
+</div>
+</div>
+<a id="adfbfc2dd1a9ee07c79a553388045829a" name="adfbfc2dd1a9ee07c79a553388045829a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfbfc2dd1a9ee07c79a553388045829a">&#9670;&#160;</a></span>ESC_PULSE_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ESC_PULSE_MIN&#160;&#160;&#160;275</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Impulsion minimale ESC : 1100 µs / 4000 µs = 27,5 % </p>
+
+</div>
+</div>
+<a id="a11016029c115babc487e3e98328245cb" name="a11016029c115babc487e3e98328245cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11016029c115babc487e3e98328245cb">&#9670;&#160;</a></span>PERIODE_PWM_US</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PERIODE_PWM_US&#160;&#160;&#160;4000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Période PWM en microsecondes 4000 µs → 250 Hz </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="ae134b9ad2ef9262a81929c68f08af938" name="ae134b9ad2ef9262a81929c68f08af938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae134b9ad2ef9262a81929c68f08af938">&#9670;&#160;</a></span>arreter_moteur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void arreter_moteur </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>moteur</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arrête un moteur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moteur</td><td>Numéro du moteur (1 ou 2) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le moteur est arrêté et son statut mis à jour dans g_state </dd></dl>
+
+</div>
+</div>
+<a id="a09693a5009fad5b1a6bf58791cfbe161" name="a09693a5009fad5b1a6bf58791cfbe161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09693a5009fad5b1a6bf58791cfbe161">&#9670;&#160;</a></span>configure_timer_pwm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void configure_timer_pwm </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure le timer pour la génération PWM. </p>
+<dl class="section pre"><dt>Précondition</dt><dd>Le timer doit être disponible et configuré dans le HAL </dd></dl>
+
+</div>
+</div>
+<a id="a0ab9212f633348b60b75eac3ff33f44d" name="a0ab9212f633348b60b75eac3ff33f44d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ab9212f633348b60b75eac3ff33f44d">&#9670;&#160;</a></span>init_motors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_motors </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise les contrôleurs ESC et leurs moteurs. </p>
+<dl class="section post"><dt>Postcondition</dt><dd>Les moteurs sont arrêtés et prêts à être utilisés </dd></dl>
+
+</div>
+</div>
+<a id="adba8bb196ba3e4b88d8b4188d2f6bfa3" name="adba8bb196ba3e4b88d8b4188d2f6bfa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adba8bb196ba3e4b88d8b4188d2f6bfa3">&#9670;&#160;</a></span>set_impulsion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_impulsion </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>moteur</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>pulse</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Définit l'impulsion PWM pour un moteur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moteur</td><td>Numéro du moteur (1 ou 2) </td></tr>
+    <tr><td class="paramname">pulse</td><td>Largeur d'impulsion (entre ESC_PULSE_MIN et ESC_PULSE_MAX)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Précondition</dt><dd>Le timer PWM doit être initialisé </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>L'impulsion est saturée dans les limites autorisées </dd></dl>
+
+</div>
+</div>
+<a id="a566b68547f22bab78397738eaecad8c9" name="a566b68547f22bab78397738eaecad8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a566b68547f22bab78397738eaecad8c9">&#9670;&#160;</a></span>set_moteur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_moteur </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>moteur</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>pulse</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Active un moteur avec une impulsion donnée. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">moteur</td><td>Numéro du moteur (1 ou 2) </td></tr>
+    <tr><td class="paramname">pulse</td><td>Largeur d'impulsion (entre ESC_PULSE_MIN et ESC_PULSE_MAX)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le statut du moteur est mis à jour dans g_state </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="dir_a8f641299cfea9f7461c2df1141b7786.html">src</a></li><li class="navelem"><a class="el" href="motor__control_8h.html">motor_control.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

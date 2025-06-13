@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe: Référence du fichier drivers/bsp/stm32g4_timer.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('stm32g4__timer_8c.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier stm32g4_timer.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Module de gestion des timers pour cible STM32G4 Adaptation du module stm32f1_timer.c de S.Poiraud.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="stm32g4__timer_8h_source.html">stm32g4_timer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4xx__hal__tim_8h_source.html">stm32g4xx_hal_tim.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4__sys_8h_source.html">stm32g4_sys.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4__gpio_8h_source.html">stm32g4_gpio.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aab0d650eeb85d30fec8b8d6b71d76e69" id="r_aab0d650eeb85d30fec8b8d6b71d76e69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab0d650eeb85d30fec8b8d6b71d76e69">GET_MAX_PERIOD</a>(timer_id)</td></tr>
+<tr class="separator:aab0d650eeb85d30fec8b8d6b71d76e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a618d35a34064af36eda1538b250ef0d1" id="r_a618d35a34064af36eda1538b250ef0d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a618d35a34064af36eda1538b250ef0d1">clear_it_status</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="memdesc:a618d35a34064af36eda1538b250ef0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquitte les IT sur le timer sélectionné.  <br /></td></tr>
+<tr class="separator:a618d35a34064af36eda1538b250ef0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6f6162c9bbe4823cd781143dd1ff1a" id="r_a0d6f6162c9bbe4823cd781143dd1ff1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d6f6162c9bbe4823cd781143dd1ff1a">BSP_TIMER_run_us</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint32_t us, bool enable_irq)</td></tr>
+<tr class="memdesc:a0d6f6162c9bbe4823cd781143dd1ff1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisation et lancement du timer sélectionné.  <br /></td></tr>
+<tr class="separator:a0d6f6162c9bbe4823cd781143dd1ff1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38a9f76941f672c817981bb1735a5fc9" id="r_a38a9f76941f672c817981bb1735a5fc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38a9f76941f672c817981bb1735a5fc9">BSP_TIMER_stop</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="memdesc:a38a9f76941f672c817981bb1735a5fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrêt du timer sélectionné.  <br /></td></tr>
+<tr class="separator:a38a9f76941f672c817981bb1735a5fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0b2c2d71d238cc7f39fd81e0da52db" id="r_a6b0b2c2d71d238cc7f39fd81e0da52db"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b0b2c2d71d238cc7f39fd81e0da52db">BSP_TIMER_read</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="separator:a6b0b2c2d71d238cc7f39fd81e0da52db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa8c31d6f1d1d12aa61e6a61d32f8d7" id="r_adaa8c31d6f1d1d12aa61e6a61d32f8d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaa8c31d6f1d1d12aa61e6a61d32f8d7">BSP_TIMER_write</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint32_t counter)</td></tr>
+<tr class="separator:adaa8c31d6f1d1d12aa61e6a61d32f8d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f31c61b50efe90e6bd12009995480f" id="r_a56f31c61b50efe90e6bd12009995480f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56f31c61b50efe90e6bd12009995480f">BSP_TIMER_get_period</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="separator:a56f31c61b50efe90e6bd12009995480f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea2e5e29d8416044343ac9c7e0807be3" id="r_aea2e5e29d8416044343ac9c7e0807be3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea2e5e29d8416044343ac9c7e0807be3">BSP_TIMER_set_period</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint32_t period)</td></tr>
+<tr class="separator:aea2e5e29d8416044343ac9c7e0807be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe65059d7edc69b0a99bc6ead8f15d0" id="r_a8fe65059d7edc69b0a99bc6ead8f15d0"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fe65059d7edc69b0a99bc6ead8f15d0">BSP_TIMER_get_prescaler</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="separator:a8fe65059d7edc69b0a99bc6ead8f15d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c9b4a5662d4ad481bedccd7b2f4a231" id="r_a5c9b4a5662d4ad481bedccd7b2f4a231"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c9b4a5662d4ad481bedccd7b2f4a231">BSP_TIMER_set_prescaler</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint16_t prescaler)</td></tr>
+<tr class="separator:a5c9b4a5662d4ad481bedccd7b2f4a231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66222894e191be3c22675ad4a2b615e8" id="r_a66222894e191be3c22675ad4a2b615e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66222894e191be3c22675ad4a2b615e8">BSP_TIMER_enable_output_trigger</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="separator:a66222894e191be3c22675ad4a2b615e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc69be8cbd4abbff96d1ea2ed128e8f1" id="r_adc69be8cbd4abbff96d1ea2ed128e8f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_t_i_m___handle_type_def.html">TIM_HandleTypeDef</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc69be8cbd4abbff96d1ea2ed128e8f1">BSP_TIMER_get_handler</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id)</td></tr>
+<tr class="memdesc:adc69be8cbd4abbff96d1ea2ed128e8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesseur du handler.  <br /></td></tr>
+<tr class="separator:adc69be8cbd4abbff96d1ea2ed128e8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c1211ecc9740cb19ae297838fbd7258" id="r_a8c1211ecc9740cb19ae297838fbd7258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c1211ecc9740cb19ae297838fbd7258">BSP_TIMER_enable_PWM</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint16_t TIM_CHANNEL_x, uint16_t duty, bool remap, bool negative_channel)</td></tr>
+<tr class="memdesc:a8c1211ecc9740cb19ae297838fbd7258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de configuration de la PWM.  <br /></td></tr>
+<tr class="separator:a8c1211ecc9740cb19ae297838fbd7258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa2c2182c4f276196518e86e2589cd31" id="r_afa2c2182c4f276196518e86e2589cd31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa2c2182c4f276196518e86e2589cd31">BSP_TIMER_set_duty</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint16_t TIM_CHANNEL_x, uint16_t duty)</td></tr>
+<tr class="memdesc:afa2c2182c4f276196518e86e2589cd31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de configuration du rapport cyclique.  <br /></td></tr>
+<tr class="separator:afa2c2182c4f276196518e86e2589cd31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cda85500198bfc2503f0ec51a8c6505" id="r_a3cda85500198bfc2503f0ec51a8c6505"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cda85500198bfc2503f0ec51a8c6505">BSP_TIMER_set_period_with_same_duty</a> (<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> timer_id, uint16_t TIM_CHANNEL_x, uint32_t period)</td></tr>
+<tr class="memdesc:a3cda85500198bfc2503f0ec51a8c6505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de modification de la période de la PWM en conservant le rapport cyclique.  <br /></td></tr>
+<tr class="separator:a3cda85500198bfc2503f0ec51a8c6505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26dcefa30bc21f0d380b39154c1a2f91" id="r_a26dcefa30bc21f0d380b39154c1a2f91"><td class="memItemLeft" align="right" valign="top">__weak void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26dcefa30bc21f0d380b39154c1a2f91">TIMER1_user_handler_it</a> (void)</td></tr>
+<tr class="memdesc:a26dcefa30bc21f0d380b39154c1a2f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonctions utilisateurs appelées lors de l'interruption du timer.  <br /></td></tr>
+<tr class="separator:a26dcefa30bc21f0d380b39154c1a2f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0376f5413df2d90ecb0c806f740162ce" id="r_a0376f5413df2d90ecb0c806f740162ce"><td class="memItemLeft" align="right" valign="top">__weak void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0376f5413df2d90ecb0c806f740162ce">TIMER2_user_handler_it</a> (void)</td></tr>
+<tr class="separator:a0376f5413df2d90ecb0c806f740162ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0deead8597049d1b975275d289c329d6" id="r_a0deead8597049d1b975275d289c329d6"><td class="memItemLeft" align="right" valign="top">__weak void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0deead8597049d1b975275d289c329d6">TIMER3_user_handler_it</a> (void)</td></tr>
+<tr class="separator:a0deead8597049d1b975275d289c329d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a861201b8bb49612d11994870cd576e19" id="r_a861201b8bb49612d11994870cd576e19"><td class="memItemLeft" align="right" valign="top">__weak void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a861201b8bb49612d11994870cd576e19">TIMER4_user_handler_it</a> (void)</td></tr>
+<tr class="separator:a861201b8bb49612d11994870cd576e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ad1746af839833d37cb2363380164d6" id="r_a1ad1746af839833d37cb2363380164d6"><td class="memItemLeft" align="right" valign="top">__weak void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ad1746af839833d37cb2363380164d6">TIMER6_user_handler_it</a> (void)</td></tr>
+<tr class="separator:a1ad1746af839833d37cb2363380164d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab19e96bc9fe4483b9fdf25047c61238e" id="r_ab19e96bc9fe4483b9fdf25047c61238e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab19e96bc9fe4483b9fdf25047c61238e">TIM1_UP_TIM16_IRQHandler</a> (void)</td></tr>
+<tr class="memdesc:ab19e96bc9fe4483b9fdf25047c61238e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Routine d'interruption appelée AUTOMATIQUEMENT lorsque le timer 1 arrive a écheance.  <br /></td></tr>
+<tr class="separator:ab19e96bc9fe4483b9fdf25047c61238e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ad4725462bdc5e86c4ead4f04b9fc2" id="r_a38ad4725462bdc5e86c4ead4f04b9fc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38ad4725462bdc5e86c4ead4f04b9fc2">TIM2_IRQHandler</a> (void)</td></tr>
+<tr class="separator:a38ad4725462bdc5e86c4ead4f04b9fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e51d2183b5230cbd5481f8867adce9" id="r_ac8e51d2183b5230cbd5481f8867adce9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8e51d2183b5230cbd5481f8867adce9">TIM3_IRQHandler</a> (void)</td></tr>
+<tr class="separator:ac8e51d2183b5230cbd5481f8867adce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7133f3f78767503641d307386e68bd28" id="r_a7133f3f78767503641d307386e68bd28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7133f3f78767503641d307386e68bd28">TIM4_IRQHandler</a> (void)</td></tr>
+<tr class="separator:a7133f3f78767503641d307386e68bd28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0839a45f331c4c067939b9c4533bbf4d" id="r_a0839a45f331c4c067939b9c4533bbf4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0839a45f331c4c067939b9c4533bbf4d">TIM6_DAC_IRQHandler</a> (void)</td></tr>
+<tr class="separator:a0839a45f331c4c067939b9c4533bbf4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aeb72dbf4d4638bb6381948cc60e037fe" id="r_aeb72dbf4d4638bb6381948cc60e037fe"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_t_i_m___handle_type_def.html">TIM_HandleTypeDef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb72dbf4d4638bb6381948cc60e037fe">structure_handles</a> [<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a93de4e9205e02a8fb52bffbcc966fca2">TIMER_ID_NB</a>]</td></tr>
+<tr class="separator:aeb72dbf4d4638bb6381948cc60e037fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177f0bd936442cb8548732db4b667a7d" id="r_a177f0bd936442cb8548732db4b667a7d"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="struct_t_i_m___type_def.html">TIM_TypeDef</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a177f0bd936442cb8548732db4b667a7d">instance_array</a> [<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a93de4e9205e02a8fb52bffbcc966fca2">TIMER_ID_NB</a>] = {<a class="el" href="group___peripheral__declaration.html#ga2e87451fea8dc9380056d3cfc5ed81fb">TIM1</a>, <a class="el" href="group___peripheral__declaration.html#ga3cfac9f2e43673f790f8668d48b4b92b">TIM2</a>, <a class="el" href="group___peripheral__declaration.html#ga61ee4c391385607d7af432b63905fcc9">TIM3</a>, <a class="el" href="group___peripheral__declaration.html#ga91a09bad8bdc7a1cb3d85cf49c94c8ec">TIM4</a>, <a class="el" href="group___peripheral__declaration.html#gac7b4ed55f9201b498b38c962cca97314">TIM6</a>}</td></tr>
+<tr class="separator:a177f0bd936442cb8548732db4b667a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96338511b995957eea5bdd53fafcf0af" id="r_a96338511b995957eea5bdd53fafcf0af"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="group___peripheral__interrupt__number__definition.html#ga7e1129cd8a196f4284d41db3e82ad5c8">IRQn_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96338511b995957eea5bdd53fafcf0af">nvic_irq_array</a> [<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a93de4e9205e02a8fb52bffbcc966fca2">TIMER_ID_NB</a>] = {<a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8ace5676d446329834dd12515a1ea71646">TIM1_UP_TIM16_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a3a4e2095a926e4095d3c846eb1c98afa">TIM2_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a985574288f66e2a00e97387424a9a2d8">TIM3_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a368b899ca740b9ae0d75841f3abf68c4">TIM4_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a5f581e9aedfaccd9b1db9ec793804b45">TIM6_DAC_IRQn</a>}</td></tr>
+<tr class="separator:a96338511b995957eea5bdd53fafcf0af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Module de gestion des timers pour cible STM32G4 Adaptation du module stm32f1_timer.c de S.Poiraud. </p>
+<dl class="section author"><dt>Auteur</dt><dd>jjo </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Apr 26, 2024  </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="aab0d650eeb85d30fec8b8d6b71d76e69" name="aab0d650eeb85d30fec8b8d6b71d76e69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab0d650eeb85d30fec8b8d6b71d76e69">&#9670;&#160;</a></span>GET_MAX_PERIOD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GET_MAX_PERIOD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(timer_id == <a class="code hl_enumvalue" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a7d4e2cc1f1fc6effd582ba598e20d710">TIMER2_ID</a> ? UINT32_MAX : UINT16_MAX)</div>
+<div class="ttc" id="astm32g4__timer_8h_html_ab46c323c4f73f2150385fead53055392a7d4e2cc1f1fc6effd582ba598e20d710"><div class="ttname"><a href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a7d4e2cc1f1fc6effd582ba598e20d710">TIMER2_ID</a></div><div class="ttdeci">@ TIMER2_ID</div><div class="ttdef"><b>Definition</b> stm32g4_timer.h:25</div></div>
+</div><!-- fragment --><pre class="fragment">@brief Macro pour obtenir la valeur maximale que peut prendre la période d'un timer
+</pre><p>Timer 2 est un timer 32 bits, les autres sont des timers 16 bits. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a66222894e191be3c22675ad4a2b615e8" name="a66222894e191be3c22675ad4a2b615e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66222894e191be3c22675ad4a2b615e8">&#9670;&#160;</a></span>BSP_TIMER_enable_output_trigger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_enable_output_trigger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c1211ecc9740cb19ae297838fbd7258" name="a8c1211ecc9740cb19ae297838fbd7258"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c1211ecc9740cb19ae297838fbd7258">&#9670;&#160;</a></span>BSP_TIMER_enable_PWM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_enable_PWM </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>TIM_CHANNEL_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>duty</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>remap</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>negative_channel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de configuration de la PWM. </p>
+<p>Cette fonction configure un timer en mode PWM et active la PWM sur le canal sélectionné. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timer_id</td><td>id du timer (cf <a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a>) </td></tr>
+    <tr><td class="paramname">TIM_CHANNEL_x</td><td>canal de sortie </td></tr>
+    <tr><td class="paramname">duty</td><td>rapport cyclique de la PWM </td></tr>
+    <tr><td class="paramname">remap</td><td>permet de remapper arbitrairement sur le prochain numéro de broche disponible (pas de fonction par défaut sur la STM32G4) TIM1_CH1N : PA11 (remap)PA7 TIM1_CH2N : PA12 (remap)PB0 TIM1_CH3N : PF0 TIM1_CH1 : PA8 TIM1_CH2 : PA9 TIM1_CH3 : PA10 TIM1_CH4 : PA11</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>TIM2_CH1 : PA0 (remap)PA5 (non géré)PA15 TIM2_CH2 : PA1 (remap)PB3 TIM2_CH3 : PA2 (remap)PA9 TIM2_CH4 : PA3 (remap)PA10</p>
+<p>TIM3_CH1 : PA6 (remap)PB4 TIM3_CH2 : PA4 (remap)PA7 (non géré)PB5 TIM3_CH3 : PB0 TIM3_CH4 : PB7</p>
+<p>TIM4_CH1 : PA11 (rempa)PB6 TIM4_CH2 : PA12 (rempa)PB7 TIM4_CH3 : PA13 (remap)PB8 </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">negative_channel</td><td>TRUE: active le canal négatif, FALSE: désactive le canal négatif </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Précondition</dt><dd>Le timer est initialisé. </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le timer est configuré en mode PWM et la PWM est activée sur le canal sélectionné. </dd></dl>
+
+</div>
+</div>
+<a id="adc69be8cbd4abbff96d1ea2ed128e8f1" name="adc69be8cbd4abbff96d1ea2ed128e8f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc69be8cbd4abbff96d1ea2ed128e8f1">&#9670;&#160;</a></span>BSP_TIMER_get_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_t_i_m___handle_type_def.html">TIM_HandleTypeDef</a> * BSP_TIMER_get_handler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Accesseur du handler. </p>
+
+</div>
+</div>
+<a id="a56f31c61b50efe90e6bd12009995480f" name="a56f31c61b50efe90e6bd12009995480f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f31c61b50efe90e6bd12009995480f">&#9670;&#160;</a></span>BSP_TIMER_get_period()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t BSP_TIMER_get_period </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8fe65059d7edc69b0a99bc6ead8f15d0" name="a8fe65059d7edc69b0a99bc6ead8f15d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fe65059d7edc69b0a99bc6ead8f15d0">&#9670;&#160;</a></span>BSP_TIMER_get_prescaler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t BSP_TIMER_get_prescaler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b0b2c2d71d238cc7f39fd81e0da52db" name="a6b0b2c2d71d238cc7f39fd81e0da52db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b0b2c2d71d238cc7f39fd81e0da52db">&#9670;&#160;</a></span>BSP_TIMER_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t BSP_TIMER_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d6f6162c9bbe4823cd781143dd1ff1a" name="a0d6f6162c9bbe4823cd781143dd1ff1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d6f6162c9bbe4823cd781143dd1ff1a">&#9670;&#160;</a></span>BSP_TIMER_run_us()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_run_us </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>us</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable_irq</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialisation et lancement du timer sélectionné. </p>
+<p>Cette fonction lance le timer et le configure. Elle peut les IT quand il y a débordement du timer. </p><dl class="section pre"><dt>Précondition</dt><dd>Les interruptions du timer sont désactivées, par exemple via <a class="el" href="#a38a9f76941f672c817981bb1735a5fc9" title="Arrêt du timer sélectionné.">BSP_TIMER_stop()</a> (risque de déclenchement intempestif pendant la configuration) </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>du timer cf <a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> </td></tr>
+    <tr><td class="paramname">us</td><td>temps en us codé sur un 32bits non signé </td></tr>
+    <tr><td class="paramname">enable_irq</td><td>TRUE : active les IT, FALSE : ne les active pas. En cas d'activation des IT, l'utilisateur doit écrire une fonction TIMERx_user_handler_it. Par défaut, ces fonctions écrites dans ce fichier mais avec l'attribut weak (elles peuvent donc être réécrites) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le timer et son horloge sont activés, ses interruptions autorisées (si activées), et son décompte lancé. </dd></dl>
+
+</div>
+</div>
+<a id="afa2c2182c4f276196518e86e2589cd31" name="afa2c2182c4f276196518e86e2589cd31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa2c2182c4f276196518e86e2589cd31">&#9670;&#160;</a></span>BSP_TIMER_set_duty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_set_duty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>TIM_CHANNEL_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>duty</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de configuration du rapport cyclique. </p>
+<p>Rapport cyclique compris entre 0 et 1000 1000 = 100% 0 = 0% </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timer_id</td><td>id du timer (cf <a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a>) </td></tr>
+    <tr><td class="paramname">TIM_CHANNEL_x</td><td>canal de sortie </td></tr>
+    <tr><td class="paramname">duty</td><td>rapport cyclique de la PWM compris dans l'intervalle [0; 1000] </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aea2e5e29d8416044343ac9c7e0807be3" name="aea2e5e29d8416044343ac9c7e0807be3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea2e5e29d8416044343ac9c7e0807be3">&#9670;&#160;</a></span>BSP_TIMER_set_period()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_set_period </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>period</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cda85500198bfc2503f0ec51a8c6505" name="a3cda85500198bfc2503f0ec51a8c6505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cda85500198bfc2503f0ec51a8c6505">&#9670;&#160;</a></span>BSP_TIMER_set_period_with_same_duty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_set_period_with_same_duty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>TIM_CHANNEL_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>period</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de modification de la période de la PWM en conservant le rapport cyclique. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timer_id</td><td>id du timer (cf <a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a>) </td></tr>
+    <tr><td class="paramname">TIM_CHANNEL_x</td><td>canal de sortie </td></tr>
+    <tr><td class="paramname">uint32_t</td><td>period </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5c9b4a5662d4ad481bedccd7b2f4a231" name="a5c9b4a5662d4ad481bedccd7b2f4a231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c9b4a5662d4ad481bedccd7b2f4a231">&#9670;&#160;</a></span>BSP_TIMER_set_prescaler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_set_prescaler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>prescaler</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38a9f76941f672c817981bb1735a5fc9" name="a38a9f76941f672c817981bb1735a5fc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38a9f76941f672c817981bb1735a5fc9">&#9670;&#160;</a></span>BSP_TIMER_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_stop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arrêt du timer sélectionné. </p>
+<p>Cette fonction arrête le timer. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>du timer cf <a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Précondition</dt><dd>Le timer est initialisé. </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le timer et son horloge sont désactivés. </dd></dl>
+
+</div>
+</div>
+<a id="adaa8c31d6f1d1d12aa61e6a61d32f8d7" name="adaa8c31d6f1d1d12aa61e6a61d32f8d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa8c31d6f1d1d12aa61e6a61d32f8d7">&#9670;&#160;</a></span>BSP_TIMER_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_TIMER_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>counter</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a618d35a34064af36eda1538b250ef0d1" name="a618d35a34064af36eda1538b250ef0d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a618d35a34064af36eda1538b250ef0d1">&#9670;&#160;</a></span>clear_it_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clear_it_status </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392">timer_id_t</a></td>          <td class="paramname"><span class="paramname"><em>timer_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Acquitte les IT sur le timer sélectionné. </p>
+<dl class="section pre"><dt>Précondition</dt><dd>Le timer a ete initialisé </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>L'interruption est acquitée </dd></dl>
+
+</div>
+</div>
+<a id="ab19e96bc9fe4483b9fdf25047c61238e" name="ab19e96bc9fe4483b9fdf25047c61238e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab19e96bc9fe4483b9fdf25047c61238e">&#9670;&#160;</a></span>TIM1_UP_TIM16_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM1_UP_TIM16_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Routine d'interruption appelée AUTOMATIQUEMENT lorsque le timer 1 arrive a écheance. </p>
+<dl class="section pre"><dt>Précondition</dt><dd>Cette fonction NE DOIT PAS être appelée directement par l'utilisateur... </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Acquittement du flag d'interruption, et appel de la fonction de l'utilisateur : <a class="el" href="#a26dcefa30bc21f0d380b39154c1a2f91" title="Fonctions utilisateurs appelées lors de l&#39;interruption du timer.">TIMER1_user_handler_it()</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Nous n'avons PAS le choix du nom de cette fonction, c'est comme ça qu'elle est nommée dans le fichier startup.s ! </dd></dl>
+
+</div>
+</div>
+<a id="a38ad4725462bdc5e86c4ead4f04b9fc2" name="a38ad4725462bdc5e86c4ead4f04b9fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ad4725462bdc5e86c4ead4f04b9fc2">&#9670;&#160;</a></span>TIM2_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM2_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8e51d2183b5230cbd5481f8867adce9" name="ac8e51d2183b5230cbd5481f8867adce9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e51d2183b5230cbd5481f8867adce9">&#9670;&#160;</a></span>TIM3_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM3_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7133f3f78767503641d307386e68bd28" name="a7133f3f78767503641d307386e68bd28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7133f3f78767503641d307386e68bd28">&#9670;&#160;</a></span>TIM4_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM4_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0839a45f331c4c067939b9c4533bbf4d" name="a0839a45f331c4c067939b9c4533bbf4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0839a45f331c4c067939b9c4533bbf4d">&#9670;&#160;</a></span>TIM6_DAC_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TIM6_DAC_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26dcefa30bc21f0d380b39154c1a2f91" name="a26dcefa30bc21f0d380b39154c1a2f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26dcefa30bc21f0d380b39154c1a2f91">&#9670;&#160;</a></span>TIMER1_user_handler_it()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__weak void TIMER1_user_handler_it </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonctions utilisateurs appelées lors de l'interruption du timer. </p>
+<p>L'attribut weak indique à l'éditeur de liens, lors de la compilation, que cette fonction sera ignorée s'il en existe une autre portant le même nom. Elle sera choisie par défaut d'autre fonction homonyme. Ainsi, si l'utilisateur définie sa propre TIMERX_user_handler_it(), elle sera appelée Sinon, aucun message d'erreur n'indiquera que cette fonction n'existe pas ! </p>
+
+</div>
+</div>
+<a id="a0376f5413df2d90ecb0c806f740162ce" name="a0376f5413df2d90ecb0c806f740162ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0376f5413df2d90ecb0c806f740162ce">&#9670;&#160;</a></span>TIMER2_user_handler_it()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__weak void TIMER2_user_handler_it </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0deead8597049d1b975275d289c329d6" name="a0deead8597049d1b975275d289c329d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0deead8597049d1b975275d289c329d6">&#9670;&#160;</a></span>TIMER3_user_handler_it()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__weak void TIMER3_user_handler_it </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a861201b8bb49612d11994870cd576e19" name="a861201b8bb49612d11994870cd576e19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861201b8bb49612d11994870cd576e19">&#9670;&#160;</a></span>TIMER4_user_handler_it()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__weak void TIMER4_user_handler_it </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ad1746af839833d37cb2363380164d6" name="a1ad1746af839833d37cb2363380164d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ad1746af839833d37cb2363380164d6">&#9670;&#160;</a></span>TIMER6_user_handler_it()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__weak void TIMER6_user_handler_it </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a177f0bd936442cb8548732db4b667a7d" name="a177f0bd936442cb8548732db4b667a7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a177f0bd936442cb8548732db4b667a7d">&#9670;&#160;</a></span>instance_array</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_t_i_m___type_def.html">TIM_TypeDef</a>* instance_array[<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a93de4e9205e02a8fb52bffbcc966fca2">TIMER_ID_NB</a>] = {<a class="el" href="group___peripheral__declaration.html#ga2e87451fea8dc9380056d3cfc5ed81fb">TIM1</a>, <a class="el" href="group___peripheral__declaration.html#ga3cfac9f2e43673f790f8668d48b4b92b">TIM2</a>, <a class="el" href="group___peripheral__declaration.html#ga61ee4c391385607d7af432b63905fcc9">TIM3</a>, <a class="el" href="group___peripheral__declaration.html#ga91a09bad8bdc7a1cb3d85cf49c94c8ec">TIM4</a>, <a class="el" href="group___peripheral__declaration.html#gac7b4ed55f9201b498b38c962cca97314">TIM6</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96338511b995957eea5bdd53fafcf0af" name="a96338511b995957eea5bdd53fafcf0af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96338511b995957eea5bdd53fafcf0af">&#9670;&#160;</a></span>nvic_irq_array</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="group___peripheral__interrupt__number__definition.html#ga7e1129cd8a196f4284d41db3e82ad5c8">IRQn_Type</a> nvic_irq_array[<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a93de4e9205e02a8fb52bffbcc966fca2">TIMER_ID_NB</a>] = {<a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8ace5676d446329834dd12515a1ea71646">TIM1_UP_TIM16_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a3a4e2095a926e4095d3c846eb1c98afa">TIM2_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a985574288f66e2a00e97387424a9a2d8">TIM3_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a368b899ca740b9ae0d75841f3abf68c4">TIM4_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a5f581e9aedfaccd9b1db9ec793804b45">TIM6_DAC_IRQn</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb72dbf4d4638bb6381948cc60e037fe" name="aeb72dbf4d4638bb6381948cc60e037fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb72dbf4d4638bb6381948cc60e037fe">&#9670;&#160;</a></span>structure_handles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_t_i_m___handle_type_def.html">TIM_HandleTypeDef</a> structure_handles[<a class="el" href="stm32g4__timer_8h.html#ab46c323c4f73f2150385fead53055392a93de4e9205e02a8fb52bffbcc966fca2">TIMER_ID_NB</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_5004f88798df035968551ccccdaf7179.html">bsp</a></li><li class="navelem"><a class="el" href="stm32g4__timer_8c.html">stm32g4_timer.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

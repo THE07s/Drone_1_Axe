@@ -1,0 +1,25 @@
+var sensors_8c =
+[
+    [ "calculate_angles", "sensors_8c.html#af7056710033c48dc531e9f3241bbdf6a", null ],
+    [ "display_raw_data", "sensors_8c.html#adf581987db494a2f0e459edbc951a5f2", null ],
+    [ "init_sensors", "sensors_8c.html#ae7d81936b9596a28807f31ebac8f19aa", null ],
+    [ "Kalman_Update", "sensors_8c.html#a6941aa4fe780528fe63bfb1dcaae6587", null ],
+    [ "update_MPU_data_angles", "sensors_8c.html#a9a291a5c356eb0d469d7e600bcfd5ba3", null ],
+    [ "angle1", "sensors_8c.html#aec1258e01412f85906ce6a4f5101e55b", null ],
+    [ "angle2", "sensors_8c.html#a944e6043842b8ea8abbfd88a69c0c7e9", null ],
+    [ "bias1", "sensors_8c.html#ab7ece255c8223c162fa6ceebcb8422db", null ],
+    [ "bias2", "sensors_8c.html#a60b1b962d012a8fc881af7a2d9b3919a", null ],
+    [ "g_state", "sensors_8c.html#ab8a29ce948fcd0a6666ac21451ca6436", null ],
+    [ "MPU1_ok", "sensors_8c.html#acb12a619e72a025533548875d5f0f79b", null ],
+    [ "MPU2_ok", "sensors_8c.html#ab991183392b9c7832cc53bb0c8a97498", null ],
+    [ "MPU6050_Data1", "sensors_8c.html#a114be3f2d41b425123e8c1406a80cb6a", null ],
+    [ "MPU6050_Data2", "sensors_8c.html#a7b25f4e67a801a6f865259b251529cbc", null ],
+    [ "P1", "sensors_8c.html#aaa8e5d0c21573ff7d67a6217958753e9", null ],
+    [ "P2", "sensors_8c.html#aa56f70877c6ff3887f103918b4d10645", null ],
+    [ "Q_angle1", "sensors_8c.html#ae0fe038ec3c9a0385fefd667dada3f47", null ],
+    [ "Q_angle2", "sensors_8c.html#afd0f96d2686fb7208822a0876c81adb6", null ],
+    [ "Q_bias1", "sensors_8c.html#a87b0f4d974a2b97a00f6c4ea4defca7f", null ],
+    [ "Q_bias2", "sensors_8c.html#a2900b49531f4c8774b97c420554b6ea6", null ],
+    [ "R_measure1", "sensors_8c.html#a238e1541f3a8f60f4a8aae6133cc4366", null ],
+    [ "R_measure2", "sensors_8c.html#a0884941eb8e9e690c3997d566a3f104a", null ]
+];

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe:  Fichier source de core/Startup/bootloader.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('bootloader_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">bootloader.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="bootloader_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * QS_bootloader.h</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *  Created on: May 13, 2024</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *      Author: Nirgal</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef BOOTLOADER_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define BOOTLOADER_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//ce fichier ne doit �tre inclus QUE PAR son .c</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0">   13</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a5acf5535c5a1ca5c112c9065581b1b72">   15</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a5acf5535c5a1ca5c112c9065581b1b72">BL_FLASH_BUSY</a> = 1,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0af679c3df32541da27e5fae7ef5dbd953">   16</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0af679c3df32541da27e5fae7ef5dbd953">BL_FLASH_ERROR_PGS</a>,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a1e617b36e6c6974f2d3e4e4c8433c6cd">   17</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a1e617b36e6c6974f2d3e4e4c8433c6cd">BL_FLASH_ERROR_PGP</a>,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a8b67b6047fdd7dedb9bff92e7332e3aa">   18</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a8b67b6047fdd7dedb9bff92e7332e3aa">BL_FLASH_ERROR_PGA</a>,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a644f3a90bca12845993eef2f82c239fa">   19</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a644f3a90bca12845993eef2f82c239fa">BL_FLASH_ERROR_WRP</a>,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0ab614944c4e39d01cea3f07db60585ce6">   20</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0ab614944c4e39d01cea3f07db60585ce6">BL_FLASH_ERROR_PROGRAM</a>,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a3a8bce6eb78d0fc18bd390d0a04c5ba3">   21</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a3a8bce6eb78d0fc18bd390d0a04c5ba3">BL_FLASH_ERROR_OPERATION</a>,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0abd3905c60457150a52801bf93b0b7a41">   22</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0abd3905c60457150a52801bf93b0b7a41">BL_FLASH_ERROR_CRC</a>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a7d89dcda009c4e2f77de8a3df9ca3c08">   23</a></span>  <a class="code hl_enumvalue" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a7d89dcda009c4e2f77de8a3df9ca3c08">BL_FLASH_COMPLETE</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}<a class="code hl_enumeration" href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0">FLASH_Status</a>;</div>
+</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a7c755f15e36221021a1438857e40365c">   28</a></span><span class="preprocessor">#define CR_PSIZE_MASK              ((uint32_t)0xFFFFFCFF)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="bootloader_8h.html#ae497135e5528d69274bf8daf7f077f23">   31</a></span><span class="preprocessor">#define RDP_KEY                  ((uint16_t)0x00A5)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="bootloader_8h.html#ab305b8d1be9f89bf2b4a05589b456049">   35</a></span><span class="preprocessor">#define GPIO_Pin_0                 ((uint16_t)0x0001)  </span><span class="comment">/* Pin 0 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a29db642c26f1fa0fffc3ecadcd30f82b">   36</a></span><span class="preprocessor">#define GPIO_Pin_1                 ((uint16_t)0x0002)  </span><span class="comment">/* Pin 1 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="bootloader_8h.html#abdf6630324b2f99360537a310687187c">   37</a></span><span class="preprocessor">#define GPIO_Pin_2                 ((uint16_t)0x0004)  </span><span class="comment">/* Pin 2 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a763c6544859dbe28cd3f8ad820045556">   38</a></span><span class="preprocessor">#define GPIO_Pin_3                 ((uint16_t)0x0008)  </span><span class="comment">/* Pin 3 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="bootloader_8h.html#acbf04d09b954606cdcc55eb2e81780e3">   39</a></span><span class="preprocessor">#define GPIO_Pin_4                 ((uint16_t)0x0010)  </span><span class="comment">/* Pin 4 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a32dbe930f52ce5ab60190c65e9dc741e">   40</a></span><span class="preprocessor">#define GPIO_Pin_5                 ((uint16_t)0x0020)  </span><span class="comment">/* Pin 5 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="bootloader_8h.html#af047899d873f27c2db9f50b342e35a58">   41</a></span><span class="preprocessor">#define GPIO_Pin_6                 ((uint16_t)0x0040)  </span><span class="comment">/* Pin 6 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a7346b6ce5507bd28a7a79e7dcc816c08">   42</a></span><span class="preprocessor">#define GPIO_Pin_7                 ((uint16_t)0x0080)  </span><span class="comment">/* Pin 7 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="bootloader_8h.html#ac891f0984dc64af3567577fbf13ab304">   43</a></span><span class="preprocessor">#define GPIO_Pin_8                 ((uint16_t)0x0100)  </span><span class="comment">/* Pin 8 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="bootloader_8h.html#aad1891082d5d6bcac06c2729a9fdd2f0">   44</a></span><span class="preprocessor">#define GPIO_Pin_9                 ((uint16_t)0x0200)  </span><span class="comment">/* Pin 9 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a726af6407ba60ac60f02057227c2d348">   45</a></span><span class="preprocessor">#define GPIO_Pin_10                ((uint16_t)0x0400)  </span><span class="comment">/* Pin 10 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a5139d5bc3d15784ae7794ed2ae1ff767">   46</a></span><span class="preprocessor">#define GPIO_Pin_11                ((uint16_t)0x0800)  </span><span class="comment">/* Pin 11 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="bootloader_8h.html#ada91257dcaab2c86f75fbd8e4b52b98c">   47</a></span><span class="preprocessor">#define GPIO_Pin_12                ((uint16_t)0x1000)  </span><span class="comment">/* Pin 12 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a4155a41c433f3657b9c79cfbd4240966">   48</a></span><span class="preprocessor">#define GPIO_Pin_13                ((uint16_t)0x2000)  </span><span class="comment">/* Pin 13 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a21cd1d89c0c061a6f09c5a842610bee5">   49</a></span><span class="preprocessor">#define GPIO_Pin_14                ((uint16_t)0x4000)  </span><span class="comment">/* Pin 14 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="bootloader_8h.html#ae686a9fc47cf3e420e5db0784210711d">   50</a></span><span class="preprocessor">#define GPIO_Pin_15                ((uint16_t)0x8000)  </span><span class="comment">/* Pin 15 selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="bootloader_8h.html#aba3e915ddca17a1211edc07b7fd97e8b">   51</a></span><span class="preprocessor">#define GPIO_Pin_All               ((uint16_t)0xFFFF)  </span><span class="comment">/* All pins selected */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a790e1f37e75f475cf09c211f566fb069">   56</a></span><span class="preprocessor">#define GPIO_AF_USART1        ((uint8_t)0x07)  </span><span class="comment">/* USART1 Alternate Function mapping  */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="bootloader_8h.html#a0cea4efa9b90871fd0bd7a56b6ec2ef3">   59</a></span><span class="preprocessor">#define U32FROMU8(higher,high,low,lower)        ((((uint32_t)(higher))&lt;&lt;24)|(((uint32_t)(high))&lt;&lt;16)|(((uint32_t)(low))&lt;&lt;8)|(uint32_t)(lower))</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">/* BOOTLOADER_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0">FLASH_Status</a></div><div class="ttdeci">FLASH_Status</div><div class="ttdef"><b>Definition</b> bootloader.h:14</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0a1e617b36e6c6974f2d3e4e4c8433c6cd"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a1e617b36e6c6974f2d3e4e4c8433c6cd">BL_FLASH_ERROR_PGP</a></div><div class="ttdeci">@ BL_FLASH_ERROR_PGP</div><div class="ttdef"><b>Definition</b> bootloader.h:17</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0a3a8bce6eb78d0fc18bd390d0a04c5ba3"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a3a8bce6eb78d0fc18bd390d0a04c5ba3">BL_FLASH_ERROR_OPERATION</a></div><div class="ttdeci">@ BL_FLASH_ERROR_OPERATION</div><div class="ttdef"><b>Definition</b> bootloader.h:21</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0a5acf5535c5a1ca5c112c9065581b1b72"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a5acf5535c5a1ca5c112c9065581b1b72">BL_FLASH_BUSY</a></div><div class="ttdeci">@ BL_FLASH_BUSY</div><div class="ttdef"><b>Definition</b> bootloader.h:15</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0a644f3a90bca12845993eef2f82c239fa"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a644f3a90bca12845993eef2f82c239fa">BL_FLASH_ERROR_WRP</a></div><div class="ttdeci">@ BL_FLASH_ERROR_WRP</div><div class="ttdef"><b>Definition</b> bootloader.h:19</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0a7d89dcda009c4e2f77de8a3df9ca3c08"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a7d89dcda009c4e2f77de8a3df9ca3c08">BL_FLASH_COMPLETE</a></div><div class="ttdeci">@ BL_FLASH_COMPLETE</div><div class="ttdef"><b>Definition</b> bootloader.h:23</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0a8b67b6047fdd7dedb9bff92e7332e3aa"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0a8b67b6047fdd7dedb9bff92e7332e3aa">BL_FLASH_ERROR_PGA</a></div><div class="ttdeci">@ BL_FLASH_ERROR_PGA</div><div class="ttdef"><b>Definition</b> bootloader.h:18</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0ab614944c4e39d01cea3f07db60585ce6"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0ab614944c4e39d01cea3f07db60585ce6">BL_FLASH_ERROR_PROGRAM</a></div><div class="ttdeci">@ BL_FLASH_ERROR_PROGRAM</div><div class="ttdef"><b>Definition</b> bootloader.h:20</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0abd3905c60457150a52801bf93b0b7a41"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0abd3905c60457150a52801bf93b0b7a41">BL_FLASH_ERROR_CRC</a></div><div class="ttdeci">@ BL_FLASH_ERROR_CRC</div><div class="ttdef"><b>Definition</b> bootloader.h:22</div></div>
+<div class="ttc" id="abootloader_8h_html_adc63a6f3404ff1f71229a66915e9cdc0af679c3df32541da27e5fae7ef5dbd953"><div class="ttname"><a href="bootloader_8h.html#adc63a6f3404ff1f71229a66915e9cdc0af679c3df32541da27e5fae7ef5dbd953">BL_FLASH_ERROR_PGS</a></div><div class="ttdeci">@ BL_FLASH_ERROR_PGS</div><div class="ttdef"><b>Definition</b> bootloader.h:16</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_4270bfced15e0e73154b13468c7c9ad9.html">core</a></li><li class="navelem"><a class="el" href="dir_bcb6b553730b387586a0d7782454c725.html">Startup</a></li><li class="navelem"><a class="el" href="bootloader_8h.html">bootloader.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe: Référence du fichier drivers/bsp/stm32g4_sys.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('stm32g4__sys_8c.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier stm32g4_sys.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Module d'initialisation et de gestion d'erreur Adaptation du module stm32f1_sys.c du club robot ESEO 2009.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="stm32g4__sys_8h_source.html">stm32g4_sys.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4__uart_8h_source.html">stm32g4_uart.h</a>&quot;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;sys/unistd.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aee271a43e9ecd58bceafed7d55b9ff8b" id="r_aee271a43e9ecd58bceafed7d55b9ff8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee271a43e9ecd58bceafed7d55b9ff8b">DEFAULT_STDOUT_USART</a>&#160;&#160;&#160;<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></td></tr>
+<tr class="separator:aee271a43e9ecd58bceafed7d55b9ff8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aece738a27cc364a96b2cf27ba6d6e39d" id="r_aece738a27cc364a96b2cf27ba6d6e39d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aece738a27cc364a96b2cf27ba6d6e39d">DEFAULT_STDERR_USART</a>&#160;&#160;&#160;<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></td></tr>
+<tr class="separator:aece738a27cc364a96b2cf27ba6d6e39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acca85145e1caf0e0a949750c87875ea0" id="r_acca85145e1caf0e0a949750c87875ea0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acca85145e1caf0e0a949750c87875ea0">DEFAULT_STDIN_USART</a>&#160;&#160;&#160;<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></td></tr>
+<tr class="separator:acca85145e1caf0e0a949750c87875ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bfbad97e62c00fb24ac0631f0ccd340" id="r_a0bfbad97e62c00fb24ac0631f0ccd340"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bfbad97e62c00fb24ac0631f0ccd340">DUMP_PRINTF_BUFFER_SIZE</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a0bfbad97e62c00fb24ac0631f0ccd340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a66fa27a736f3481ce865a58acd40e164" id="r_a66fa27a736f3481ce865a58acd40e164"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66fa27a736f3481ce865a58acd40e164">BSP_SYS_set_std_usart</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> in, <a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> out, <a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> err)</td></tr>
+<tr class="separator:a66fa27a736f3481ce865a58acd40e164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4fb8e66865c87d0ebab74a726a6891f" id="r_gae4fb8e66865c87d0ebab74a726a6891f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___h_a_l___exported___functions___group1.html#gae4fb8e66865c87d0ebab74a726a6891f">HAL_MspInit</a> (void)</td></tr>
+<tr class="separator:gae4fb8e66865c87d0ebab74a726a6891f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70af21c671abfcc773614a9a4f63d920" id="r_a70af21c671abfcc773614a9a4f63d920"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a> (void)</td></tr>
+<tr class="memdesc:a70af21c671abfcc773614a9a4f63d920"><td class="mdescLeft">&#160;</td><td class="mdescRight">System Clock Configuration.  <br /></td></tr>
+<tr class="separator:a70af21c671abfcc773614a9a4f63d920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f9bf1e1602f2828e0a54e70c3b2dccb" id="r_a4f9bf1e1602f2828e0a54e70c3b2dccb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f9bf1e1602f2828e0a54e70c3b2dccb">_read</a> (int file, char *ptr, int len)</td></tr>
+<tr class="memdesc:a4f9bf1e1602f2828e0a54e70c3b2dccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redefinition of _read function used e.g. by scanf.  <br /></td></tr>
+<tr class="separator:a4f9bf1e1602f2828e0a54e70c3b2dccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa025a12d45f60c7d0eae249e61f0c7f9" id="r_aa025a12d45f60c7d0eae249e61f0c7f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa025a12d45f60c7d0eae249e61f0c7f9">_write</a> (int file, char *ptr, int len)</td></tr>
+<tr class="memdesc:aa025a12d45f60c7d0eae249e61f0c7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redefinition of _write function used e.g. by printf.  <br /></td></tr>
+<tr class="separator:aa025a12d45f60c7d0eae249e61f0c7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1730ffe1e560465665eb47d9264826f9" id="r_a1730ffe1e560465665eb47d9264826f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a> (void)</td></tr>
+<tr class="memdesc:a1730ffe1e560465665eb47d9264826f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is executed in case of error occurrence.  <br /></td></tr>
+<tr class="separator:a1730ffe1e560465665eb47d9264826f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff67809a9ddc8e90eebddc5f9f9af82" id="r_a4ff67809a9ddc8e90eebddc5f9f9af82"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ff67809a9ddc8e90eebddc5f9f9af82">dump_printf</a> (const char *format,...)</td></tr>
+<tr class="separator:a4ff67809a9ddc8e90eebddc5f9f9af82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af945b0ff88c9be084780e78024fa4e09" id="r_af945b0ff88c9be084780e78024fa4e09"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af945b0ff88c9be084780e78024fa4e09">stdout_usart</a> = <a class="el" href="#aee271a43e9ecd58bceafed7d55b9ff8b">DEFAULT_STDOUT_USART</a></td></tr>
+<tr class="separator:af945b0ff88c9be084780e78024fa4e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13260f79242f7988900a65dca10c4f4b" id="r_a13260f79242f7988900a65dca10c4f4b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13260f79242f7988900a65dca10c4f4b">stderr_usart</a> = <a class="el" href="#aece738a27cc364a96b2cf27ba6d6e39d">DEFAULT_STDERR_USART</a></td></tr>
+<tr class="separator:a13260f79242f7988900a65dca10c4f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a871ec0d392a4cf7ecb6ab99575b9464e" id="r_a871ec0d392a4cf7ecb6ab99575b9464e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a871ec0d392a4cf7ecb6ab99575b9464e">stdin_usart</a> = <a class="el" href="#acca85145e1caf0e0a949750c87875ea0">DEFAULT_STDIN_USART</a></td></tr>
+<tr class="separator:a871ec0d392a4cf7ecb6ab99575b9464e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45e459fa4cb92d27809c3e2063945e36" id="r_a45e459fa4cb92d27809c3e2063945e36"><td class="memItemLeft" align="right" valign="top">static volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45e459fa4cb92d27809c3e2063945e36">uart_initialized</a> = false</td></tr>
+<tr class="separator:a45e459fa4cb92d27809c3e2063945e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Module d'initialisation et de gestion d'erreur Adaptation du module stm32f1_sys.c du club robot ESEO 2009. </p>
+<p>Module d'initialisation et de gestion d'erreur.</p>
+<dl class="section author"><dt>Auteur</dt><dd>jjo </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Mar 11, 2024 </dd></dl>
+<dl class="section author"><dt>Auteur</dt><dd>jjo </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Mar 11, 2024  </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="aece738a27cc364a96b2cf27ba6d6e39d" name="aece738a27cc364a96b2cf27ba6d6e39d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece738a27cc364a96b2cf27ba6d6e39d">&#9670;&#160;</a></span>DEFAULT_STDERR_USART</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_STDERR_USART&#160;&#160;&#160;<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acca85145e1caf0e0a949750c87875ea0" name="acca85145e1caf0e0a949750c87875ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acca85145e1caf0e0a949750c87875ea0">&#9670;&#160;</a></span>DEFAULT_STDIN_USART</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_STDIN_USART&#160;&#160;&#160;<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee271a43e9ecd58bceafed7d55b9ff8b" name="aee271a43e9ecd58bceafed7d55b9ff8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee271a43e9ecd58bceafed7d55b9ff8b">&#9670;&#160;</a></span>DEFAULT_STDOUT_USART</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_STDOUT_USART&#160;&#160;&#160;<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bfbad97e62c00fb24ac0631f0ccd340" name="a0bfbad97e62c00fb24ac0631f0ccd340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bfbad97e62c00fb24ac0631f0ccd340">&#9670;&#160;</a></span>DUMP_PRINTF_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DUMP_PRINTF_BUFFER_SIZE&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a4f9bf1e1602f2828e0a54e70c3b2dccb" name="a4f9bf1e1602f2828e0a54e70c3b2dccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f9bf1e1602f2828e0a54e70c3b2dccb">&#9670;&#160;</a></span>_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _read </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redefinition of _read function used e.g. by scanf. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td></td></tr>
+    <tr><td class="paramname">ptr</td><td></td></tr>
+    <tr><td class="paramname">len</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="aa025a12d45f60c7d0eae249e61f0c7f9" name="aa025a12d45f60c7d0eae249e61f0c7f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa025a12d45f60c7d0eae249e61f0c7f9">&#9670;&#160;</a></span>_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int _write </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redefinition of _write function used e.g. by printf. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td></td></tr>
+    <tr><td class="paramname">ptr</td><td></td></tr>
+    <tr><td class="paramname">len</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a66fa27a736f3481ce865a58acd40e164" name="a66fa27a736f3481ce865a58acd40e164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66fa27a736f3481ce865a58acd40e164">&#9670;&#160;</a></span>BSP_SYS_set_std_usart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_SYS_set_std_usart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>err</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ff67809a9ddc8e90eebddc5f9f9af82" name="a4ff67809a9ddc8e90eebddc5f9f9af82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ff67809a9ddc8e90eebddc5f9f9af82">&#9670;&#160;</a></span>dump_printf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t dump_printf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1730ffe1e560465665eb47d9264826f9" name="a1730ffe1e560465665eb47d9264826f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1730ffe1e560465665eb47d9264826f9">&#9670;&#160;</a></span>Error_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Error_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function is executed in case of error occurrence. </p>
+<dl class="retval"><dt>Valeurs retournées</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a70af21c671abfcc773614a9a4f63d920" name="a70af21c671abfcc773614a9a4f63d920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70af21c671abfcc773614a9a4f63d920">&#9670;&#160;</a></span>SystemClock_Config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SystemClock_Config </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>System Clock Configuration. </p>
+<dl class="retval"><dt>Valeurs retournées</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Configure the main internal regulator output voltage</p>
+<p>Initializes the RCC Oscillators according to the specified parameters in the <a class="el" href="struct_r_c_c___osc_init_type_def.html" title="RCC Internal/External Oscillator (HSE, HSI, LSE and LSI) configuration structure definition.">RCC_OscInitTypeDef</a> structure.</p>
+<p>Initializes the CPU, AHB and APB buses clocks</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a13260f79242f7988900a65dca10c4f4b" name="a13260f79242f7988900a65dca10c4f4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13260f79242f7988900a65dca10c4f4b">&#9670;&#160;</a></span>stderr_usart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> stderr_usart = <a class="el" href="#aece738a27cc364a96b2cf27ba6d6e39d">DEFAULT_STDERR_USART</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a871ec0d392a4cf7ecb6ab99575b9464e" name="a871ec0d392a4cf7ecb6ab99575b9464e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871ec0d392a4cf7ecb6ab99575b9464e">&#9670;&#160;</a></span>stdin_usart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> stdin_usart = <a class="el" href="#acca85145e1caf0e0a949750c87875ea0">DEFAULT_STDIN_USART</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af945b0ff88c9be084780e78024fa4e09" name="af945b0ff88c9be084780e78024fa4e09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af945b0ff88c9be084780e78024fa4e09">&#9670;&#160;</a></span>stdout_usart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> stdout_usart = <a class="el" href="#aee271a43e9ecd58bceafed7d55b9ff8b">DEFAULT_STDOUT_USART</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45e459fa4cb92d27809c3e2063945e36" name="a45e459fa4cb92d27809c3e2063945e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e459fa4cb92d27809c3e2063945e36">&#9670;&#160;</a></span>uart_initialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t uart_initialized = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_5004f88798df035968551ccccdaf7179.html">bsp</a></li><li class="navelem"><a class="el" href="stm32g4__sys_8c.html">stm32g4_sys.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

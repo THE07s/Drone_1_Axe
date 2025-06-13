@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe:  Fichier source de drivers/bsp/stm32g4_spi.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('stm32g4__spi_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">stm32g4_spi.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="stm32g4__spi_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef BSP_STM32G4_SPI_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define BSP_STM32G4_SPI_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="stm32g431xx_8h.html">stm32g431xx.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">/* Public enumerations declarations ------------------------------------------*/</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6">   18</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6a7dee6a082d2fe35451a6727e3585e499">   19</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6a7dee6a082d2fe35451a6727e3585e499">FULL_DUPLEX</a>,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6aea07ca15f5869b4c98b70763be15f6d8">   20</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6aea07ca15f5869b4c98b70763be15f6d8">HALF_DUPLEX</a>,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6a55cd40d652bf0a7e2aa1c8389d530e5f">   21</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6a55cd40d652bf0a7e2aa1c8389d530e5f">RECEIVE_ONLY</a>,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6af1c0f7edc97b04fc0b2543f659cf1df2">   22</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6af1c0f7edc97b04fc0b2543f659cf1df2">TRANSMIT_ONLY</a>,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}<a class="code hl_enumeration" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6">SPI_Mode_e</a>;</div>
+</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46">   25</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46ae5807df697b52e8b944bf598cabadb3a">   26</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46ae5807df697b52e8b944bf598cabadb3a">MASTER</a>,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46acb616235f3e84323e870be70b278ac7f">   27</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46acb616235f3e84323e870be70b278ac7f">SLAVE</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}<a class="code hl_enumeration" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46">SPI_Rank_e</a>;</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7">   30</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7a4ad8cc5368838bce8992cd63253bce2a">   31</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7a4ad8cc5368838bce8992cd63253bce2a">TM_SPI_DataSize_8b</a>, </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7a7a2c1a360702a5094da8ef27d28e95af">   32</a></span>    <a class="code hl_enumvalue" href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7a7a2c1a360702a5094da8ef27d28e95af">TM_SPI_DataSize_16b</a> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>} <a class="code hl_enumeration" href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7">TM_SPI_DataSize_t</a>;</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/* Public functions declarations ---------------------------------------------*/</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#af1bbf7808f1f8f838240c9825d23cec4">BSP_SPI_Init</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, <a class="code hl_enumeration" href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6">SPI_Mode_e</a> SPI_Mode, <a class="code hl_enumeration" href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46">SPI_Rank_e</a> SPI_Rank, uint16_t SPI_BAUDRATEPRESCALER_x);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>uint8_t <a class="code hl_function" href="stm32g4__spi_8h.html#ac9bf9395a4816864d780b132579e27da">BSP_SPI_ReadNoRegister</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#a2a7aaba8e67492b107a198516e172abf">BSP_SPI_ReadMultiNoRegister</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, uint8_t* data, uint16_t count);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#a6e871e19b49bb42aa1f9286df7b32efd">BSP_SPI_WriteNoRegister</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, uint8_t data);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#a0d2f2356b6ba887330278315ca48178d">BSP_SPI_WriteMultiNoRegister</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, uint8_t* data, uint16_t count);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>uint8_t <a class="code hl_function" href="stm32g4__spi_8h.html#a2781ccbe14201bc00598016dc140145b">BSP_SPI_WriteRead</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, uint8_t Value);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#a76568b9f2240f8bd30c6e6d6783aab42">BSP_SPI_WriteReadBuffer</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, <span class="keyword">const</span> uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLength);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#a8010ed9c21b8ed35a66088cc78808ba0">BSP_SPI_setBaudRate</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, uint16_t SPI_BaudRatePrescaler);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>uint32_t <a class="code hl_function" href="stm32g4__spi_8h.html#a298812bec2d8890bd44a49768803e9e6">BSP_SPI_getBaudrate</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__spi_8h.html#a376eabc114d6cdd93e2c5607915d66be">BSP_SPI_SetDataSize</a>(<a class="code hl_struct" href="struct_s_p_i___type_def.html">SPI_TypeDef</a>* SPIx, uint32_t DataSize);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">/* BSP_STM32G4_SPI_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astm32g431xx_8h_html"><div class="ttname"><a href="stm32g431xx_8h.html">stm32g431xx.h</a></div><div class="ttdoc">CMSIS STM32G431xx Device Peripheral Access Layer Header File.</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a0d2f2356b6ba887330278315ca48178d"><div class="ttname"><a href="stm32g4__spi_8h.html#a0d2f2356b6ba887330278315ca48178d">BSP_SPI_WriteMultiNoRegister</a></div><div class="ttdeci">void BSP_SPI_WriteMultiNoRegister(SPI_TypeDef *SPIx, uint8_t *data, uint16_t count)</div><div class="ttdoc">Cette fonction sert à envoyer plusieurs données sur l&#39;un des bus SPI.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:323</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a0e0f20f483f4f14b90a7ef5806a6ba46"><div class="ttname"><a href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46">SPI_Rank_e</a></div><div class="ttdeci">SPI_Rank_e</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:25</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a0e0f20f483f4f14b90a7ef5806a6ba46acb616235f3e84323e870be70b278ac7f"><div class="ttname"><a href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46acb616235f3e84323e870be70b278ac7f">SLAVE</a></div><div class="ttdeci">@ SLAVE</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:27</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a0e0f20f483f4f14b90a7ef5806a6ba46ae5807df697b52e8b944bf598cabadb3a"><div class="ttname"><a href="stm32g4__spi_8h.html#a0e0f20f483f4f14b90a7ef5806a6ba46ae5807df697b52e8b944bf598cabadb3a">MASTER</a></div><div class="ttdeci">@ MASTER</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:26</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2781ccbe14201bc00598016dc140145b"><div class="ttname"><a href="stm32g4__spi_8h.html#a2781ccbe14201bc00598016dc140145b">BSP_SPI_WriteRead</a></div><div class="ttdeci">uint8_t BSP_SPI_WriteRead(SPI_TypeDef *SPIx, uint8_t Value)</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:331</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a298812bec2d8890bd44a49768803e9e6"><div class="ttname"><a href="stm32g4__spi_8h.html#a298812bec2d8890bd44a49768803e9e6">BSP_SPI_getBaudrate</a></div><div class="ttdeci">uint32_t BSP_SPI_getBaudrate(SPI_TypeDef *SPIx)</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:428</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2a7aaba8e67492b107a198516e172abf"><div class="ttname"><a href="stm32g4__spi_8h.html#a2a7aaba8e67492b107a198516e172abf">BSP_SPI_ReadMultiNoRegister</a></div><div class="ttdeci">void BSP_SPI_ReadMultiNoRegister(SPI_TypeDef *SPIx, uint8_t *data, uint16_t count)</div><div class="ttdoc">Cette fonction sert à recevoir plusieurs données sur l&#39;un des bus SPI.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:298</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2af20632fe200a031eebe1d414ef15e6"><div class="ttname"><a href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6">SPI_Mode_e</a></div><div class="ttdeci">SPI_Mode_e</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:18</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2af20632fe200a031eebe1d414ef15e6a55cd40d652bf0a7e2aa1c8389d530e5f"><div class="ttname"><a href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6a55cd40d652bf0a7e2aa1c8389d530e5f">RECEIVE_ONLY</a></div><div class="ttdeci">@ RECEIVE_ONLY</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:21</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2af20632fe200a031eebe1d414ef15e6a7dee6a082d2fe35451a6727e3585e499"><div class="ttname"><a href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6a7dee6a082d2fe35451a6727e3585e499">FULL_DUPLEX</a></div><div class="ttdeci">@ FULL_DUPLEX</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:19</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2af20632fe200a031eebe1d414ef15e6aea07ca15f5869b4c98b70763be15f6d8"><div class="ttname"><a href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6aea07ca15f5869b4c98b70763be15f6d8">HALF_DUPLEX</a></div><div class="ttdeci">@ HALF_DUPLEX</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:20</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a2af20632fe200a031eebe1d414ef15e6af1c0f7edc97b04fc0b2543f659cf1df2"><div class="ttname"><a href="stm32g4__spi_8h.html#a2af20632fe200a031eebe1d414ef15e6af1c0f7edc97b04fc0b2543f659cf1df2">TRANSMIT_ONLY</a></div><div class="ttdeci">@ TRANSMIT_ONLY</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:22</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a376eabc114d6cdd93e2c5607915d66be"><div class="ttname"><a href="stm32g4__spi_8h.html#a376eabc114d6cdd93e2c5607915d66be">BSP_SPI_SetDataSize</a></div><div class="ttdeci">void BSP_SPI_SetDataSize(SPI_TypeDef *SPIx, uint32_t DataSize)</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:371</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a6e871e19b49bb42aa1f9286df7b32efd"><div class="ttname"><a href="stm32g4__spi_8h.html#a6e871e19b49bb42aa1f9286df7b32efd">BSP_SPI_WriteNoRegister</a></div><div class="ttdeci">void BSP_SPI_WriteNoRegister(SPI_TypeDef *SPIx, uint8_t data)</div><div class="ttdoc">Cette fonction sert à envoyer une donnée sur l&#39;un des bus SPI.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:310</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a76568b9f2240f8bd30c6e6d6783aab42"><div class="ttname"><a href="stm32g4__spi_8h.html#a76568b9f2240f8bd30c6e6d6783aab42">BSP_SPI_WriteReadBuffer</a></div><div class="ttdeci">void BSP_SPI_WriteReadBuffer(SPI_TypeDef *SPIx, const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLength)</div><div class="ttdoc">Write a byte on the SD.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:355</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_a8010ed9c21b8ed35a66088cc78808ba0"><div class="ttname"><a href="stm32g4__spi_8h.html#a8010ed9c21b8ed35a66088cc78808ba0">BSP_SPI_setBaudRate</a></div><div class="ttdeci">void BSP_SPI_setBaudRate(SPI_TypeDef *SPIx, uint16_t SPI_BaudRatePrescaler)</div><div class="ttdoc">Permet de régler le baudRate d&#39;un SPI.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:418</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_ab1265ee9cb21727fe1bbf90f980440f7"><div class="ttname"><a href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7">TM_SPI_DataSize_t</a></div><div class="ttdeci">TM_SPI_DataSize_t</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:30</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_ab1265ee9cb21727fe1bbf90f980440f7a4ad8cc5368838bce8992cd63253bce2a"><div class="ttname"><a href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7a4ad8cc5368838bce8992cd63253bce2a">TM_SPI_DataSize_8b</a></div><div class="ttdeci">@ TM_SPI_DataSize_8b</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:31</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_ab1265ee9cb21727fe1bbf90f980440f7a7a2c1a360702a5094da8ef27d28e95af"><div class="ttname"><a href="stm32g4__spi_8h.html#ab1265ee9cb21727fe1bbf90f980440f7a7a2c1a360702a5094da8ef27d28e95af">TM_SPI_DataSize_16b</a></div><div class="ttdeci">@ TM_SPI_DataSize_16b</div><div class="ttdef"><b>Definition</b> stm32g4_spi.h:32</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_ac9bf9395a4816864d780b132579e27da"><div class="ttname"><a href="stm32g4__spi_8h.html#ac9bf9395a4816864d780b132579e27da">BSP_SPI_ReadNoRegister</a></div><div class="ttdeci">uint8_t BSP_SPI_ReadNoRegister(SPI_TypeDef *SPIx)</div><div class="ttdoc">Cette fonction sert à recevoir une donnée sur l&#39;un des bus SPI.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:282</div></div>
+<div class="ttc" id="astm32g4__spi_8h_html_af1bbf7808f1f8f838240c9825d23cec4"><div class="ttname"><a href="stm32g4__spi_8h.html#af1bbf7808f1f8f838240c9825d23cec4">BSP_SPI_Init</a></div><div class="ttdeci">void BSP_SPI_Init(SPI_TypeDef *SPIx, SPI_Mode_e SPI_Mode, SPI_Rank_e SPI_Rank, uint16_t SPI_BAUDRATEPRESCALER_x)</div><div class="ttdoc">Cette fonction initialise le bus SPI en fonction des 3 paramètres.</div><div class="ttdef"><b>Definition</b> stm32g4_spi.c:57</div></div>
+<div class="ttc" id="astruct_s_p_i___type_def_html"><div class="ttname"><a href="struct_s_p_i___type_def.html">SPI_TypeDef</a></div><div class="ttdoc">Serial Peripheral Interface.</div><div class="ttdef"><b>Definition</b> stm32g431xx.h:724</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_5004f88798df035968551ccccdaf7179.html">bsp</a></li><li class="navelem"><a class="el" href="stm32g4__spi_8h.html">stm32g4_spi.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

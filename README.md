@@ -1,6 +1,10 @@
-# Drone_1_Axe
-                                  Stabilisateur de Drone sur un Axe
-1. Description Générale
+# Drone 1 Axe - Système de Stabilisation
+
+![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![Plateforme](https://img.shields.io/badge/plateforme-STM32G431KB-green.svg)
+![Langage](https://img.shields.io/badge/langage-C-orange.svg)
+
+## Description Générale
 
 Le projet consiste à concevoir un système de stabilisation sur un seul axe pour simuler un drone. Celui-ci repose sur une tige, avec deux hélices montées sur un axe pivotant. L'objectif est de contrôler l'orientation de l'axe à l'aide d'un potentiomètre et d'une carte électronique basée sur une STM32 G431. Un écran permettra d'afficher les informations pertinentes en temps réel tel que l’angle d’inclinaison de l’axe, l’énergie utilisée par les moteurs, les vitesses de moteurs, la vitesse de rotation de l’axe etc…
 

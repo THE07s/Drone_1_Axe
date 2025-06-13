@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe: Référence du fichier app/src/display.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('display_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier display.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Module de gestion de l'affichage.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="config_8h_source.html">../config.h</a>&quot;</code><br />
+<code>#include &quot;../drivers/bsp/tft_ili9341/stm32g4_ili9341.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="state_8h_source.html">state.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+</div>
+<p><a href="display_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a19b26d4d6ae752db7302c9cbb8688d51" id="r_a19b26d4d6ae752db7302c9cbb8688d51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19b26d4d6ae752db7302c9cbb8688d51">ILI9341_HEIGHT</a>&#160;&#160;&#160;240</td></tr>
+<tr class="separator:a19b26d4d6ae752db7302c9cbb8688d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f07262d5faa91c725fa69a2847303d5" id="r_a0f07262d5faa91c725fa69a2847303d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f07262d5faa91c725fa69a2847303d5">ILI9341_WIDTH</a>&#160;&#160;&#160;320</td></tr>
+<tr class="separator:a0f07262d5faa91c725fa69a2847303d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a4cdbdfc36c314afb59655c3937ecce96" id="r_a4cdbdfc36c314afb59655c3937ecce96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cdbdfc36c314afb59655c3937ecce96">init_display</a> (void)</td></tr>
+<tr class="memdesc:a4cdbdfc36c314afb59655c3937ecce96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise le module d'affichage.  <br /></td></tr>
+<tr class="separator:a4cdbdfc36c314afb59655c3937ecce96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a7dd92a342085ad608aeef08ba0c988" id="r_a7a7dd92a342085ad608aeef08ba0c988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a7dd92a342085ad608aeef08ba0c988">Effacer_Zone</a> (uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)</td></tr>
+<tr class="memdesc:a7a7dd92a342085ad608aeef08ba0c988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Efface une zone rectangulaire de l'écran.  <br /></td></tr>
+<tr class="separator:a7a7dd92a342085ad608aeef08ba0c988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ca8d71a9d38fb157d80a0a29b19e4c" id="r_ae9ca8d71a9d38fb157d80a0a29b19e4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9ca8d71a9d38fb157d80a0a29b19e4c">update_affichage</a> (void)</td></tr>
+<tr class="memdesc:ae9ca8d71a9d38fb157d80a0a29b19e4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour l'affichage complet.  <br /></td></tr>
+<tr class="separator:ae9ca8d71a9d38fb157d80a0a29b19e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae89f736857d8b7a1c5863bca5d838352" id="r_ae89f736857d8b7a1c5863bca5d838352"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae89f736857d8b7a1c5863bca5d838352">draw_base</a> (void)</td></tr>
+<tr class="memdesc:ae89f736857d8b7a1c5863bca5d838352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine la base de l'horizon artificiel.  <br /></td></tr>
+<tr class="separator:ae89f736857d8b7a1c5863bca5d838352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eaf0bd97ef9e040e918a177b8d6743d" id="r_a3eaf0bd97ef9e040e918a177b8d6743d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3eaf0bd97ef9e040e918a177b8d6743d">draw_vertical_bar</a> (void)</td></tr>
+<tr class="memdesc:a3eaf0bd97ef9e040e918a177b8d6743d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine la barre verticale de l'horizon artificiel.  <br /></td></tr>
+<tr class="separator:a3eaf0bd97ef9e040e918a177b8d6743d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e4b65baca653470b254378fde91370" id="r_a79e4b65baca653470b254378fde91370"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79e4b65baca653470b254378fde91370">draw_horizontal_bar</a> (float angle_deg)</td></tr>
+<tr class="memdesc:a79e4b65baca653470b254378fde91370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine la barre horizontale de l'horizon artificiel.  <br /></td></tr>
+<tr class="separator:a79e4b65baca653470b254378fde91370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd12a46d3e372a9e3f713c8e06afdc9a" id="r_abd12a46d3e372a9e3f713c8e06afdc9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd12a46d3e372a9e3f713c8e06afdc9a">draw_title</a> (void)</td></tr>
+<tr class="memdesc:abd12a46d3e372a9e3f713c8e06afdc9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine le titre de l'application.  <br /></td></tr>
+<tr class="separator:abd12a46d3e372a9e3f713c8e06afdc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Module de gestion de l'affichage. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Loïc LEENAERTS (<a href="https://github.com/THE07s">https://github.com/THE07s</a>) </dd>
+<dd>
+Romain PICAULT (<a href="https://github.com/RomainPICAULT">https://github.com/RomainPICAULT</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>13 juin 2025 </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a19b26d4d6ae752db7302c9cbb8688d51" name="a19b26d4d6ae752db7302c9cbb8688d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b26d4d6ae752db7302c9cbb8688d51">&#9670;&#160;</a></span>ILI9341_HEIGHT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ILI9341_HEIGHT&#160;&#160;&#160;240</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Hauteur de l'écran en pixels </p>
+
+</div>
+</div>
+<a id="a0f07262d5faa91c725fa69a2847303d5" name="a0f07262d5faa91c725fa69a2847303d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f07262d5faa91c725fa69a2847303d5">&#9670;&#160;</a></span>ILI9341_WIDTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ILI9341_WIDTH&#160;&#160;&#160;320</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Largeur de l'écran en pixels </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="ae89f736857d8b7a1c5863bca5d838352" name="ae89f736857d8b7a1c5863bca5d838352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae89f736857d8b7a1c5863bca5d838352">&#9670;&#160;</a></span>draw_base()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_base </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dessine la base de l'horizon artificiel. </p>
+<p>Affiche un trapèze représentant la base de l'horizon artificiel. </p>
+
+</div>
+</div>
+<a id="a79e4b65baca653470b254378fde91370" name="a79e4b65baca653470b254378fde91370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79e4b65baca653470b254378fde91370">&#9670;&#160;</a></span>draw_horizontal_bar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_horizontal_bar </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle_deg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dessine la barre horizontale de l'horizon artificiel. </p>
+<p>Affiche la ligne horizontale mobile représentant l'inclinaison du drone.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle_deg</td><td>Angle d'inclinaison en degrés </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd12a46d3e372a9e3f713c8e06afdc9a" name="abd12a46d3e372a9e3f713c8e06afdc9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd12a46d3e372a9e3f713c8e06afdc9a">&#9670;&#160;</a></span>draw_title()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_title </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dessine le titre de l'application. </p>
+<p>Affiche le titre "Drone 1 Axe" en haut de l'écran. </p>
+
+</div>
+</div>
+<a id="a3eaf0bd97ef9e040e918a177b8d6743d" name="a3eaf0bd97ef9e040e918a177b8d6743d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eaf0bd97ef9e040e918a177b8d6743d">&#9670;&#160;</a></span>draw_vertical_bar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_vertical_bar </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dessine la barre verticale de l'horizon artificiel. </p>
+<p>Affiche la ligne verticale fixe au centre de l'horizon artificiel. </p>
+
+</div>
+</div>
+<a id="a7a7dd92a342085ad608aeef08ba0c988" name="a7a7dd92a342085ad608aeef08ba0c988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a7dd92a342085ad608aeef08ba0c988">&#9670;&#160;</a></span>Effacer_Zone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Effacer_Zone </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>x0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>y0</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>x1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>y1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Efface une zone rectangulaire de l'écran. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>Coordonnée X du coin supérieur gauche </td></tr>
+    <tr><td class="paramname">y0</td><td>Coordonnée Y du coin supérieur gauche <br  />
+ </td></tr>
+    <tr><td class="paramname">x1</td><td>Coordonnée X du coin inférieur droit </td></tr>
+    <tr><td class="paramname">y1</td><td>Coordonnée Y du coin inférieur droit </td></tr>
+    <tr><td class="paramname">color</td><td>Couleur de remplissage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4cdbdfc36c314afb59655c3937ecce96" name="a4cdbdfc36c314afb59655c3937ecce96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cdbdfc36c314afb59655c3937ecce96">&#9670;&#160;</a></span>init_display()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_display </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise le module d'affichage. </p>
+<dl class="section pre"><dt>Précondition</dt><dd>L'écran TFT doit être correctement connecté </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>L'écran est prêt pour l'affichage des données dynamiques </dd></dl>
+
+</div>
+</div>
+<a id="ae9ca8d71a9d38fb157d80a0a29b19e4c" name="ae9ca8d71a9d38fb157d80a0a29b19e4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ca8d71a9d38fb157d80a0a29b19e4c">&#9670;&#160;</a></span>update_affichage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void update_affichage </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Met à jour l'affichage complet. </p>
+<p>Actualise tous les éléments dynamiques de l'écran (horizon, statistiques, etc.) </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="dir_a8f641299cfea9f7461c2df1141b7786.html">src</a></li><li class="navelem"><a class="el" href="display_8h.html">display.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

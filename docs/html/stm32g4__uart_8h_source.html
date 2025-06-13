@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe:  Fichier source de drivers/bsp/stm32g4_uart.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('stm32g4__uart_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">stm32g4_uart.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="stm32g4__uart_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/* Define to prevent recursive inclusion -------------------------------------*/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef BSP_STM32G4_UART_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define BSP_STM32G4_UART_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/* Includes ------------------------------------------------------------------*/</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="stm32g4__utils_8h.html">stm32g4_utils.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/* Exported macros -----------------------------------------------------------*/</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#if !((defined UART1_ON_PB7_PB6) ^ (defined UART1_ON_PA10_PA9)) </span><span class="comment">//Un &quot;non ou exclusif&quot;, ça c&#39;est la classe !</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">    #error &quot;Dans config.h -&gt; vous devez choisir entre UART1_ON_PB6_PB7 ou UART1_ON_PA9_PA10.&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#if !((defined UART2_ON_PA3_PA2) ^ (defined UART2_ON_PA15_PA14) ^ (defined UART2_ON_PB4_PB3))</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">    #error &quot;Dans config.h -&gt; vous devez choisir entre UART2_ON_PA2_PA3 ou UART2_ON_PA14_PA15 ou UART2_ON_PB3_PB4.&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="stm32g4__uart_8h.html#a69d95ec52e5394a000ac8f3dbf87e42a">   27</a></span><span class="preprocessor">#define ESCAPE_KEY_CODE 0x1B</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">/* Exported types ------------------------------------------------------------*/</span></div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">   30</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">   32</a></span>    <a class="code hl_enumvalue" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a> = 0,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43abbed001119b8682c71a500b7ffe5a023">   33</a></span>    <a class="code hl_enumvalue" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43abbed001119b8682c71a500b7ffe5a023">UART2_ID</a>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">   34</a></span>    <a class="code hl_enumvalue" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a>;</div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/* Exported functions prototypes ---------------------------------------------*/</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#ac4e53c572c00bd21cb5c1e2368664e7c">BSP_UART_demo</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#a1c3932c9d0c030624fd6724833593e95">BSP_UART_init</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint32_t baudrate);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#a5652b8a78874dcccceef950215b3ce45">BSP_UART_deinit</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">bool</span> <a class="code hl_function" href="stm32g4__uart_8h.html#a0ca03b66d7731ebfae7c4600d3b6ed5a">BSP_UART_button</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#acc8d973e31ca7d2cf1d354011817e10f">BSP_UART_putc</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t c);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>uint8_t <a class="code hl_function" href="stm32g4__uart_8h.html#a73a67c440953860015ae2db00c663e30">BSP_UART_get_next_byte</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>uint8_t <a class="code hl_function" href="stm32g4__uart_8h.html#a224b1ffb1c5690e59e09399d515e1d03">BSP_UART_getc</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>uint8_t <a class="code hl_function" href="stm32g4__uart_8h.html#ac89d48b87aa1ed85db3a4d8f03197268">BSP_UART_getc_blocking</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint32_t timeout_ms);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>uint32_t <a class="code hl_function" href="stm32g4__uart_8h.html#a0db5c8bf55f64b0e0e1002be73de6441">BSP_UART_gets_blocking</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t * datas, uint32_t len, uint32_t timeout);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>uint32_t <a class="code hl_function" href="stm32g4__uart_8h.html#a45bda4ffa4a5a6955e95b0e23a7349a3">BSP_UART_gets</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t * datas, uint32_t len);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#aa90876c0e442900cb530092e468c4cc8">BSP_UART_puts</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, <span class="keyword">const</span> uint8_t *str, uint16_t len);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">bool</span> <a class="code hl_function" href="stm32g4__uart_8h.html#a86c9ba55e63b8fd6d26285b0460e6ca9">BSP_UART_data_ready</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#ab3eecca21142f4f425756f6b563066a5">BSP_UART_set_callback</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, <a class="code hl_typedef" href="stm32g4__utils_8h.html#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a> cb);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keywordtype">void</span> <a class="code hl_function" href="stm32g4__uart_8h.html#a5624b706370a68ed252c43159de220ee">BSP_UART_impolite_force_puts_on_uart</a>(<a class="code hl_enumeration" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t * str, uint32_t len);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif </span><span class="comment">/* BSP_STM32G4_UART_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="ttc" id="aconfig_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div><div class="ttdoc">Fichier principal de configuration de votre projet sur carte Nucléo STM32G431KB. Permet d&#39;activer les...</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a0ca03b66d7731ebfae7c4600d3b6ed5a"><div class="ttname"><a href="stm32g4__uart_8h.html#a0ca03b66d7731ebfae7c4600d3b6ed5a">BSP_UART_button</a></div><div class="ttdeci">bool BSP_UART_button(uart_id_t uart_id)</div><div class="ttdoc">Simulation d&#39;un bouton par un appui clavier.</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:141</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a0db5c8bf55f64b0e0e1002be73de6441"><div class="ttname"><a href="stm32g4__uart_8h.html#a0db5c8bf55f64b0e0e1002be73de6441">BSP_UART_gets_blocking</a></div><div class="ttdeci">uint32_t BSP_UART_gets_blocking(uart_id_t uart_id, uint8_t *datas, uint32_t len, uint32_t timeout)</div><div class="ttdoc">Fonction blocante !! qui retourne &quot;len&quot; caracteres re�us sur l&#39;USARTx.</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:227</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a1c3932c9d0c030624fd6724833593e95"><div class="ttname"><a href="stm32g4__uart_8h.html#a1c3932c9d0c030624fd6724833593e95">BSP_UART_init</a></div><div class="ttdeci">void BSP_UART_init(uart_id_t uart_id, uint32_t baudrate)</div><div class="ttdoc">Initialise l&#39;USARTx - 8N1 - vitesse des bits (baudrate) indiqué en paramètre @func void UART_init(uin...</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:329</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a224b1ffb1c5690e59e09399d515e1d03"><div class="ttname"><a href="stm32g4__uart_8h.html#a224b1ffb1c5690e59e09399d515e1d03">BSP_UART_getc</a></div><div class="ttdeci">uint8_t BSP_UART_getc(uart_id_t uart_id)</div><div class="ttdoc">Fonction permettant de lire le prochain caractère reçu sur l&#39;UART demandé</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:188</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a45bda4ffa4a5a6955e95b0e23a7349a3"><div class="ttname"><a href="stm32g4__uart_8h.html#a45bda4ffa4a5a6955e95b0e23a7349a3">BSP_UART_gets</a></div><div class="ttdeci">uint32_t BSP_UART_gets(uart_id_t uart_id, uint8_t *datas, uint32_t len)</div><div class="ttdoc">Lit &quot;len&quot; caractères reçus, s&#39;ils existent...</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:249</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a5624b706370a68ed252c43159de220ee"><div class="ttname"><a href="stm32g4__uart_8h.html#a5624b706370a68ed252c43159de220ee">BSP_UART_impolite_force_puts_on_uart</a></div><div class="ttdeci">void BSP_UART_impolite_force_puts_on_uart(uart_id_t uart_id, uint8_t *str, uint32_t len)</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:557</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a5652b8a78874dcccceef950215b3ce45"><div class="ttname"><a href="stm32g4__uart_8h.html#a5652b8a78874dcccceef950215b3ce45">BSP_UART_deinit</a></div><div class="ttdeci">void BSP_UART_deinit(uart_id_t uart_id)</div><div class="ttdoc">Déinitialise l&#39;UARTx.</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:451</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a73a67c440953860015ae2db00c663e30"><div class="ttname"><a href="stm32g4__uart_8h.html#a73a67c440953860015ae2db00c663e30">BSP_UART_get_next_byte</a></div><div class="ttdeci">uint8_t BSP_UART_get_next_byte(uart_id_t uart_id)</div><div class="ttdoc">Fonction permettant de lire le prochain caractère reçu sur l&#39;UART demandé</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:162</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_a86c9ba55e63b8fd6d26285b0460e6ca9"><div class="ttname"><a href="stm32g4__uart_8h.html#a86c9ba55e63b8fd6d26285b0460e6ca9">BSP_UART_data_ready</a></div><div class="ttdeci">bool BSP_UART_data_ready(uart_id_t uart_id)</div><div class="ttdoc">Fonction permettant de savoir si le buffer de l&#39;UART demandé est vide ou non.</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:128</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_aa90876c0e442900cb530092e468c4cc8"><div class="ttname"><a href="stm32g4__uart_8h.html#aa90876c0e442900cb530092e468c4cc8">BSP_UART_puts</a></div><div class="ttdeci">void BSP_UART_puts(uart_id_t uart_id, const uint8_t *str, uint16_t len)</div><div class="ttdoc">Envoi une chaine de caractere sur l&#39;USARTx. Fonction BLOCANTE si un caractere est deja en cours d&#39;env...</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:290</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ab3eecca21142f4f425756f6b563066a5"><div class="ttname"><a href="stm32g4__uart_8h.html#ab3eecca21142f4f425756f6b563066a5">BSP_UART_set_callback</a></div><div class="ttdeci">void BSP_UART_set_callback(uart_id_t uart_id, callback_fun_t cb)</div><div class="ttdoc">Affecte une fonction de callback sur réception d&#39;un caractère UART.</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:511</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ac4e53c572c00bd21cb5c1e2368664e7c"><div class="ttname"><a href="stm32g4__uart_8h.html#ac4e53c572c00bd21cb5c1e2368664e7c">BSP_UART_demo</a></div><div class="ttdeci">void BSP_UART_demo(void)</div><div class="ttdoc">Cette fonction blocante a pour but de vous aider à appréhender les fonctionnalités de ce module logic...</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:94</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ac89d48b87aa1ed85db3a4d8f03197268"><div class="ttname"><a href="stm32g4__uart_8h.html#ac89d48b87aa1ed85db3a4d8f03197268">BSP_UART_getc_blocking</a></div><div class="ttdeci">uint8_t BSP_UART_getc_blocking(uart_id_t uart_id, uint32_t timeout_ms)</div><div class="ttdoc">Fonction blocante !! qui retourne le dernier caractere re�u sur l&#39;USARTx. Ou 0 si pas de caractere re...</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:203</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_acc8d973e31ca7d2cf1d354011817e10f"><div class="ttname"><a href="stm32g4__uart_8h.html#acc8d973e31ca7d2cf1d354011817e10f">BSP_UART_putc</a></div><div class="ttdeci">void BSP_UART_putc(uart_id_t uart_id, uint8_t c)</div><div class="ttdoc">Envoi un caractere sur l&#39;UARTx. Fonction BLOCANTE si un caractere est deja en cours d&#39;envoi.</div><div class="ttdef"><b>Definition</b> stm32g4_uart.c:268</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ada81ace00fa480969ed3a1938a6d9c43"><div class="ttname"><a href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></div><div class="ttdeci">uart_id_t</div><div class="ttdef"><b>Definition</b> stm32g4_uart.h:31</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc"><div class="ttname"><a href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a2862a6e82b362251855874813aea09cc">UART1_ID</a></div><div class="ttdeci">@ UART1_ID</div><div class="ttdef"><b>Definition</b> stm32g4_uart.h:32</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc"><div class="ttname"><a href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a></div><div class="ttdeci">@ UART_ID_NB</div><div class="ttdef"><b>Definition</b> stm32g4_uart.h:34</div></div>
+<div class="ttc" id="astm32g4__uart_8h_html_ada81ace00fa480969ed3a1938a6d9c43abbed001119b8682c71a500b7ffe5a023"><div class="ttname"><a href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43abbed001119b8682c71a500b7ffe5a023">UART2_ID</a></div><div class="ttdeci">@ UART2_ID</div><div class="ttdef"><b>Definition</b> stm32g4_uart.h:33</div></div>
+<div class="ttc" id="astm32g4__utils_8h_html"><div class="ttname"><a href="stm32g4__utils_8h.html">stm32g4_utils.h</a></div><div class="ttdoc">Collection of tools used in BSP drivers Adapted from macro_types.h file (S.Poiraud)</div></div>
+<div class="ttc" id="astm32g4__utils_8h_html_a664cd2bdc5d7b9c4d70720cdd0f41938"><div class="ttname"><a href="stm32g4__utils_8h.html#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a></div><div class="ttdeci">void(* callback_fun_t)(void)</div><div class="ttdef"><b>Definition</b> stm32g4_utils.h:76</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_5004f88798df035968551ccccdaf7179.html">bsp</a></li><li class="navelem"><a class="el" href="stm32g4__uart_8h.html">stm32g4_uart.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

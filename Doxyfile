@@ -1,0 +1,53 @@
+# Doxyfile 1.9.8
+# Généré pour le projet Drone_1_Axe
+
+# Répertoire source
+INPUT                  = ./app #./core ./drivers
+
+# Répertoire de sortie de la documentation
+OUTPUT_DIRECTORY       = ./docs
+
+# Générer la documentation HTML
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
+# Générer la documentation LaTeX (désactivé)
+GENERATE_LATEX         = NO
+
+# Générer la documentation au format man (désactivé)
+GENERATE_MAN           = NO
+
+# Générer la documentation au format RTF (désactivé)
+GENERATE_RTF           = NO
+
+# Générer la documentation au format XML (désactivé)
+GENERATE_XML           = NO
+
+# Extraction des commentaires de documentation
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# Fichiers à exclure
+EXCLUDE                = */Debug/*
+
+# Utiliser le thème Awesome Doxygen
+HTML_THEME             = awesome-doxygen
+
+# Chemin du thème (sera téléchargé dans docs/awesome-theme)
+HTML_EXTRA_STYLESHEET  = docs/awesome-theme/awesome.css
+HTML_EXTRA_FILES       = docs/awesome-theme/awesome.js
+
+# Générer un index de classes et de fichiers
+GENERATE_TREEVIEW      = YES
+
+# Langue de la documentation
+OUTPUT_LANGUAGE        = French
+
+# Autres options utiles
+RECURSIVE              = YES
+PROJECT_NAME           = "Drone_1_Axe"
+PROJECT_BRIEF          = "Contrôle d'un drone à base STM32G431"
+
+# Types de fichiers à inclure dans la documentation
+FILE_PATTERNS           = *.c *.h

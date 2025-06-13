@@ -1,0 +1,712 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe: Référence du fichier drivers/bsp/stm32g4_utils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('stm32g4__utils_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#enum-members">Énumérations</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier stm32g4_utils.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Collection of tools used in BSP drivers Adapted from macro_types.h file (S.Poiraud)  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+</div>
+<p><a href="stm32g4__utils_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a509602685af8bb7d9b1d542a05fcf90d" id="r_a509602685af8bb7d9b1d542a05fcf90d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a509602685af8bb7d9b1d542a05fcf90d">HIGHINT</a>(x)</td></tr>
+<tr class="separator:a509602685af8bb7d9b1d542a05fcf90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c0d46bbc973738891db7b515da0f4d" id="r_a19c0d46bbc973738891db7b515da0f4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19c0d46bbc973738891db7b515da0f4d">LOWINT</a>(x)</td></tr>
+<tr class="separator:a19c0d46bbc973738891db7b515da0f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5923fffe96f8f42602a6455a393ed9" id="r_a3a5923fffe96f8f42602a6455a393ed9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a5923fffe96f8f42602a6455a393ed9">U16FROMU8</a>(high,  low)</td></tr>
+<tr class="separator:a3a5923fffe96f8f42602a6455a393ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab165d3bef67e6e3fdbf652341cdc0371" id="r_ab165d3bef67e6e3fdbf652341cdc0371"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab165d3bef67e6e3fdbf652341cdc0371">U32FROMU16</a>(high,  low)</td></tr>
+<tr class="separator:ab165d3bef67e6e3fdbf652341cdc0371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cea4efa9b90871fd0bd7a56b6ec2ef3" id="r_a0cea4efa9b90871fd0bd7a56b6ec2ef3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cea4efa9b90871fd0bd7a56b6ec2ef3">U32FROMU8</a>(higher,  high,  low,  lower)</td></tr>
+<tr class="separator:a0cea4efa9b90871fd0bd7a56b6ec2ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab510e6b123bfef2b83aa33c33413d93" id="r_aab510e6b123bfef2b83aa33c33413d93"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab510e6b123bfef2b83aa33c33413d93">BITS_ON</a>(var,  mask)</td></tr>
+<tr class="separator:aab510e6b123bfef2b83aa33c33413d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d0b0245fdfd088d309228e610ff20f" id="r_ad4d0b0245fdfd088d309228e610ff20f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4d0b0245fdfd088d309228e610ff20f">BITS_OFF</a>(var,  mask)</td></tr>
+<tr class="separator:ad4d0b0245fdfd088d309228e610ff20f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af731cc537bdcf008eb1ed52d3f6feb2a" id="r_af731cc537bdcf008eb1ed52d3f6feb2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af731cc537bdcf008eb1ed52d3f6feb2a">BIT_SET</a>(var,  bitno)</td></tr>
+<tr class="separator:af731cc537bdcf008eb1ed52d3f6feb2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fb9417891053a301888037b7e4d0bfc" id="r_a6fb9417891053a301888037b7e4d0bfc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fb9417891053a301888037b7e4d0bfc">BIT_CLR</a>(var,  bitno)</td></tr>
+<tr class="separator:a6fb9417891053a301888037b7e4d0bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5952e159246c62a6bbc867d506b00dfa" id="r_a5952e159246c62a6bbc867d506b00dfa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5952e159246c62a6bbc867d506b00dfa">BIT_TEST</a>(data,  bitno)</td></tr>
+<tr class="separator:a5952e159246c62a6bbc867d506b00dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3acffbd305ee72dcd4593c0d8af64a4f" id="r_a3acffbd305ee72dcd4593c0d8af64a4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(a,  b)</td></tr>
+<tr class="separator:a3acffbd305ee72dcd4593c0d8af64a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa99ec4acc4ecb2dc3c2d05da15d0e3f" id="r_afa99ec4acc4ecb2dc3c2d05da15d0e3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(a,  b)</td></tr>
+<tr class="separator:afa99ec4acc4ecb2dc3c2d05da15d0e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c4a9e5e4622948245de4ec0b5d38329" id="r_a8c4a9e5e4622948245de4ec0b5d38329"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c4a9e5e4622948245de4ec0b5d38329">SIGN</a>(a)</td></tr>
+<tr class="separator:a8c4a9e5e4622948245de4ec0b5d38329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf0f7e8157f426fb0ca60485ee14f43d" id="r_adf0f7e8157f426fb0ca60485ee14f43d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf0f7e8157f426fb0ca60485ee14f43d">AROUND_UP</a>(a)</td></tr>
+<tr class="separator:adf0f7e8157f426fb0ca60485ee14f43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8319fdd3c80f2b7346d1da841723f950" id="r_a8319fdd3c80f2b7346d1da841723f950"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8319fdd3c80f2b7346d1da841723f950">CLIPPING</a>(value_,  min_,  max_)</td></tr>
+<tr class="separator:a8319fdd3c80f2b7346d1da841723f950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70c57aae3eb654e205459b4362c8089a" id="r_a70c57aae3eb654e205459b4362c8089a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c57aae3eb654e205459b4362c8089a">ARRAY_SIZE</a>(array)</td></tr>
+<tr class="separator:a70c57aae3eb654e205459b4362c8089a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c92c29fa8e83ab85e05543010e10d7c" id="r_a6c92c29fa8e83ab85e05543010e10d7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c92c29fa8e83ab85e05543010e10d7c">nop</a>()</td></tr>
+<tr class="separator:a6c92c29fa8e83ab85e05543010e10d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a183caa0816f482df55d1e793cb6be531" id="r_a183caa0816f482df55d1e793cb6be531"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183caa0816f482df55d1e793cb6be531">ABSOLUTE</a>(x)</td></tr>
+<tr class="separator:a183caa0816f482df55d1e793cb6be531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb2dbc5b4510ab919d242197700f4a43" id="r_aeb2dbc5b4510ab919d242197700f4a43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb2dbc5b4510ab919d242197700f4a43">MODULO</a>(x,  N)</td></tr>
+<tr class="separator:aeb2dbc5b4510ab919d242197700f4a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdcc5aaebf3f273c1762f24a6ece2e5e" id="r_acdcc5aaebf3f273c1762f24a6ece2e5e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdcc5aaebf3f273c1762f24a6ece2e5e">assert</a>(condition)</td></tr>
+<tr class="separator:acdcc5aaebf3f273c1762f24a6ece2e5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2150750f34fc8012902e89ffda7e10" id="r_acb2150750f34fc8012902e89ffda7e10"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb2150750f34fc8012902e89ffda7e10">debug_printf</a>(...)</td></tr>
+<tr class="separator:acb2150750f34fc8012902e89ffda7e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2229839e4acfac02eb54fb0ea3e122f" id="r_ac2229839e4acfac02eb54fb0ea3e122f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2229839e4acfac02eb54fb0ea3e122f">PRINT_ON_UART_LCD_DISPLAY</a></td></tr>
+<tr class="separator:ac2229839e4acfac02eb54fb0ea3e122f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ccceb73efeb3e910e1247755c326b4" id="r_a38ccceb73efeb3e910e1247755c326b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38ccceb73efeb3e910e1247755c326b4">lcd_to_uart_printf</a>(...)</td></tr>
+<tr class="separator:a38ccceb73efeb3e910e1247755c326b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:a664cd2bdc5d7b9c4d70720cdd0f41938" id="r_a664cd2bdc5d7b9c4d70720cdd0f41938"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a>) (void)</td></tr>
+<tr class="separator:a664cd2bdc5d7b9c4d70720cdd0f41938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:ae096363d9ee6c750a65e1cb6dd706059" id="r_ae096363d9ee6c750a65e1cb6dd706059"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae096363d9ee6c750a65e1cb6dd706059">running_t</a> { <a class="el" href="#ae096363d9ee6c750a65e1cb6dd706059a643cea6438bbca00e218a0b1c05e1012">IN_PROGRESS</a> = 0
+, <a class="el" href="#ae096363d9ee6c750a65e1cb6dd706059a2ff685c5e910d35250d80892894a3d39">END_OK</a>
+, <a class="el" href="#ae096363d9ee6c750a65e1cb6dd706059a8a949616d63518ca76be5508d2a84ec1">END_ERROR</a>
+, <a class="el" href="#ae096363d9ee6c750a65e1cb6dd706059a79a5a545db550959699df420de203624">END_TIMEOUT</a>
+ }</td></tr>
+<tr class="separator:ae096363d9ee6c750a65e1cb6dd706059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Collection of tools used in BSP drivers Adapted from macro_types.h file (S.Poiraud) </p>
+<dl class="section author"><dt>Auteur</dt><dd>jjo </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Mar 14, 2024  </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a183caa0816f482df55d1e793cb6be531" name="a183caa0816f482df55d1e793cb6be531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183caa0816f482df55d1e793cb6be531">&#9670;&#160;</a></span>ABSOLUTE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ABSOLUTE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(((x) &gt;= 0) ? (x) : (-(x)))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adf0f7e8157f426fb0ca60485ee14f43d" name="adf0f7e8157f426fb0ca60485ee14f43d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf0f7e8157f426fb0ca60485ee14f43d">&#9670;&#160;</a></span>AROUND_UP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AROUND_UP</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((<a class="code hl_define" href="#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>((a),(int32_t)(a)) == (int32_t)(a))?(a):(a)+1)</div>
+<div class="ttc" id="astm32g4__utils_8h_html_afa99ec4acc4ecb2dc3c2d05da15d0e3f"><div class="ttname"><a href="#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a></div><div class="ttdeci">#define MAX(a, b)</div><div class="ttdef"><b>Definition</b> stm32g4_utils.h:33</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a70c57aae3eb654e205459b4362c8089a" name="a70c57aae3eb654e205459b4362c8089a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c57aae3eb654e205459b4362c8089a">&#9670;&#160;</a></span>ARRAY_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARRAY_SIZE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>array</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(<span class="keyword">sizeof</span>(array) / <span class="keyword">sizeof</span>(array[0]))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="acdcc5aaebf3f273c1762f24a6ece2e5e" name="acdcc5aaebf3f273c1762f24a6ece2e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdcc5aaebf3f273c1762f24a6ece2e5e">&#9670;&#160;</a></span>assert</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define assert</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>condition</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line"><span class="keywordflow">if</span>(!(condition)) {printf(<span class="stringliteral">&quot;assert failed file &quot;</span> __FILE__ <span class="stringliteral">&quot; line %d : %s&quot;</span>, __LINE__ , #condition ); <a class="code hl_define" href="group___c_m_s_i_s___c_o_r_e.html#ga6aa0367d3642575610476bf0366f0c48">NVIC_SystemReset</a>();}</div>
+<div class="ttc" id="agroup___c_m_s_i_s___c_o_r_e_html_ga6aa0367d3642575610476bf0366f0c48"><div class="ttname"><a href="group___c_m_s_i_s___c_o_r_e.html#ga6aa0367d3642575610476bf0366f0c48">NVIC_SystemReset</a></div><div class="ttdeci">#define NVIC_SystemReset</div><div class="ttdef"><b>Definition</b> core_armv81mml.h:2130</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6fb9417891053a301888037b7e4d0bfc" name="a6fb9417891053a301888037b7e4d0bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fb9417891053a301888037b7e4d0bfc">&#9670;&#160;</a></span>BIT_CLR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIT_CLR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>var</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>bitno</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((var) &amp;= ~(1 &lt;&lt; (bitno)))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af731cc537bdcf008eb1ed52d3f6feb2a" name="af731cc537bdcf008eb1ed52d3f6feb2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af731cc537bdcf008eb1ed52d3f6feb2a">&#9670;&#160;</a></span>BIT_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIT_SET</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>var</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>bitno</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((var) |= (1 &lt;&lt; (bitno)))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a5952e159246c62a6bbc867d506b00dfa" name="a5952e159246c62a6bbc867d506b00dfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5952e159246c62a6bbc867d506b00dfa">&#9670;&#160;</a></span>BIT_TEST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIT_TEST</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>bitno</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(((data) &gt;&gt; (bitno)) &amp; 0x01)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad4d0b0245fdfd088d309228e610ff20f" name="ad4d0b0245fdfd088d309228e610ff20f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d0b0245fdfd088d309228e610ff20f">&#9670;&#160;</a></span>BITS_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BITS_OFF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>var</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mask</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((var) &amp;= ~0 ^ (mask))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aab510e6b123bfef2b83aa33c33413d93" name="aab510e6b123bfef2b83aa33c33413d93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab510e6b123bfef2b83aa33c33413d93">&#9670;&#160;</a></span>BITS_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BITS_ON</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>var</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mask</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((var) |= (mask))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8319fdd3c80f2b7346d1da841723f950" name="a8319fdd3c80f2b7346d1da841723f950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8319fdd3c80f2b7346d1da841723f950">&#9670;&#160;</a></span>CLIPPING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLIPPING</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>value_</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>min_</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>max_</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(<a class="code hl_define" href="#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(<a class="code hl_define" href="#a3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(value_, max_), min_))</div>
+<div class="ttc" id="astm32g4__utils_8h_html_a3acffbd305ee72dcd4593c0d8af64a4f"><div class="ttname"><a href="#a3acffbd305ee72dcd4593c0d8af64a4f">MIN</a></div><div class="ttdeci">#define MIN(a, b)</div><div class="ttdef"><b>Definition</b> stm32g4_utils.h:32</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="acb2150750f34fc8012902e89ffda7e10" name="acb2150750f34fc8012902e89ffda7e10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb2150750f34fc8012902e89ffda7e10">&#9670;&#160;</a></span>debug_printf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define debug_printf</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">printf(__VA_ARGS__)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a509602685af8bb7d9b1d542a05fcf90d" name="a509602685af8bb7d9b1d542a05fcf90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a509602685af8bb7d9b1d542a05fcf90d">&#9670;&#160;</a></span>HIGHINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HIGHINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((uint8_t)(((x) &gt;&gt; 8) &amp; 0xFF))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a38ccceb73efeb3e910e1247755c326b4" name="a38ccceb73efeb3e910e1247755c326b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ccceb73efeb3e910e1247755c326b4">&#9670;&#160;</a></span>lcd_to_uart_printf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define lcd_to_uart_printf</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">printf(__VA_ARGS__)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a19c0d46bbc973738891db7b515da0f4d" name="a19c0d46bbc973738891db7b515da0f4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c0d46bbc973738891db7b515da0f4d">&#9670;&#160;</a></span>LOWINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOWINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((uint8_t)((x) &amp; 0xFF))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afa99ec4acc4ecb2dc3c2d05da15d0e3f" name="afa99ec4acc4ecb2dc3c2d05da15d0e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa99ec4acc4ecb2dc3c2d05da15d0e3f">&#9670;&#160;</a></span>MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(((a) &gt; (b)) ? (a) : (b))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3acffbd305ee72dcd4593c0d8af64a4f" name="a3acffbd305ee72dcd4593c0d8af64a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3acffbd305ee72dcd4593c0d8af64a4f">&#9670;&#160;</a></span>MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">(((a) &gt; (b)) ? (b) : (a))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aeb2dbc5b4510ab919d242197700f4a43" name="aeb2dbc5b4510ab919d242197700f4a43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb2dbc5b4510ab919d242197700f4a43">&#9670;&#160;</a></span>MODULO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MODULO</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>N</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((x % N + N) % N)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6c92c29fa8e83ab85e05543010e10d7c" name="a6c92c29fa8e83ab85e05543010e10d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c92c29fa8e83ab85e05543010e10d7c">&#9670;&#160;</a></span>nop</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define nop</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">__asm__(<span class="stringliteral">&quot;nop&quot;</span>)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ac2229839e4acfac02eb54fb0ea3e122f" name="ac2229839e4acfac02eb54fb0ea3e122f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2229839e4acfac02eb54fb0ea3e122f">&#9670;&#160;</a></span>PRINT_ON_UART_LCD_DISPLAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRINT_ON_UART_LCD_DISPLAY</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c4a9e5e4622948245de4ec0b5d38329" name="a8c4a9e5e4622948245de4ec0b5d38329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4a9e5e4622948245de4ec0b5d38329">&#9670;&#160;</a></span>SIGN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIGN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((a &gt; 0)?1:((a &lt; 0)?-1:0))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3a5923fffe96f8f42602a6455a393ed9" name="a3a5923fffe96f8f42602a6455a393ed9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a5923fffe96f8f42602a6455a393ed9">&#9670;&#160;</a></span>U16FROMU8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U16FROMU8</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>high</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>low</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((((uint16_t)(high))&lt;&lt;8)|(uint16_t)(low))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab165d3bef67e6e3fdbf652341cdc0371" name="ab165d3bef67e6e3fdbf652341cdc0371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab165d3bef67e6e3fdbf652341cdc0371">&#9670;&#160;</a></span>U32FROMU16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U32FROMU16</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>high</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>low</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((((uint32_t)(high))&lt;&lt;16)|(uint32_t)(low))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0cea4efa9b90871fd0bd7a56b6ec2ef3" name="a0cea4efa9b90871fd0bd7a56b6ec2ef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cea4efa9b90871fd0bd7a56b6ec2ef3">&#9670;&#160;</a></span>U32FROMU8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U32FROMU8</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>higher</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>high</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>low</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>lower</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur :</b><div class="fragment"><div class="line">((((uint32_t)(higher))&lt;&lt;24)|(((uint32_t)(high))&lt;&lt;16)|(((uint32_t)(low))&lt;&lt;8)|(uint32_t)(lower))</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="a664cd2bdc5d7b9c4d70720cdd0f41938" name="a664cd2bdc5d7b9c4d70720cdd0f41938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664cd2bdc5d7b9c4d70720cdd0f41938">&#9670;&#160;</a></span>callback_fun_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* callback_fun_t) (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation du type de l'énumération</h2>
+<a id="ae096363d9ee6c750a65e1cb6dd706059" name="ae096363d9ee6c750a65e1cb6dd706059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae096363d9ee6c750a65e1cb6dd706059">&#9670;&#160;</a></span>running_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae096363d9ee6c750a65e1cb6dd706059">running_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="ae096363d9ee6c750a65e1cb6dd706059a643cea6438bbca00e218a0b1c05e1012" name="ae096363d9ee6c750a65e1cb6dd706059a643cea6438bbca00e218a0b1c05e1012"></a>IN_PROGRESS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae096363d9ee6c750a65e1cb6dd706059a2ff685c5e910d35250d80892894a3d39" name="ae096363d9ee6c750a65e1cb6dd706059a2ff685c5e910d35250d80892894a3d39"></a>END_OK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae096363d9ee6c750a65e1cb6dd706059a8a949616d63518ca76be5508d2a84ec1" name="ae096363d9ee6c750a65e1cb6dd706059a8a949616d63518ca76be5508d2a84ec1"></a>END_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae096363d9ee6c750a65e1cb6dd706059a79a5a545db550959699df420de203624" name="ae096363d9ee6c750a65e1cb6dd706059a79a5a545db550959699df420de203624"></a>END_TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_5004f88798df035968551ccccdaf7179.html">bsp</a></li><li class="navelem"><a class="el" href="stm32g4__utils_8h.html">stm32g4_utils.h</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

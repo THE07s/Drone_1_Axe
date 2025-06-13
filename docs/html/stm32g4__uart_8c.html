@@ -1,0 +1,927 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Drone_1_Axe: Référence du fichier drivers/bsp/stm32g4_uart.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Drone_1_Axe
+   </div>
+   <div id="projectbrief">Contrôle d&#39;un drone à base STM32G431</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('stm32g4__uart_8c.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier stm32g4_uart.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Module UART pour cible stm32g4 Adaptation du module stm32f1_uart.c de S.Poiraud et T.Bouvier.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="stm32g4__uart_8h_source.html">stm32g4_uart.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4__sys_8h_source.html">stm32g4_sys.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4__gpio_8h_source.html">stm32g4_gpio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32g4__utils_8h_source.html">stm32g4_utils.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3de6d5eef6cd86defdb637781eb4f803" id="r_a3de6d5eef6cd86defdb637781eb4f803"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3de6d5eef6cd86defdb637781eb4f803">BUFFER_RX_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a3de6d5eef6cd86defdb637781eb4f803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfa4c5934f87ff1d1fd9ca34502a20ca" id="r_adfa4c5934f87ff1d1fd9ca34502a20ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfa4c5934f87ff1d1fd9ca34502a20ca">UART_TIMEOUT</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:adfa4c5934f87ff1d1fd9ca34502a20ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2d3a3c3c97ef17e2905b0e23998f6f" id="r_aca2d3a3c3c97ef17e2905b0e23998f6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca2d3a3c3c97ef17e2905b0e23998f6f">DEMO_TAB_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:aca2d3a3c3c97ef17e2905b0e23998f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa8a25f1ecd2e88bfbec92cd9a7641c6" id="r_afa8a25f1ecd2e88bfbec92cd9a7641c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa8a25f1ecd2e88bfbec92cd9a7641c6">USART_FLAG_ERRORS</a>&#160;&#160;&#160;(<a class="el" href="group___peripheral___registers___bits___definition.html#ga9e5b4a08e3655bed8ec3022947cfc542">USART_ISR_ORE</a> | <a class="el" href="group___peripheral___registers___bits___definition.html#ga09c7d19477a091689f50bd0ef5b6a3d8">USART_ISR_NE</a> | <a class="el" href="group___peripheral___registers___bits___definition.html#ga27cc4dfb6d5e817a69c80471b87deb4b">USART_ISR_FE</a> | <a class="el" href="group___peripheral___registers___bits___definition.html#gaa10e69d231b67d698ab59db3d338baa6">USART_ISR_PE</a>)</td></tr>
+<tr class="separator:afa8a25f1ecd2e88bfbec92cd9a7641c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ac4e53c572c00bd21cb5c1e2368664e7c" id="r_ac4e53c572c00bd21cb5c1e2368664e7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4e53c572c00bd21cb5c1e2368664e7c">BSP_UART_demo</a> (void)</td></tr>
+<tr class="memdesc:ac4e53c572c00bd21cb5c1e2368664e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette fonction blocante a pour but de vous aider à appréhender les fonctionnalités de ce module logiciel.  <br /></td></tr>
+<tr class="separator:ac4e53c572c00bd21cb5c1e2368664e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86c9ba55e63b8fd6d26285b0460e6ca9" id="r_a86c9ba55e63b8fd6d26285b0460e6ca9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86c9ba55e63b8fd6d26285b0460e6ca9">BSP_UART_data_ready</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id)</td></tr>
+<tr class="memdesc:a86c9ba55e63b8fd6d26285b0460e6ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de savoir si le buffer de l'UART demandé est vide ou non.  <br /></td></tr>
+<tr class="separator:a86c9ba55e63b8fd6d26285b0460e6ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ca03b66d7731ebfae7c4600d3b6ed5a" id="r_a0ca03b66d7731ebfae7c4600d3b6ed5a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ca03b66d7731ebfae7c4600d3b6ed5a">BSP_UART_button</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id)</td></tr>
+<tr class="memdesc:a0ca03b66d7731ebfae7c4600d3b6ed5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation d'un bouton par un appui clavier.  <br /></td></tr>
+<tr class="separator:a0ca03b66d7731ebfae7c4600d3b6ed5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73a67c440953860015ae2db00c663e30" id="r_a73a67c440953860015ae2db00c663e30"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73a67c440953860015ae2db00c663e30">BSP_UART_get_next_byte</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id)</td></tr>
+<tr class="memdesc:a73a67c440953860015ae2db00c663e30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de lire le prochain caractère reçu sur l'UART demandé  <br /></td></tr>
+<tr class="separator:a73a67c440953860015ae2db00c663e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a224b1ffb1c5690e59e09399d515e1d03" id="r_a224b1ffb1c5690e59e09399d515e1d03"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a224b1ffb1c5690e59e09399d515e1d03">BSP_UART_getc</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id)</td></tr>
+<tr class="memdesc:a224b1ffb1c5690e59e09399d515e1d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de lire le prochain caractère reçu sur l'UART demandé  <br /></td></tr>
+<tr class="separator:a224b1ffb1c5690e59e09399d515e1d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c37277a3b0e00aeea260c8b6b8046f9" id="r_a9c37277a3b0e00aeea260c8b6b8046f9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c37277a3b0e00aeea260c8b6b8046f9">BSP_UART_getc_blocking</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint32_t timeout)</td></tr>
+<tr class="memdesc:a9c37277a3b0e00aeea260c8b6b8046f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction blocante !! qui retourne le dernier caractere re�u sur l'USARTx. Ou 0 si pas de caractere re�u au del� du timeout.  <br /></td></tr>
+<tr class="separator:a9c37277a3b0e00aeea260c8b6b8046f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db5c8bf55f64b0e0e1002be73de6441" id="r_a0db5c8bf55f64b0e0e1002be73de6441"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0db5c8bf55f64b0e0e1002be73de6441">BSP_UART_gets_blocking</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t *datas, uint32_t len, uint32_t timeout)</td></tr>
+<tr class="memdesc:a0db5c8bf55f64b0e0e1002be73de6441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction blocante !! qui retourne "len" caracteres re�us sur l'USARTx.  <br /></td></tr>
+<tr class="separator:a0db5c8bf55f64b0e0e1002be73de6441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45bda4ffa4a5a6955e95b0e23a7349a3" id="r_a45bda4ffa4a5a6955e95b0e23a7349a3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45bda4ffa4a5a6955e95b0e23a7349a3">BSP_UART_gets</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t *datas, uint32_t len)</td></tr>
+<tr class="memdesc:a45bda4ffa4a5a6955e95b0e23a7349a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit "len" caractères reçus, s'ils existent...  <br /></td></tr>
+<tr class="separator:a45bda4ffa4a5a6955e95b0e23a7349a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc8d973e31ca7d2cf1d354011817e10f" id="r_acc8d973e31ca7d2cf1d354011817e10f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc8d973e31ca7d2cf1d354011817e10f">BSP_UART_putc</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t c)</td></tr>
+<tr class="memdesc:acc8d973e31ca7d2cf1d354011817e10f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envoi un caractere sur l'UARTx. Fonction BLOCANTE si un caractere est deja en cours d'envoi.  <br /></td></tr>
+<tr class="separator:acc8d973e31ca7d2cf1d354011817e10f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa90876c0e442900cb530092e468c4cc8" id="r_aa90876c0e442900cb530092e468c4cc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa90876c0e442900cb530092e468c4cc8">BSP_UART_puts</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, const uint8_t *str, uint16_t len)</td></tr>
+<tr class="memdesc:aa90876c0e442900cb530092e468c4cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envoi une chaine de caractere sur l'USARTx. Fonction BLOCANTE si un caractere est deja en cours d'envoi.  <br /></td></tr>
+<tr class="separator:aa90876c0e442900cb530092e468c4cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c3932c9d0c030624fd6724833593e95" id="r_a1c3932c9d0c030624fd6724833593e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c3932c9d0c030624fd6724833593e95">BSP_UART_init</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint32_t baudrate)</td></tr>
+<tr class="memdesc:a1c3932c9d0c030624fd6724833593e95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'USARTx - 8N1 - vitesse des bits (baudrate) indiqué en paramètre @func void UART_init(uint8_t uart_id, uart_interrupt_mode_e mode)  <br /></td></tr>
+<tr class="separator:a1c3932c9d0c030624fd6724833593e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e553b32211877322f949b14801bbfa7" id="r_ga0e553b32211877322f949b14801bbfa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_a_r_t___exported___functions___group1.html#ga0e553b32211877322f949b14801bbfa7">HAL_UART_MspInit</a> (<a class="el" href="group___u_a_r_t___exported___types.html#ga5de4a49eb132735325e706f406c69d6e">UART_HandleTypeDef</a> *uart_handle)</td></tr>
+<tr class="separator:ga0e553b32211877322f949b14801bbfa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5652b8a78874dcccceef950215b3ce45" id="r_a5652b8a78874dcccceef950215b3ce45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5652b8a78874dcccceef950215b3ce45">BSP_UART_deinit</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id)</td></tr>
+<tr class="memdesc:a5652b8a78874dcccceef950215b3ce45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déinitialise l'UARTx.  <br /></td></tr>
+<tr class="separator:a5652b8a78874dcccceef950215b3ce45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga718f39804e3b910d738a0e1e46151188" id="r_ga718f39804e3b910d738a0e1e46151188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_a_r_t___exported___functions___group1.html#ga718f39804e3b910d738a0e1e46151188">HAL_UART_MspDeInit</a> (<a class="el" href="group___u_a_r_t___exported___types.html#ga5de4a49eb132735325e706f406c69d6e">UART_HandleTypeDef</a> *uart_handle)</td></tr>
+<tr class="separator:ga718f39804e3b910d738a0e1e46151188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7139cd4baabbbcbab0c1fe6d7d4ae1cc" id="r_a7139cd4baabbbcbab0c1fe6d7d4ae1cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7139cd4baabbbcbab0c1fe6d7d4ae1cc">USART1_IRQHandler</a> (void)</td></tr>
+<tr class="separator:a7139cd4baabbbcbab0c1fe6d7d4ae1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ca6fd0e6f77921dd1123539857ba0a8" id="r_a0ca6fd0e6f77921dd1123539857ba0a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ca6fd0e6f77921dd1123539857ba0a8">USART2_IRQHandler</a> (void)</td></tr>
+<tr class="separator:a0ca6fd0e6f77921dd1123539857ba0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3eecca21142f4f425756f6b563066a5" id="r_ab3eecca21142f4f425756f6b563066a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3eecca21142f4f425756f6b563066a5">BSP_UART_set_callback</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, <a class="el" href="stm32g4__utils_8h.html#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a> cb)</td></tr>
+<tr class="memdesc:ab3eecca21142f4f425756f6b563066a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affecte une fonction de callback sur réception d'un caractère UART.  <br /></td></tr>
+<tr class="separator:ab3eecca21142f4f425756f6b563066a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e0456ea96d55db31de947fb3e954f18" id="r_ga0e0456ea96d55db31de947fb3e954f18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_a_r_t___exported___functions___group2.html#ga0e0456ea96d55db31de947fb3e954f18">HAL_UART_ErrorCallback</a> (<a class="el" href="group___u_a_r_t___exported___types.html#ga5de4a49eb132735325e706f406c69d6e">UART_HandleTypeDef</a> *huart)</td></tr>
+<tr class="separator:ga0e0456ea96d55db31de947fb3e954f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae494a9643f29b87d6d81e5264e60e57b" id="r_gae494a9643f29b87d6d81e5264e60e57b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_a_r_t___exported___functions___group2.html#gae494a9643f29b87d6d81e5264e60e57b">HAL_UART_RxCpltCallback</a> (<a class="el" href="group___u_a_r_t___exported___types.html#ga5de4a49eb132735325e706f406c69d6e">UART_HandleTypeDef</a> *huart)</td></tr>
+<tr class="memdesc:gae494a9643f29b87d6d81e5264e60e57b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette fonction est appelée en interruption UART par le module HAL.  <br /></td></tr>
+<tr class="separator:gae494a9643f29b87d6d81e5264e60e57b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5624b706370a68ed252c43159de220ee" id="r_a5624b706370a68ed252c43159de220ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5624b706370a68ed252c43159de220ee">BSP_UART_impolite_force_puts_on_uart</a> (<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a> uart_id, uint8_t *str, uint32_t len)</td></tr>
+<tr class="separator:a5624b706370a68ed252c43159de220ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac5fca37c557c00c05339275eaea6cd39" id="r_ac5fca37c557c00c05339275eaea6cd39"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___u_a_r_t___exported___types.html#ga5de4a49eb132735325e706f406c69d6e">UART_HandleTypeDef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5fca37c557c00c05339275eaea6cd39">structure_handles</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>]</td></tr>
+<tr class="separator:ac5fca37c557c00c05339275eaea6cd39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf07100315cbb9544d24d708c4bc75bd" id="r_acf07100315cbb9544d24d708c4bc75bd"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="struct_u_s_a_r_t___type_def.html">USART_TypeDef</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf07100315cbb9544d24d708c4bc75bd">instances_array</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {<a class="el" href="group___peripheral__declaration.html#ga92871691058ff7ccffd7635930cb08da">USART1</a>, <a class="el" href="group___peripheral__declaration.html#gaf114a9eab03ca08a6fb720e511595930">USART2</a>}</td></tr>
+<tr class="separator:acf07100315cbb9544d24d708c4bc75bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b665df429a5c2e89fade8e9ad5e829d" id="r_a6b665df429a5c2e89fade8e9ad5e829d"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="group___peripheral__interrupt__number__definition.html#ga7e1129cd8a196f4284d41db3e82ad5c8">IRQn_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b665df429a5c2e89fade8e9ad5e829d">nvic_IRQ_array</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {<a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8ad97cb163e1f678367e37c50d54d161ab">USART1_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a3f9c48714d0e5baaba6613343f0da68e">USART2_IRQn</a>}</td></tr>
+<tr class="separator:a6b665df429a5c2e89fade8e9ad5e829d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae23bfa30e53bb9fa44973d1045f9c725" id="r_ae23bfa30e53bb9fa44973d1045f9c725"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae23bfa30e53bb9fa44973d1045f9c725">buffer_rx</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>][<a class="el" href="#a3de6d5eef6cd86defdb637781eb4f803">BUFFER_RX_SIZE</a>]</td></tr>
+<tr class="separator:ae23bfa30e53bb9fa44973d1045f9c725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a1dadb7d2f74f18641593f5e4181977" id="r_a4a1dadb7d2f74f18641593f5e4181977"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a1dadb7d2f74f18641593f5e4181977">buffer_rx_write_index</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {0}</td></tr>
+<tr class="separator:a4a1dadb7d2f74f18641593f5e4181977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae79cbf078901d356d4e5502dcd28de42" id="r_ae79cbf078901d356d4e5502dcd28de42"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae79cbf078901d356d4e5502dcd28de42">buffer_rx_read_index</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {0}</td></tr>
+<tr class="separator:ae79cbf078901d356d4e5502dcd28de42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50beaacda621587540623c4ea139c06a" id="r_a50beaacda621587540623c4ea139c06a"><td class="memItemLeft" align="right" valign="top">static volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50beaacda621587540623c4ea139c06a">buffer_rx_data_ready</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {false}</td></tr>
+<tr class="separator:a50beaacda621587540623c4ea139c06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b07674e5544341c1581d9f1a6f10dea" id="r_a2b07674e5544341c1581d9f1a6f10dea"><td class="memItemLeft" align="right" valign="top">static volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b07674e5544341c1581d9f1a6f10dea">uart_initialized</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {false}</td></tr>
+<tr class="separator:a2b07674e5544341c1581d9f1a6f10dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f06b86060224d9a7718f2dbc3005a25" id="r_a1f06b86060224d9a7718f2dbc3005a25"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="stm32g4__utils_8h.html#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f06b86060224d9a7718f2dbc3005a25">callback_uart_rx</a> [<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {<a class="el" href="bootloader_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>}</td></tr>
+<tr class="separator:a1f06b86060224d9a7718f2dbc3005a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Module UART pour cible stm32g4 Adaptation du module stm32f1_uart.c de S.Poiraud et T.Bouvier. </p>
+<p>Module UART pour cible stm32g4.</p>
+<dl class="section author"><dt>Auteur</dt><dd>jjo </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Mar 29, 2024 </dd></dl>
+<dl class="section author"><dt>Auteur</dt><dd>jjo </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Mar 29, 2024  </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a3de6d5eef6cd86defdb637781eb4f803" name="a3de6d5eef6cd86defdb637781eb4f803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3de6d5eef6cd86defdb637781eb4f803">&#9670;&#160;</a></span>BUFFER_RX_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUFFER_RX_SIZE&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca2d3a3c3c97ef17e2905b0e23998f6f" name="aca2d3a3c3c97ef17e2905b0e23998f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca2d3a3c3c97ef17e2905b0e23998f6f">&#9670;&#160;</a></span>DEMO_TAB_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEMO_TAB_SIZE&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfa4c5934f87ff1d1fd9ca34502a20ca" name="adfa4c5934f87ff1d1fd9ca34502a20ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa4c5934f87ff1d1fd9ca34502a20ca">&#9670;&#160;</a></span>UART_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UART_TIMEOUT&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa8a25f1ecd2e88bfbec92cd9a7641c6" name="afa8a25f1ecd2e88bfbec92cd9a7641c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa8a25f1ecd2e88bfbec92cd9a7641c6">&#9670;&#160;</a></span>USART_FLAG_ERRORS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define USART_FLAG_ERRORS&#160;&#160;&#160;(<a class="el" href="group___peripheral___registers___bits___definition.html#ga9e5b4a08e3655bed8ec3022947cfc542">USART_ISR_ORE</a> | <a class="el" href="group___peripheral___registers___bits___definition.html#ga09c7d19477a091689f50bd0ef5b6a3d8">USART_ISR_NE</a> | <a class="el" href="group___peripheral___registers___bits___definition.html#ga27cc4dfb6d5e817a69c80471b87deb4b">USART_ISR_FE</a> | <a class="el" href="group___peripheral___registers___bits___definition.html#gaa10e69d231b67d698ab59db3d338baa6">USART_ISR_PE</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a0ca03b66d7731ebfae7c4600d3b6ed5a" name="a0ca03b66d7731ebfae7c4600d3b6ed5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca03b66d7731ebfae7c4600d3b6ed5a">&#9670;&#160;</a></span>BSP_UART_button()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BSP_UART_button </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Simulation d'un bouton par un appui clavier. </p>
+<p>N'importe quelle touche peut être utilisée </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>ID de l'uart concerné </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>true si un appui de touche a eu lieu </dd></dl>
+
+</div>
+</div>
+<a id="a86c9ba55e63b8fd6d26285b0460e6ca9" name="a86c9ba55e63b8fd6d26285b0460e6ca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86c9ba55e63b8fd6d26285b0460e6ca9">&#9670;&#160;</a></span>BSP_UART_data_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BSP_UART_data_ready </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de savoir si le buffer de l'UART demandé est vide ou non. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>ID de l'uart concerné @ret bool true si des caractères sont disponibles, false sinon </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5652b8a78874dcccceef950215b3ce45" name="a5652b8a78874dcccceef950215b3ce45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5652b8a78874dcccceef950215b3ce45">&#9670;&#160;</a></span>BSP_UART_deinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_deinit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Déinitialise l'UARTx. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>est le numéro de l'UART concerné : UART1_ID, UART2_ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac4e53c572c00bd21cb5c1e2368664e7c" name="ac4e53c572c00bd21cb5c1e2368664e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e53c572c00bd21cb5c1e2368664e7c">&#9670;&#160;</a></span>BSP_UART_demo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_demo </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cette fonction blocante a pour but de vous aider à appréhender les fonctionnalités de ce module logiciel. </p>
+<p>Complètement inutile, cette fonction accumule les octets reçus dans un tableau, puis les renvoie sur l'UART2 dès qu'un caractère '<br  />
+' est reçu. </p>
+
+</div>
+</div>
+<a id="a73a67c440953860015ae2db00c663e30" name="a73a67c440953860015ae2db00c663e30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73a67c440953860015ae2db00c663e30">&#9670;&#160;</a></span>BSP_UART_get_next_byte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BSP_UART_get_next_byte </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de lire le prochain caractère reçu sur l'UART demandé </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>ID de l'uart concerné </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>uint8_t le dernier caractère reçu? Ou 0 si rien n'a été reçu </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le caractère lu est retiré du buffer de réception </dd></dl>
+
+</div>
+</div>
+<a id="a224b1ffb1c5690e59e09399d515e1d03" name="a224b1ffb1c5690e59e09399d515e1d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a224b1ffb1c5690e59e09399d515e1d03">&#9670;&#160;</a></span>BSP_UART_getc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BSP_UART_getc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de lire le prochain caractère reçu sur l'UART demandé </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>ID de l'uart concerné </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>uint8_t le dernier caractère reçu? Ou 0 si rien n'a été reçu </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Le caractère lu est retiré du buffer de réception </dd></dl>
+
+</div>
+</div>
+<a id="a9c37277a3b0e00aeea260c8b6b8046f9" name="a9c37277a3b0e00aeea260c8b6b8046f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c37277a3b0e00aeea260c8b6b8046f9">&#9670;&#160;</a></span>BSP_UART_getc_blocking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BSP_UART_getc_blocking </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction blocante !! qui retourne le dernier caractere re�u sur l'USARTx. Ou 0 si pas de caractere re�u au del� du timeout. </p>
+<p>@func uint8_t BSP_UART_getc_blocking(uart_id_e uart_id, uint32_t timeout)) </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">UART_Handle</td><td>: UART_Handle.Instance = USART1, USART2 ou USART6 </td></tr>
+    <tr><td class="paramname">timeout</td><td>au del� duquel on abandonne le blocage, sauf si timeout vaut 0 (attente infinie) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Si le caractere re�u est 0, il n'est pas possible de faire la difference avec le cas o� aucun caractere n'est re�u. @ret Le caractere re�u, sur 8 bits. </dd></dl>
+
+</div>
+</div>
+<a id="a45bda4ffa4a5a6955e95b0e23a7349a3" name="a45bda4ffa4a5a6955e95b0e23a7349a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45bda4ffa4a5a6955e95b0e23a7349a3">&#9670;&#160;</a></span>BSP_UART_gets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t BSP_UART_gets </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>datas</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lit "len" caractères reçus, s'ils existent... </p>
+<dl class="section post"><dt>Postcondition</dt><dd>Fonction non blocante : s'il n'y a plus de caractère reçu, cette fonction renvoit la main </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Le nombre de caractères lus. </dd></dl>
+
+</div>
+</div>
+<a id="a0db5c8bf55f64b0e0e1002be73de6441" name="a0db5c8bf55f64b0e0e1002be73de6441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db5c8bf55f64b0e0e1002be73de6441">&#9670;&#160;</a></span>BSP_UART_gets_blocking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t BSP_UART_gets_blocking </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>datas</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction blocante !! qui retourne "len" caracteres re�us sur l'USARTx. </p>
+<p>@func uint32_t BSP_UART_gets_blocking(uart_id_e uart_id, uint8_t * datas, uint32_t len, uint32_t timeout) </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">les</td><td>caract�res re�us sont rang�s dans le buffer datas. </td></tr>
+    <tr><td class="paramname">UART_Handle</td><td>: UART_Handle.Instance = USART1, USART2 ou USART6 </td></tr>
+    <tr><td class="paramname">timeout</td><td>au del� duquel on abandonne le blocage, sauf si timeout vaut 0 (attente infinie) @ret Le nombre de caracteres re�us </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5624b706370a68ed252c43159de220ee" name="a5624b706370a68ed252c43159de220ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5624b706370a68ed252c43159de220ee">&#9670;&#160;</a></span>BSP_UART_impolite_force_puts_on_uart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_impolite_force_puts_on_uart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c3932c9d0c030624fd6724833593e95" name="a1c3932c9d0c030624fd6724833593e95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c3932c9d0c030624fd6724833593e95">&#9670;&#160;</a></span>BSP_UART_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>baudrate</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise l'USARTx - 8N1 - vitesse des bits (baudrate) indiqué en paramètre @func void UART_init(uint8_t uart_id, uart_interrupt_mode_e mode) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>est le numéro de l'UART concerné : UART1_ID UART2_ID </td></tr>
+    <tr><td class="paramname">baudrate</td><td>indique la vitesse en baud/sec 115200 vitesse proposée par défaut 9600 vitesse couramment utilisée 19200 ... </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Cette fonction initialise les broches suivante selon l'USART choisit en parametre : USART1 : Rx=PA10 et Tx=PA9 ou avec remap : Rx=PB7 et Tx=PB6 USART2 : Rx=PA3 et Tx=PA2 ou avec remap : Rx=PA15 et Tx=PA14 ou Rx=PB4 et Tx=PB3 La gestion des envois et reception se fait en interruption. </dd></dl>
+
+</div>
+</div>
+<a id="acc8d973e31ca7d2cf1d354011817e10f" name="acc8d973e31ca7d2cf1d354011817e10f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc8d973e31ca7d2cf1d354011817e10f">&#9670;&#160;</a></span>BSP_UART_putc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_putc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>c</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Envoi un caractere sur l'UARTx. Fonction BLOCANTE si un caractere est deja en cours d'envoi. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>: le caractere a envoyer </td></tr>
+    <tr><td class="paramname">uart_id</td><td>UART1_ID, UART2_ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa90876c0e442900cb530092e468c4cc8" name="aa90876c0e442900cb530092e468c4cc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa90876c0e442900cb530092e468c4cc8">&#9670;&#160;</a></span>BSP_UART_puts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_puts </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Envoi une chaine de caractere sur l'USARTx. Fonction BLOCANTE si un caractere est deja en cours d'envoi. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>: UART1_ID, UART2_ID </td></tr>
+    <tr><td class="paramname">str</td><td>: la chaine de caractère à envoyer </td></tr>
+    <tr><td class="paramname">len</td><td>: le nombre de caractères à envoyer. Si 0, la longueur de la chaîne est évaluée dynamiquement avec strlen </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab3eecca21142f4f425756f6b563066a5" name="ab3eecca21142f4f425756f6b563066a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3eecca21142f4f425756f6b563066a5">&#9670;&#160;</a></span>BSP_UART_set_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BSP_UART_set_callback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43">uart_id_t</a></td>          <td class="paramname"><span class="paramname"><em>uart_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="stm32g4__utils_8h.html#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a></td>          <td class="paramname"><span class="paramname"><em>cb</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affecte une fonction de callback sur réception d'un caractère UART. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uart_id</td><td>ID de l'uart concerné </td></tr>
+    <tr><td class="paramname">cb</td><td>pointeur sur la fonction de callback à ajouter (nom de la fonction) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7139cd4baabbbcbab0c1fe6d7d4ae1cc" name="a7139cd4baabbbcbab0c1fe6d7d4ae1cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7139cd4baabbbcbab0c1fe6d7d4ae1cc">&#9670;&#160;</a></span>USART1_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void USART1_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ca6fd0e6f77921dd1123539857ba0a8" name="a0ca6fd0e6f77921dd1123539857ba0a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca6fd0e6f77921dd1123539857ba0a8">&#9670;&#160;</a></span>USART2_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void USART2_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="ae23bfa30e53bb9fa44973d1045f9c725" name="ae23bfa30e53bb9fa44973d1045f9c725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23bfa30e53bb9fa44973d1045f9c725">&#9670;&#160;</a></span>buffer_rx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t buffer_rx[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>][<a class="el" href="#a3de6d5eef6cd86defdb637781eb4f803">BUFFER_RX_SIZE</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50beaacda621587540623c4ea139c06a" name="a50beaacda621587540623c4ea139c06a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50beaacda621587540623c4ea139c06a">&#9670;&#160;</a></span>buffer_rx_data_ready</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool buffer_rx_data_ready[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae79cbf078901d356d4e5502dcd28de42" name="ae79cbf078901d356d4e5502dcd28de42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae79cbf078901d356d4e5502dcd28de42">&#9670;&#160;</a></span>buffer_rx_read_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t buffer_rx_read_index[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a1dadb7d2f74f18641593f5e4181977" name="a4a1dadb7d2f74f18641593f5e4181977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a1dadb7d2f74f18641593f5e4181977">&#9670;&#160;</a></span>buffer_rx_write_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t buffer_rx_write_index[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f06b86060224d9a7718f2dbc3005a25" name="a1f06b86060224d9a7718f2dbc3005a25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f06b86060224d9a7718f2dbc3005a25">&#9670;&#160;</a></span>callback_uart_rx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="stm32g4__utils_8h.html#a664cd2bdc5d7b9c4d70720cdd0f41938">callback_fun_t</a> callback_uart_rx[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {<a class="el" href="bootloader_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf07100315cbb9544d24d708c4bc75bd" name="acf07100315cbb9544d24d708c4bc75bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf07100315cbb9544d24d708c4bc75bd">&#9670;&#160;</a></span>instances_array</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_u_s_a_r_t___type_def.html">USART_TypeDef</a>* instances_array[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {<a class="el" href="group___peripheral__declaration.html#ga92871691058ff7ccffd7635930cb08da">USART1</a>, <a class="el" href="group___peripheral__declaration.html#gaf114a9eab03ca08a6fb720e511595930">USART2</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b665df429a5c2e89fade8e9ad5e829d" name="a6b665df429a5c2e89fade8e9ad5e829d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b665df429a5c2e89fade8e9ad5e829d">&#9670;&#160;</a></span>nvic_IRQ_array</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="group___peripheral__interrupt__number__definition.html#ga7e1129cd8a196f4284d41db3e82ad5c8">IRQn_Type</a> nvic_IRQ_array[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {<a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8ad97cb163e1f678367e37c50d54d161ab">USART1_IRQn</a>, <a class="el" href="group___peripheral__interrupt__number__definition.html#gga7e1129cd8a196f4284d41db3e82ad5c8a3f9c48714d0e5baaba6613343f0da68e">USART2_IRQn</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5fca37c557c00c05339275eaea6cd39" name="ac5fca37c557c00c05339275eaea6cd39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5fca37c557c00c05339275eaea6cd39">&#9670;&#160;</a></span>structure_handles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___u_a_r_t___exported___types.html#ga5de4a49eb132735325e706f406c69d6e">UART_HandleTypeDef</a> structure_handles[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b07674e5544341c1581d9f1a6f10dea" name="a2b07674e5544341c1581d9f1a6f10dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b07674e5544341c1581d9f1a6f10dea">&#9670;&#160;</a></span>uart_initialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool uart_initialized[<a class="el" href="stm32g4__uart_8h.html#ada81ace00fa480969ed3a1938a6d9c43a7c6b8af9fc4e7b56db9130bb7bfee6dc">UART_ID_NB</a>] = {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_14bc92f4b96c8519b376567118ac28b3.html">drivers</a></li><li class="navelem"><a class="el" href="dir_5004f88798df035968551ccccdaf7179.html">bsp</a></li><li class="navelem"><a class="el" href="stm32g4__uart_8c.html">stm32g4_uart.c</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

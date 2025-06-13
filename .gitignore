@@ -4,6 +4,13 @@
 /build/
 /Binaries/
 
+# Documentation générée par Doxygen
+doc/
+*.doxygen_warn
+
+# Dossier temporaire Doxygen Awesome
+doxygen-awesome/
+
 # Fichiers générés par IDEs
 *.uvopt*
 *.uvproj*
