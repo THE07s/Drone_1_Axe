@@ -1,4 +1,14 @@
+/**
+ * @file stabilization.c
+ * @brief Implémentation du module d'asservissement et de stabilisation via un correcteur proportionnel
+ * 
+ * @author Loïc LEENAERTS (https://github.com/THE07s)
+ * @author Romain PICAULT (https://github.com/RomainPICAULT)
+ * @date 13 juin 2025
+ */
+
 #include "stabilization.h"
+#include "../config.h"
 
 void process_stabilization(float angle_system, float angle_commande) {
     const float Kp = 0.8;  // Gain
@@ -27,7 +37,21 @@ void process_stabilization(float angle_system, float angle_commande) {
     if (pulse_moteur1 < ESC_PULSE_MIN) pulse_moteur1 = ESC_PULSE_MIN;
     if (pulse_moteur2 < ESC_PULSE_MIN) pulse_moteur2 = ESC_PULSE_MIN;
 
-    // Application aux moteurs
+    // Application aux moteurs selon la configuration
+#if USE_MOTOR1
     set_moteur(1, (uint16_t)pulse_moteur1);
-    // set_moteur(2, (uint16_t)pulse_moteur2);
+#endif
+
+#if USE_MOTOR2
+    set_moteur(2, (uint16_t)pulse_moteur2);
+#endif
+
+#if DEBUG_MODE
+    static uint32_t debug_counter = 0;
+    if (++debug_counter >= 1000) { // Affichage tous les 1000 cycles
+        printf("Stabilisation - Erreur: %.2f°, Correction: %.2f, M1: %d, M2: %d\r\n", 
+               erreur, correction_pwm, pulse_moteur1, pulse_moteur2);
+        debug_counter = 0;
+    }
+#endif
 }

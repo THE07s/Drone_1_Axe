@@ -1,3 +1,14 @@
+/**
+ * @file main.c
+ * @brief Programme principal du drone 1 axe
+ * 
+ * Ce fichier contient le point d'entrée et la boucle principale du programme du drone 1 axe. Il initialise tous les modules (affichage, capteurs, moteurs) et exécute la boucle de contrôle principal incluant la lecture des capteurs, la stabilisation et la mise à jour de l'affichage.
+ * 
+ * @author Loïc LEENAERTS (https://github.com/THE07s)
+ * @author Romain PICAULT (https://github.com/RomainPICAULT)
+ * @date 13 juin 2025
+ */
+
 /* Includes ------------------------------------------------------------------*/
 #include "config.h"
 #include "stm32g4_sys.h"
@@ -24,9 +35,19 @@ int main(void) {
     BSP_UART_init(UART2_ID, 115200);
     BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
 
+#if DEBUG_MODE
+    // Effacement de l'écran de debug
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printf("=== DRONE 1 AXE - MODE DEBUG ===\r\n");
+    printf("Configuration:\r\n");
+    printf("- Moteur 1: %s\r\n", USE_MOTOR1 ? "ACTIF" : "INACTIF");
+    printf("- Moteur 2: %s\r\n", USE_MOTOR2 ? "ACTIF" : "INACTIF");
+    printf("- Calibration ESC: %s\r\n", ENABLE_CALIBRATION ? "ACTIVE" : "INACTIVE");
+    printf("- Debug capteurs: %s\r\n", DEBUG_SENSORS ? "ACTIF" : "INACTIF");
+    printf("===============================\r\n");
+#endif
 
     /* Initialisation des modules */
     // init_user_input();
@@ -35,7 +56,11 @@ int main(void) {
     init_motors();
 
     /* Message de démarrage */
+#if DEBUG_MODE
+    printf("Drone 1 Axe - Système démarré (Mode Debug)\r\n");
+#else
     printf("Drone 1 Axe - Système démarré\r\n");
+#endif
 
     /* Boucle principale */
     while (1) {
@@ -51,9 +76,12 @@ int main(void) {
         /* Traitement des entrées utilisateur */
         // process_user_input();
     }
+    
+#if DEBUG_MODE
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+#endif
 
     /* Cette ligne ne sera jamais atteinte */
     return 0;

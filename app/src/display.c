@@ -1,13 +1,21 @@
+/**
+ * @file display.c
+ * @brief Implémentation du module de gestion de l'affichage
+ * 
+ * @author Loïc LEENAERTS (https://github.com/THE07s)
+ * @author Romain PICAULT (https://github.com/RomainPICAULT)
+ * @date 13 juin 2025
+ */
 
 #include "display.h"
 
 // Variables globales
-char display_buffer[32];
-static float old_x1 = 0, old_y1 = 0, old_x2 = 0, old_y2 = 0;
+char display_buffer[32];  /*!< Buffer pour les strings affichés */
+static float old_x1 = 0, old_y1 = 0, old_x2 = 0, old_y2 = 0; /*!< Anciennes coordonnées de la barre horizontale */
 
 
-void draw_perspective_base(void) {
-    // Socle en perspective (trapeze)
+void draw_base(void) {
+    // Base
     uint16_t base_y = 170;
     uint16_t base_h = 30;
     uint16_t base_w_top = 100;
@@ -186,14 +194,14 @@ void init_display(void) {
     ILI9341_Rotate(ILI9341_Orientation_Landscape_1);
     ILI9341_Fill(ILI9341_COLOR_BLACK);
     draw_title();
-    draw_perspective_base();
+    draw_base();
     draw_vertical_bar();
     draw_stats();
     draw_angle_command();
     draw_horizontal_bar(g_state.angle_MPU1);
 }
 
-void Mettre_A_Jour_Affichage(void) {
+void update_affichage(void) {
     ILI9341_DrawLine((uint16_t)old_x1, (uint16_t)old_y1, (uint16_t)old_x2, (uint16_t)old_y2, ILI9341_COLOR_BLACK);
     if (g_state.angle_MPU1 > 80.0f || g_state.angle_MPU1 < -80.0f) {
         draw_vertical_bar();
