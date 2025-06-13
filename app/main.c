@@ -71,7 +71,7 @@ int main(void) {
         process_stabilization(g_state.angle_MPU1, g_state.command_position);
 
         /* Traitement de l'affichage */
-        Mettre_A_Jour_Affichage();
+        update_affichage();
 
         /* Traitement des entrées utilisateur */
         // process_user_input();
